@@ -2,7 +2,7 @@ const uploadBtn = document.getElementById('upload-btn');
 const inputUpload = document.getElementById('image-upload');
 
 
-uploadBtn.addEventListener("click", () => {
+uploadBtn.addEventListener('click', () => {
     inputUpload.click();
 })
 function lerConteudoDoArquivo(arquivo) {
@@ -17,3 +17,17 @@ function lerConteudoDoArquivo(arquivo) {
         leitor.readAsDataURL(arquivo)
     })
 }
+const ImagemUpload = document.querySelector('.main-imagem');
+const nomeimagemUpload = document.querySelector('.container-imagem-nome p');
+inputUpload.addEventListener('change', async (evento) => {
+    const file = evento.target.files[0];
+    if (file) {
+        try {
+            const conteudoDoArquivo = await lerConteudoDoArquivo(file);
+            ImagemUpload.src = conteudoDoArquivo.url;
+            nomeimagemUpload.textContent = conteudoDoArquivo.nome;
+        } catch (erro) {
+            console.error('Erro na leitura do arquivo')
+        }
+    }    
+})
