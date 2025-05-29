@@ -1,8 +1,8 @@
-const uploadBtn = document.getElementById('upload-btn');
-const inputUpload = document.getElementById('image-upload');
+const uploadBtn = document.getElementById("upload-btn");
+const inputUpload = document.getElementById("image-upload");
 
 
-uploadBtn.addEventListener('click', () => {
+uploadBtn.addEventListener("click", () => {
     inputUpload.click();
 })
 function lerConteudoDoArquivo(arquivo) {
@@ -17,9 +17,9 @@ function lerConteudoDoArquivo(arquivo) {
         leitor.readAsDataURL(arquivo)
     })
 }
-const ImagemUpload = document.querySelector('.main-imagem');
-const nomeimagemUpload = document.querySelector('.container-imagem-nome p');
-inputUpload.addEventListener('change', async (evento) => {
+const ImagemUpload = document.querySelector(".main-imagem");
+const nomeimagemUpload = document.querySelector(".container-imagem-nome p");
+inputUpload.addEventListener("change", async (evento) => {
     const file = evento.target.files[0];
     if (file) {
         try {
@@ -27,7 +27,21 @@ inputUpload.addEventListener('change', async (evento) => {
             ImagemUpload.src = conteudoDoArquivo.url;
             nomeimagemUpload.textContent = conteudoDoArquivo.nome;
         } catch (erro) {
-            console.error('Erro na leitura do arquivo')
+            console.error("Erro na leitura do arquivo")
         }
     }    
+})
+const inputTag = document.getElementById("categoria");
+const listaTags = document.getElementById("lista-tags");
+inputTag.addEventListener("keypress", (evento) => {
+    if (evento.key === "Enter") {
+        evento.preventDefault();
+        const tagTxt = inputTag.value.trim();
+        if (tagTxt !== "") {
+            const newTag = document.createElement("li");
+            newTag.innerHTML = `<p>${tagTxt}</p> <img src="./img/close-black.svg" class="remove-tag">`;
+            listaTags.appendChild(newTag);
+            inputTag.value = "";
+        }
+    }
 })
