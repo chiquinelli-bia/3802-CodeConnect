@@ -161,6 +161,7 @@ textarea {
 }
 .lista-tags {
     display: flex;
+    gap: 8px;
 }
 .container-botoes {
     display: flex;
