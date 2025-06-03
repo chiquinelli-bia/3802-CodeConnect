@@ -249,6 +249,10 @@ textarea {
         background-color: var(--itens-background);
         padding: 1.5em;
         z-index: 1;
+        height: 5em;
+    }
+    .lista-links li a {
+        font-size: 16px;
     }
     main {
         width: 100%;
@@ -271,3 +275,15 @@ textarea {
         font-size: 36px;
     }
 }
+@media (max-width: 767px) {
+    main {
+        padding: 0 0 140px 0;
+    }
+    .container-imagem-nome p, form div label {
+        font-size: 16px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+}
+/*  adiconar aquele negocio de pesquisa*/

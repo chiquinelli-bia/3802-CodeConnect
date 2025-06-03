@@ -17,6 +17,8 @@ function lerConteudoDoArquivo(arquivo) {
         leitor.readAsDataURL(arquivo)
     })
 }
+
+
 const imagemUpload = document.querySelector(".main-imagem");
 const nomeImagemUpload = document.querySelector(".container-imagem-nome p");
 inputUpload.addEventListener("change", async (evento) => {
@@ -107,3 +109,19 @@ botaodescartar.addEventListener("click", (evento) => {
     nomeImagemUpload.textContent = "image_projeto.png";
     tagsDisponiveis.innerHTML = "";
 })
+const inputs = document.querySelectorAll("input, textarea");
+const navbar = document.querySelector(".lista-links");
+const mediaQuery = window.matchMedia("(max-width: 1024px)");
+
+inputs.forEach(input => {
+    input.addEventListener("focus", () => {
+        if (mediaQuery.matches) {
+            navbar.style.display = "none";
+        }
+    });
+    input.addEventListener("blur", () => {
+        if (mediaQuery.matches) {
+            navbar.style.display = "flex";
+        }
+    });
+});
