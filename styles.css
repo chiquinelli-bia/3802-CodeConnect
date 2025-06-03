@@ -17,16 +17,12 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: var(--font-family);
-
     display: flex;
     justify-content: center;
     align-items: start;
-
-    height: 100vh;
     gap: 27px;
     padding: 56px 0;
 }
-
 aside {
     background-color: var(--itens-background);
     border-radius: 10px;
@@ -34,20 +30,26 @@ aside {
     padding: 40px 16px;
     text-align: center;
 }
+.link-destaque {
+    border: var(--primary-color) solid 1px;
+    list-style-type: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin: 3em 0;
+}
+.link-destaque:first-of-type a {
+    color: var(--primary-color);
+    text-decoration: none;
 
+}
 .lista-links {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    margin-top: 80px;
     align-items: center;
     list-style-type: none;
 }
-.link-destaque {
-    border: var(--primary-color) solid 1px;
-    border-radius: 10px;
-    padding: 12px 18px;
-}
+
 .lista-links li a {
     display: flex;
     flex-direction: column;
@@ -57,9 +59,6 @@ aside {
     color: var(--secondary-color);
     font-size: 22px;
 }
-.lista-links li:first-of-type a {
-    color: var(--primary-color);
-}
 main {
     background-color: var(--itens-background);
     border-radius: 10px;
@@ -68,7 +67,7 @@ main {
     gap: 24px;
 }
 .container-upload-imagem {
-    width: 486px;
+    width: 100%;
 }
 .container-imagem {
     height: 368px;
@@ -79,6 +78,7 @@ main {
 .main-imagem {
     border-radius: 7px;
     height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 #upload-btn {
@@ -117,7 +117,7 @@ main {
     gap: 8px;
 }
 .container-descricao {
-    width: 422px;
+    width: 100%;
 }
 h2 {
     font-size: 26px;
@@ -214,4 +214,60 @@ textarea {
     top: 50%;
     transform: translateY(-50%);
     margin-left: 8px;
+}
+@media screen and (max-width: 1024px) {
+    body {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    aside {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--background-color);
+    }
+    .logo {
+        width: 100px;
+    }
+    .link-destaque {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 20px; 
+        margin: 1em 0; 
+    }
+    .lista-links {
+        position: fixed;
+        bottom: 0;   
+        width: 100%; 
+        display: flex;
+        flex-direction: row;
+        justify-self: anchor-center;
+        justify-content: space-evenly;
+        background-color: var(--itens-background);
+        padding: 1.5em;
+        z-index: 1;
+    }
+    main {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--background-color);
+        padding-bottom: 119px;
+    }
+    .container-upload-imagem {
+        width: auto;
+    }
+    .main-imagem {
+        width: 100%;
+    }
+    .container-imagem-nome p, form div label {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 36px;
+    }
 }
