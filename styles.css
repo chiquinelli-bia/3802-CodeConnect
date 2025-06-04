@@ -60,33 +60,15 @@ aside {
     font-size: 22px;
 }
 .pesquisa {
-    background-color: var(--itens-background);
-    border: var(--itens-background);
-    border-radius: 5px;
     display: none;
-    height: 3.5em;
-}
-.pesquisa::placeholder {
-    font-family: var(--font-family);
-    color: var(--secondary-color);
-    font-size: 18px;
-    background: url("./img/search.svg") no-repeat;
-    background-position: 1em;
-    padding-left: 3em
 }
 .container-pesquisa {
-    display: flexbox;
-    flex-direction: column;
-    justify-content: space-evenly;
+    display: none;
 }
 .botao-limpar-tags {
-    color: var(--secondary-color);
-    font-family: var(--font-family);
-    font-size: 14px;
-    background-color: transparent;
-    border: none;
     display: none;
-/* ver nos media queries e posicionar os botoes*/
+/* pq em tela de note a img ta deslocada pr a direita */
+/* separa por arquivos o css */
 }
 main {
     background-color: var(--itens-background);
@@ -265,13 +247,13 @@ textarea {
     .link-destaque {
         width: 100%;
         max-width: 100%;
-        padding: 12px 20px; 
-        margin: 1em 0; 
+        padding: 12px 20px;
+        margin: 1em 0;
     }
     .lista-links {
         position: fixed;
-        bottom: 0;   
-        width: 100%; 
+        bottom: 0;
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-self: anchor-center;
@@ -285,10 +267,33 @@ textarea {
         font-size: 16px;
     }
     .pesquisa {
+        background-color: var(--itens-background);
+        border: var(--itens-background);
+        border-radius: 5px;
+        height: 3.5em;
         display: block;
     }
-    .botao-limpar-tags {
+    .pesquisa::placeholder {
+        font-family: var(--font-family);
+        color: var(--secondary-color);
+        font-size: 18px;
+        background: url("./img/search.svg") no-repeat;
+        background-position: 1em;
+        padding-left: 3em
+    }
+    .container-pesquisa {
         display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: self-start;
+    }
+    .botao-limpar-tags {
+        color: var(--secondary-color);
+        font-family: var(--font-family);
+        font-size: 14px;
+        background-color: transparent;
+        border: none;
+        display: block;
     }
     main {
         width: 100%;
@@ -312,9 +317,13 @@ textarea {
     }
 }
 @media (max-width: 767px) {
-
     main {
         padding: 0 0 140px 0;
+    }
+    .container-pesquisa {
+        flex-direction: column-reverse;
+        gap: 10px;
+        align-items: center;
     }
     .container-imagem-nome p, form div label {
         font-size: 16px;

@@ -1,6 +1,7 @@
 const uploadBtn = document.getElementById("upload-btn");
 const inputUpload = document.getElementById("image-upload");
 
+// fazer a modularização do código
 
 uploadBtn.addEventListener("click", () => {
     inputUpload.click();
@@ -41,7 +42,7 @@ listaTags.addEventListener("click", (evento) => {
         listaTags.removeChild(tagQueQueremosRemover);
     }
 })
-const tagsDisponiveis = ["Front-end", "Programação", "Data Science", "Full-stack", "HTML", "CSS", "JavaScript"];
+const tagsDisponiveis = ["front-end, programação, data science, full-stack, html, css, javascript."];
 async function verificaTagsDisponiveis(tagTexto) {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -65,12 +66,14 @@ inputTags.forEach(input => {
                     const tagExiste = await verificaTagsDisponiveis(tagTxt);
                     if (tagExiste) {
                         const newTag = document.createElement("li");
+                        const div = document.querySelector(".container-pesquisa");
                         newTag.classList.add("lista-tag-element")
                         newTag.innerHTML = `<p>${tagTxt}</p> <img src="./img/close-black.svg" class="remove-tag">`;
                         ul.appendChild(newTag);
+                        div.appendChild(ul);
                         input.value = "";
                     } else {
-                        alert("Tag não foi encontrada.");
+                        alert("Tag não foi encontrada. tags disponíveis: front-end, programação, data science, full-stack, html, css, javascript.");
                     }
                 } catch (error) {
                     console.error("Erro ao verificar a existência da tag", error);
