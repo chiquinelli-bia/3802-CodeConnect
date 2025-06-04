@@ -59,6 +59,35 @@ aside {
     color: var(--secondary-color);
     font-size: 22px;
 }
+.pesquisa {
+    background-color: var(--itens-background);
+    border: var(--itens-background);
+    border-radius: 5px;
+    display: none;
+    height: 3.5em;
+}
+.pesquisa::placeholder {
+    font-family: var(--font-family);
+    color: var(--secondary-color);
+    font-size: 18px;
+    background: url("./img/search.svg") no-repeat;
+    background-position: 1em;
+    padding-left: 3em
+}
+.container-pesquisa {
+    display: flexbox;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.botao-limpar-tags {
+    color: var(--secondary-color);
+    font-family: var(--font-family);
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    display: none;
+/* ver nos media queries e posicionar os botoes*/
+}
 main {
     background-color: var(--itens-background);
     border-radius: 10px;
@@ -151,12 +180,13 @@ form div input {
 textarea {
     height: 161px;
 }
-.lista-tags li {
+.lista-tag-element {
     display: flex;
     background-color: var(--secondary-color);
     color: var(--background-color);
     gap: 10px;
     padding: 4px 8px;
+    margin-top: 0.5em;
     border-radius: 4px;
 }
 .lista-tags {
@@ -254,6 +284,12 @@ textarea {
     .lista-links li a {
         font-size: 16px;
     }
+    .pesquisa {
+        display: block;
+    }
+    .botao-limpar-tags {
+        display: flex;
+    }
     main {
         width: 100%;
         padding: 20px;
@@ -276,6 +312,7 @@ textarea {
     }
 }
 @media (max-width: 767px) {
+
     main {
         padding: 0 0 140px 0;
     }
