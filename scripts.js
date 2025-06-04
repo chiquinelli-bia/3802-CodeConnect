@@ -42,7 +42,7 @@ listaTags.addEventListener("click", (evento) => {
         listaTags.removeChild(tagQueQueremosRemover);
     }
 })
-const tagsDisponiveis = ["front-end, programação, data science, full-stack, html, css, javascript."];
+const tagsDisponiveis = ["front-end","programação","data science","full-stack","html","css","javascript"];
 async function verificaTagsDisponiveis(tagTexto) {
     return new Promise((resolve) => {
         setTimeout(() => {
