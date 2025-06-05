@@ -15,7 +15,7 @@ export function setupTags () {
         ul.classList.add("lista-tags");
         input.after(ul);
 
-        input.addEventListener("keypress", async (evento) => {
+        input.addEventListener("keydown", async (evento) => {
             if (evento.key === "Enter") {
                 evento.preventDefault();
                 const tagTxt = input.value.trim();
