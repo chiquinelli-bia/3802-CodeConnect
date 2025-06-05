@@ -34,15 +34,15 @@ inputUpload.addEventListener("change", async (evento) => {
         }
     }    
 })
-const inputTag = document.getElementsByName("categoria");
 const listaTags = document.querySelector(".lista-tags");
+console.log(listaTags);
 listaTags.addEventListener("click", (evento) => {
     if (evento.target.classList.contains("remove-tag")) {
         const tagQueQueremosRemover = evento.target.parentElement;
         listaTags.removeChild(tagQueQueremosRemover);
     }
 })
-const tagsDisponiveis = ["front-end, programação, data science, full-stack, html, css, javascript."];
+const tagsDisponiveis = ["front-end","programação","data science","full-stack","html","css","javascript"];
 async function verificaTagsDisponiveis(tagTexto) {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -70,7 +70,9 @@ inputTags.forEach(input => {
                         newTag.classList.add("lista-tag-element")
                         newTag.innerHTML = `<p>${tagTxt}</p> <img src="./img/close-black.svg" class="remove-tag">`;
                         ul.appendChild(newTag);
-                        div.appendChild(ul);
+                        if (!ul.parentElement.tagName.toLowerCase() === 'form') {
+                            div.appendChild(ul); 
+                        }                        
                         input.value = "";
                     } else {
                         alert("Tag não foi encontrada. tags disponíveis: front-end, programação, data science, full-stack, html, css, javascript.");
@@ -82,17 +84,20 @@ inputTags.forEach(input => {
             }
         }
     });
-    const botaoRemoverTag = document.querySelector(".botao-limpar-tags");   
-    
     ul.addEventListener("click", (evento) => {
         if (evento.target.classList.contains("remove-tag")) {
             const tagQueQueremosRemover = evento.target.parentElement;
             ul.removeChild(tagQueQueremosRemover);
         }
     });
-    botaoRemoverTag.addEventListener("click", () => {
-      ul.innerHTML = ""; 
-    });
+   
+});
+
+const botaoRemoverTag = document.querySelector(".botao-limpar-tags");
+botaoRemoverTag.addEventListener("click", () => {
+    const inputPesquisa = document.querySelector(".pesquisa");
+    const ulPesquisa = inputPesquisa.nextElementSibling; 
+    ulPesquisa.innerHTML = "";
 });
 
 const botaoPublicar = document.querySelector(".botao-publicar");
@@ -131,7 +136,13 @@ botaodescartar.addEventListener("click", (evento) => {
     form.reset();
     imagemUpload.src = "./img/imagem1.png";
     nomeImagemUpload.textContent = "image_projeto.png";
-    tagsDisponiveis.innerHTML = "";
+    tagsDisponiveis.innerHTML = "";    
+    const inputTag = document.getElementById("categoria");
+    const ulTags = inputTag.nextElementSibling; 
+    ulTags.innerHTML = "";
+
+
+
 })
 const inputs = document.querySelectorAll("input, textarea");
 const navbar = document.querySelector(".lista-links");
