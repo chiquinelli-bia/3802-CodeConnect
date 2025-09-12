@@ -13,6 +13,8 @@ Na segunda coluna, temos formulários para descrever o projeto juntamente com ta
 
  utilizando media queries para garantir que a interface se ajuste corretamente a diferentes tamanhos de tela, sem funcionalidades de back-end ou integração com APIs.
 
+ 💡 _Este projeto foi uma das etapas em que explorei diferentes formas de estruturar a organização de pastas e arquivos. Hoje sigo um padrão mais consistente, mas deixei essa versão visível para mostrar meu processo de aprendizado_
+
 ## ✔️ Técnicas e tecnologias utilizadas
 
 Para desenvolver este projeto, utilizamos HTML, CSS, JavaScript e, se aprofundando em termos de JavaScript:
