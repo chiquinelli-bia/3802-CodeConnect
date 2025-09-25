@@ -1,69 +1,69 @@
 .container-upload-imagem {
-    width: 100%;
+  width: 100%;
 }
 .container-imagem {
-    height: 368px;
-    padding: 24px 16px;
-    background-color: var(--secondary-color);
-    border-radius: 8px;
+  height: 368px;
+  padding: 24px 16px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
 }
 .main-imagem {
-    border-radius: 7px;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  border-radius: 7px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 #upload-btn {
-    background-color: transparent;
-    padding: 12px;
-    border: var(--secondary-color) solid 1px;
-    border-radius: 8px;
-    width: 100%;
-    color: var(--secondary-color);
-    margin: 16px 0 8px 0;
-    font-family: var(--font-family);
-    font-weight: 600;
-    text-align: center;
-    font-size: 18px;
-    position: relative;
+  background-color: transparent;
+  padding: 12px;
+  border: var(--secondary-color) solid 1px;
+  border-radius: 8px;
+  width: 100%;
+  color: var(--secondary-color);
+  margin: 16px 0 8px 0;
+  font-family: var(--font-family);
+  font-weight: 600;
+  text-align: center;
+  font-size: 18px;
+  position: relative;
 }
 #upload-btn::after {
-    content: "";
-    background-image: url("../img/upload.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 15px;
-    height: 15px;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 8px;
+  content: "";
+  background-image: url("../src/img/upload.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
 }
 .container-imagem-nome {
-    display: flex;
+  display: flex;
 }
 .container-imagem-nome p {
-    color: var(--secondary-color);
-    font-size: 16px;
-    gap: 8px;
+  color: var(--secondary-color);
+  font-size: 16px;
+  gap: 8px;
 }
 @media screen and (max-width: 1024px) {
-    .container-upload-imagem {
-        width: auto;
-    }
-    .main-imagem {
-        width: 100%;
-    }
-    .container-imagem-nome p {
-        font-size: 20px;
-    }
+  .container-upload-imagem {
+    width: auto;
+  }
+  .main-imagem {
+    width: 100%;
+  }
+  .container-imagem-nome p {
+    font-size: 20px;
+  }
 }
 @media (max-width: 767px) {
-    .container-imagem-nome p {
-        font-size: 16px;
-    }
-    h2 {
-        font-size: 22px;
-    }
+  .container-imagem-nome p {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 22px;
+  }
 }
