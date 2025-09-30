@@ -7,6 +7,7 @@ function Titulo() {
 function SubTitulo() {
   return <h2 className="form__texto">Boas Vindas! Faça seu Login.</h2>;
 }
+<<<<<<< HEAD
 function CampoDigitacao({ label, tipo, placeholder }) {
   return (
     <div className="form__campo-digitacao">
@@ -22,6 +23,8 @@ function Botao() {
     </button>
   );
 }
+=======
+>>>>>>> e3ee9fd1d27cdefc5f68b91101506dd06837a4b9
 function Login() {
   return (
     <div className="container-login">
@@ -30,6 +33,7 @@ function Login() {
         alt="uma mulher negra de cabelos crespos usando óculos e mexendo no computador, também há o logo da codeconnect"
       />
       <section>
+<<<<<<< HEAD
         <form>
           <Titulo />
           <SubTitulo />
@@ -51,4 +55,13 @@ function Login() {
   );
 }
 
+=======
+        <Titulo />
+        <SubTitulo />
+      </section>
+    </div>
+  );
+}
+
+>>>>>>> e3ee9fd1d27cdefc5f68b91101506dd06837a4b9
 ReactDOM.createRoot(document.getElementById("root")).render(<Login />);
