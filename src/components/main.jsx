@@ -7,11 +7,18 @@ function Titulo({ children }) {
 function SubTitulo({ children }) {
   return <h2 className="form__texto">{children}</h2>;
 }
-function CampoDigitacao({ label, tipo, placeholder }) {
+function CampoDigitacao({ label, tipo, placeholder, value, setValor }) {
   return (
     <div className="form__campo-digitacao">
       <label htmlFor="email">{label}</label>
-      <input type={tipo} placeholder={placeholder} required id={tipo} />
+      <input
+        type={tipo}
+        placeholder={placeholder}
+        required
+        id={tipo}
+        value={value}
+        onChange={(evento) => setValor(evento.target.value)}
+      />
     </div>
   );
 }
@@ -23,6 +30,7 @@ function Botao({ children }) {
   );
 }
 function Login() {
+  const [email, setEmail] = React.useState("");
   return (
     <div className="container-login">
       <img
@@ -37,6 +45,8 @@ function Login() {
             label="E-mail ou usuário"
             tipo="email"
             placeholder="Digite o seu email ou usuário"
+            value={email}
+            setValor={setEmail}
           />
           <CampoDigitacao
             label="Senha"
