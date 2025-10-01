@@ -32,6 +32,11 @@ function Botao({ children }) {
 function Login() {
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("email " + email);
+    console.log("senha " + senha);
+  };
   return (
     <div className="container-login">
       <img
@@ -39,7 +44,7 @@ function Login() {
         alt="uma mulher negra de cabelos crespos usando óculos e mexendo no computador, também há o logo da codeconnect"
       />
       <section>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Titulo>Login</Titulo>
           <SubTitulo>Boas Vindas! Faça seu Login.</SubTitulo>
           <CampoDigitacao
