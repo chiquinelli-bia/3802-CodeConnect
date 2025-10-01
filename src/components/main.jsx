@@ -10,7 +10,7 @@ function SubTitulo({ children }) {
 function CampoDigitacao({ label, tipo, placeholder, value, setValor }) {
   return (
     <div className="form__campo-digitacao">
-      <label htmlFor="email">{label}</label>
+      <label htmlFor={tipo}>{label}</label>
       <input
         type={tipo}
         placeholder={placeholder}
@@ -31,6 +31,7 @@ function Botao({ children }) {
 }
 function Login() {
   const [email, setEmail] = React.useState("");
+  const [senha, setSenha] = React.useState("");
   return (
     <div className="container-login">
       <img
@@ -52,6 +53,8 @@ function Login() {
             label="Senha"
             tipo="password"
             placeholder="Digite a sua senha"
+            value={senha}
+            setValor={setSenha}
           />
 
           <Botao>Login</Botao>
