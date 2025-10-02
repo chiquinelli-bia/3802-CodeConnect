@@ -29,6 +29,17 @@ function Botao({ children }) {
     </button>
   );
 }
+function CheckBox() {
+  return (
+    <>
+      <div className="form__campo-checkbox">
+        <input type="checkbox" id="lembrar" />
+        <label htmlFor="lembrar" />
+      </div>
+      <p className="form__opcoes-texto">Lembrar-me</p>
+    </>
+  );
+}
 function Login() {
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
@@ -61,7 +72,14 @@ function Login() {
             value={senha}
             setValor={setSenha}
           />
-
+          <fieldset className="form__opcoes">
+            <CheckBox />
+            <p>
+              <a href="#" aria-label="Recuperar senha esquecida">
+                Esqueci a senha
+              </a>
+            </p>
+          </fieldset>
           <Botao>Login</Botao>
         </form>
       </section>
