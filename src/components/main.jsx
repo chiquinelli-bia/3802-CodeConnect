@@ -40,6 +40,25 @@ function CheckBox() {
     </>
   );
 }
+function Txt({ classe, children }) {
+  return <p className={classe}>{children}</p>;
+}
+function RedesSociais({ link, nome }) {
+  return (
+    <li>
+      <a href={link}>
+        <img src={`../img/${nome}.svg`} alt={`ícone do ${nome}`} /> {nome}
+      </a>
+    </li>
+  );
+}
+function Link({ children }) {
+  return (
+    <a href="#" className="container-links__link">
+      {children}
+    </a>
+  );
+}
 function Login() {
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
@@ -82,6 +101,15 @@ function Login() {
           </fieldset>
           <Botao>Login</Botao>
         </form>
+        <div className="container-links">
+          <Txt classe="container-links__titulo">ou entre com outras contas</Txt>
+          <ul>
+            <RedesSociais link="https://www.github.com" nome="Github" />
+            <RedesSociais link="https://www.google.com" nome="Google" />
+          </ul>
+          <Txt classe="container-links__texto">Ainda não tem conta?</Txt>
+          <Link>Crie seu cadastro!</Link>
+        </div>
       </section>
     </div>
   );
