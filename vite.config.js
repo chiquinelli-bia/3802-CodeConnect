@@ -11,6 +11,9 @@ export default defineConfig({
         login: resolve(__dirname, "login.html"),
         cadastro: resolve(__dirname, "cadastro.html"),
       },
+      output: {
+        chunkFileNames: "chunks/[name]-[hash].js", // [name] é o nome do chunk gerado
+      },
     },
   },
 });

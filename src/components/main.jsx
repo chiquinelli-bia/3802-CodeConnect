@@ -1,17 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Titulo, SubTitulo } from "./shared.jsx";
 
 import imagemLogin from "../img/imagem-login.png";
 import githubIcon from "../img/Github.svg";
 import googleIcon from "../img/Google.svg";
-
-export function Titulo({ children }) {
-  return <h1 className="form__titulo">{children}</h1>;
-}
-
-export function SubTitulo({ children }) {
-  return <h2 className="form__texto">{children}</h2>;
-}
 
 function CampoDigitacao({ label, tipo, placeholder, value, setValor }) {
   return (
