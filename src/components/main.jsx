@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// import das imagens
 import imagemLogin from "../img/imagem-login.png";
 import githubIcon from "../img/Github.svg";
 import googleIcon from "../img/Google.svg";

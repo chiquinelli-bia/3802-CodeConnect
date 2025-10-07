@@ -192,3 +192,21 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+@media (max-width: 770px) {
+  .container-login {
+    flex-direction: column;
+    margin: 1em 2em;
+    width: 100vw;
+    padding: 3em;
+  }
+  .container-login > img {
+    width: 340px;
+    height: 400px;
+    margin: auto;
+  }
+}
+@media (max-width: 340px) {
+  .container-login {
+    padding: 0.5em;
+  }
+}
