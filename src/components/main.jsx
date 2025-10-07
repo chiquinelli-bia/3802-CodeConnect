@@ -5,11 +5,11 @@ import imagemLogin from "../img/imagem-login.png";
 import githubIcon from "../img/Github.svg";
 import googleIcon from "../img/Google.svg";
 
-function Titulo({ children }) {
+export function Titulo({ children }) {
   return <h1 className="form__titulo">{children}</h1>;
 }
 
-function SubTitulo({ children }) {
+export function SubTitulo({ children }) {
   return <h2 className="form__texto">{children}</h2>;
 }
 
@@ -63,9 +63,9 @@ function RedesSociais({ link, nome, icon }) {
   );
 }
 
-function Link({ children }) {
+function Link({ link, children }) {
   return (
-    <a href="#" className="container-links__link">
+    <a href={link} className="container-links__link">
       {children}
     </a>
   );
@@ -137,7 +137,7 @@ function Login() {
           </ul>
 
           <Txt classe="container-links__texto">Ainda não tem conta?</Txt>
-          <Link>Crie seu cadastro!</Link>
+          <Link link="cadastro.html">Crie seu cadastro!</Link>
         </div>
       </section>
     </div>
