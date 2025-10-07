@@ -47,7 +47,7 @@ function RedesSociais({ link, nome }) {
   return (
     <li>
       <a href={link}>
-        <img src={`../img/${nome}.svg`} alt={`ícone do ${nome}`} /> {nome}
+        <img src={`./src/img/${nome}.svg`} alt={`ícone do ${nome}`} /> {nome}
       </a>
     </li>
   );
@@ -70,7 +70,7 @@ function Login() {
   return (
     <div className="container-login">
       <img
-        src="../img/imagem-login.png"
+        src="./src/img/imagem-login.png"
         alt="uma mulher negra de cabelos crespos usando óculos e mexendo no computador, também há o logo da codeconnect"
       />
       <section>

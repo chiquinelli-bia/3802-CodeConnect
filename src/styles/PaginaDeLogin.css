@@ -2,7 +2,7 @@
 .container-login {
   display: flex;
   background-color: var(--cinza-escuro);
-  padding: 3.5em 5em;
+  padding: 1.5em 5em;
   border-radius: 32px;
   gap: 3em;
 }
@@ -21,7 +21,7 @@
 
 /* Estilos do subtitulo */
 .form__texto {
-  margin: 1em 0 1em 0;
+  margin: 0.5em 0 0.5em 0;
   font-weight: 400;
   font-size: 22px;
 }
