@@ -1,26 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Titulo, SubTitulo } from "./shared.jsx";
+import { Titulo, SubTitulo, CampoDigitacao } from "./shared.jsx";
 
 import imagemLogin from "../img/imagem-login.png";
 import githubIcon from "../img/Github.svg";
 import googleIcon from "../img/Google.svg";
-
-function CampoDigitacao({ label, tipo, placeholder, value, setValor }) {
-  return (
-    <div className="form__campo-digitacao">
-      <label htmlFor={tipo}>{label}</label>
-      <input
-        type={tipo}
-        placeholder={placeholder}
-        required
-        id={tipo}
-        value={value}
-        onChange={(evento) => setValor(evento.target.value)}
-      />
-    </div>
-  );
-}
 
 function Botao({ children }) {
   return (
