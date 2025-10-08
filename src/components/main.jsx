@@ -28,6 +28,7 @@ function Login() {
   return (
     <div className="container-login">
       <img
+        className="container-login__login"
         src={imagemLogin}
         alt="uma mulher negra de cabelos crespos usando óculos e mexendo no computador, também há o logo da codeconnect"
       />

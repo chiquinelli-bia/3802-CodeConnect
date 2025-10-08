@@ -6,6 +6,9 @@
   border-radius: 32px;
   gap: 3em;
 }
+.container-login > img {
+  object-fit: cover;
+}
 
 .container-login form {
   margin: 0 14.5px;
@@ -200,13 +203,27 @@
     padding: 3em;
   }
   .container-login > img {
-    width: 340px;
-    height: 400px;
+    width: 65%;
+    height: 460px;
+    object-fit: cover;
+    object-position: center bottom;
     margin: auto;
   }
+  .container-login .container-login__login {
+    height: 535px;
+  }
 }
-@media (max-width: 340px) {
+@media (max-width: 480px) {
   .container-login {
     padding: 0.5em;
+  }
+  .container-login > img {
+    width: 70%;
+    height: 275px;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+  .container-login .container-login__login {
+    height: 378px;
   }
 }
