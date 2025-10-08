@@ -15,6 +15,16 @@ import githubIcon from "../img/Github.svg";
 import googleIcon from "../img/Google.svg";
 
 function Cadastro() {
+  const [nome, setNome] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [senha, setSenha] = React.useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("nome " + nome);
+    console.log("email " + email);
+    console.log("senha " + senha);
+  };
   return (
     <div className="container-autenticacao">
       <img
@@ -22,30 +32,30 @@ function Cadastro() {
         alt="Uma mulher de óculos trabalha em um laptop cercada por telas digitais verdes flutuantes que mostram pessoas. O ambiente é futurista e focado em tecnologia."
       />
       <section>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Titulo>Cadastro</Titulo>
           <SubTitulo>Olá! Preencha Seus Dados.</SubTitulo>
           <CampoDigitacao
             label="Nome"
             tipo="text"
             placeholder="Nome Completo"
-            value=""
-            setValor=""
+            value={nome}
+            setValor={setNome}
           />
           <CampoDigitacao
             label="E-mail ou usuário"
             tipo="email"
             placeholder="Digite o seu email ou usuário"
-            value=""
-            setValor=""
+            value={email}
+            setValor={setEmail}
           />
 
           <CampoDigitacao
             label="Senha"
             tipo="password"
             placeholder="Digite a sua senha"
-            value=""
-            setValor=""
+            value={senha}
+            setValor={setSenha}
           />
           <fieldset className="form__opcoes">
             <CheckBox />
