@@ -26,9 +26,9 @@ function Login() {
   };
 
   return (
-    <div className="container-login">
+    <div className="container-autenticacao">
       <img
-        className="container-login__login"
+        className="container-autenticacao__login"
         src={imagemLogin}
         alt="uma mulher negra de cabelos crespos usando óculos e mexendo no computador, também há o logo da codeconnect"
       />
@@ -63,7 +63,7 @@ function Login() {
             </p>
           </fieldset>
 
-          <Botao>Login</Botao>
+          <Botao>autenticacao</Botao>
         </form>
 
         <div className="container-links">

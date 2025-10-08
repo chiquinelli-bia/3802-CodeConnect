@@ -1,16 +1,16 @@
 /* Estilos do container principal */
-.container-login {
+.container-autenticacao {
   display: flex;
   background-color: var(--cinza-escuro);
   padding: 1.5em 5em;
   border-radius: 32px;
   gap: 3em;
 }
-.container-login > img {
+.container-autenticacao > img {
   object-fit: cover;
 }
 
-.container-login form {
+.container-autenticacao form {
   margin: 0 14.5px;
   font-size: 18px;
   font-weight: 400;
@@ -196,34 +196,34 @@
   background-position: center;
 }
 @media (max-width: 770px) {
-  .container-login {
+  .container-autenticacao {
     flex-direction: column;
     margin: 1em 2em;
     width: 100vw;
     padding: 3em;
   }
-  .container-login > img {
+  .container-autenticacao > img {
     width: 65%;
     height: 460px;
     object-fit: cover;
     object-position: center bottom;
     margin: auto;
   }
-  .container-login .container-login__login {
+  .container-autenticacao .container-autenticacao__login {
     height: 535px;
   }
 }
 @media (max-width: 480px) {
-  .container-login {
+  .container-autenticacao {
     padding: 0.5em;
   }
-  .container-login > img {
+  .container-autenticacao > img {
     width: 70%;
     height: 275px;
     object-fit: cover;
     object-position: center bottom;
   }
-  .container-login .container-login__login {
+  .container-autenticacao .container-autenticacao__login {
     height: 378px;
   }
 }

@@ -16,7 +16,7 @@ import googleIcon from "../img/Google.svg";
 
 function Cadastro() {
   return (
-    <div className="container-login">
+    <div className="container-autenticacao">
       <img
         src={imagemCadastro}
         alt="Uma mulher de óculos trabalha em um laptop cercada por telas digitais verdes flutuantes que mostram pessoas. O ambiente é futurista e focado em tecnologia."

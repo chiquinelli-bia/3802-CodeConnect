@@ -1,6 +1,6 @@
 @import url(./CampoDeDigitacao.css);
 @import url(./form-descricao.css);
-@import url(./PaginaDeLogin.css);
+@import url(./PaginaDeAutenticacao.css);
 :root {
   --fonte: "Prompt", sans-serif;
   --verde-destaque: #81fe88;
