@@ -1,52 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Titulo, SubTitulo, CampoDigitacao } from "./shared.jsx";
+import {
+  Titulo,
+  SubTitulo,
+  CampoDigitacao,
+  CheckBox,
+  Botao,
+  Txt,
+  RedesSociais,
+  Link,
+} from "./shared.jsx";
 
 import imagemLogin from "../img/imagem-login.png";
 import githubIcon from "../img/Github.svg";
 import googleIcon from "../img/Google.svg";
-
-function Botao({ children }) {
-  return (
-    <button className="form__botao" type="submit">
-      {children}
-    </button>
-  );
-}
-
-function CheckBox() {
-  return (
-    <>
-      <div className="form__campo-checkbox">
-        <input type="checkbox" id="lembrar" />
-        <label htmlFor="lembrar" />
-      </div>
-      <p className="form__opcoes-texto">Lembrar-me</p>
-    </>
-  );
-}
-
-function Txt({ classe, children }) {
-  return <p className={classe}>{children}</p>;
-}
-
-function RedesSociais({ link, nome, icon }) {
-  return (
-    <li>
-      <a href={link}>
-        <img src={icon} alt={`ícone do ${nome}`} /> {nome}
-      </a>
-    </li>
-  );
-}
-
-function Link({ link, children }) {
-  return (
-    <a href={link} className="container-links__link">
-      {children}
-    </a>
-  );
-}
 
 function Login() {
   const [email, setEmail] = React.useState("");

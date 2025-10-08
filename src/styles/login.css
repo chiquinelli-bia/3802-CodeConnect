@@ -29,7 +29,8 @@ body {
   height: 100vh;
 }
 
-#root {
+#root,
+#rootCadastro {
   display: flex;
   flex-direction: column;
   justify-content: center;

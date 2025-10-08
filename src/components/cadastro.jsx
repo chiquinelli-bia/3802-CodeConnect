@@ -1,7 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Titulo, SubTitulo, CampoDigitacao } from "./shared.jsx";
+import {
+  Titulo,
+  SubTitulo,
+  CampoDigitacao,
+  CheckBox,
+  Botao,
+  Txt,
+  RedesSociais,
+  Link,
+} from "./shared.jsx";
 import imagemCadastro from "../img/imagem-cadastro.png";
+import githubIcon from "../img/Github.svg";
+import googleIcon from "../img/Google.svg";
 
 function Cadastro() {
   return (
@@ -36,7 +47,29 @@ function Cadastro() {
             value=""
             setValor=""
           />
+          <fieldset className="form__opcoes">
+            <CheckBox />
+          </fieldset>
+          <Botao>Cadastrar</Botao>
         </form>
+        <div className="container-links">
+          <Txt classe="container-links__titulo">ou entre com outras contas</Txt>
+          <ul>
+            <RedesSociais
+              link="https://www.github.com"
+              nome="Github"
+              icon={githubIcon}
+            />
+            <RedesSociais
+              link="https://www.google.com"
+              nome="Google"
+              icon={googleIcon}
+            />
+          </ul>
+
+          <Txt classe="container-links__texto">Já tem conta ?</Txt>
+          <Link link="login.html">Faça seu login!</Link>
+        </div>
       </section>
     </div>
   );

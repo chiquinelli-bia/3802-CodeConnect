@@ -22,3 +22,42 @@ export function CampoDigitacao({ label, tipo, placeholder, value, setValor }) {
     </div>
   );
 }
+export function CheckBox() {
+  return (
+    <>
+      <div className="form__campo-checkbox">
+        <input type="checkbox" id="lembrar" />
+        <label htmlFor="lembrar" />
+      </div>
+      <p className="form__opcoes-texto">Lembrar-me</p>
+    </>
+  );
+}
+export function Botao({ children }) {
+  return (
+    <button className="form__botao" type="submit">
+      {children}
+    </button>
+  );
+}
+export function Txt({ classe, children }) {
+  return <p className={classe}>{children}</p>;
+}
+
+export function RedesSociais({ link, nome, icon }) {
+  return (
+    <li>
+      <a href={link}>
+        <img src={icon} alt={`ícone do ${nome}`} /> {nome}
+      </a>
+    </li>
+  );
+}
+
+export function Link({ link, children }) {
+  return (
+    <a href={link} className="container-links__link">
+      {children}
+    </a>
+  );
+}
