@@ -63,7 +63,7 @@ function Login() {
             </p>
           </fieldset>
 
-          <Botao>autenticacao</Botao>
+          <Botao>Login</Botao>
         </form>
 
         <div className="container-links">
