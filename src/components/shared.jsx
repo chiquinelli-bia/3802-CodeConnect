@@ -35,7 +35,12 @@ export function CheckBox() {
 }
 export function Botao({ children }) {
   return (
-    <button className="form__botao" type="submit">
+    <button
+      aria-disabled="true"
+      title="Funcionalidade em desenvolvimento"
+      className="form__botao"
+      type="submit"
+    >
       {children}
     </button>
   );
@@ -44,10 +49,10 @@ export function Txt({ classe, children }) {
   return <p className={classe}>{children}</p>;
 }
 
-export function RedesSociais({ link, nome, icon }) {
+export function RedesSociais({ nome, icon }) {
   return (
-    <li>
-      <a href={link}>
+    <li title="em desenvolvimento">
+      <a href="#" aria-disabled="true" className="disabled">
         <img src={icon} alt={`ícone do ${nome}`} /> {nome}
       </a>
     </li>

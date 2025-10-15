@@ -56,8 +56,11 @@ function Login() {
 
           <fieldset className="form__opcoes">
             <CheckBox />
-            <p>
-              <a href="#" aria-label="Recuperar senha esquecida">
+            <p
+              aria-label="Recuperar senha esquecida"
+              title="Recuperar senha esquecida - em desenvolvimento"
+            >
+              <a href="#" aria-disabled="true" className="disabled">
                 Esqueci a senha
               </a>
             </p>
@@ -69,16 +72,8 @@ function Login() {
         <div className="container-links">
           <Txt classe="container-links__titulo">ou entre com outras contas</Txt>
           <ul>
-            <RedesSociais
-              link="https://www.github.com"
-              nome="Github"
-              icon={githubIcon}
-            />
-            <RedesSociais
-              link="https://www.google.com"
-              nome="Google"
-              icon={googleIcon}
-            />
+            <RedesSociais nome="Github" icon={githubIcon} />
+            <RedesSociais nome="Google" icon={googleIcon} />
           </ul>
 
           <Txt classe="container-links__texto">Ainda não tem conta?</Txt>

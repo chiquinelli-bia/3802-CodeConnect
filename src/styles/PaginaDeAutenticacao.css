@@ -89,6 +89,7 @@
   font-size: 18px;
   font-weight: 600;
   margin: 2em 0;
+  opacity: 35%;
 }
 
 .form__botao::after {
