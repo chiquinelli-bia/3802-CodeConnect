@@ -27,6 +27,11 @@ body {
   gap: 27px;
   padding: 56px 0;
 }
+.disabled {
+  opacity: 35%;
+  pointer-events: none;
+  cursor: not-allowed;
+}
 .pesquisa {
   display: none;
 }
