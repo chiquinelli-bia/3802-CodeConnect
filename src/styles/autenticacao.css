@@ -38,3 +38,8 @@ body {
   min-height: auto;
   min-width: auto;
 }
+.disabled {
+  opacity: 35%;
+  pointer-events: none;
+  cursor: not-allowed;
+}
