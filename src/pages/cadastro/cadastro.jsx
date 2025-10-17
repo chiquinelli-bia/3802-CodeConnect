@@ -9,35 +9,37 @@ import {
   Txt,
   RedesSociais,
   Link,
-} from "./shared.jsx";
+} from "../../shared/shared.jsx";
+import { imagemCadastro, githubIcon, googleIcon } from "../../img/index.js";
 
-import imagemLogin from "../img/imagem-login.png";
-import githubIcon from "../img/Github.svg";
-import googleIcon from "../img/Google.svg";
-
-function Login() {
+function Cadastro() {
+  const [nome, setNome] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("nome " + nome);
     console.log("email " + email);
     console.log("senha " + senha);
   };
-
   return (
     <div className="container-autenticacao">
       <img
-        className="container-autenticacao__login"
-        src={imagemLogin}
-        alt="uma mulher negra de cabelos crespos usando óculos e mexendo no computador, também há o logo da codeconnect"
+        src={imagemCadastro}
+        alt="Uma mulher de óculos trabalha em um laptop cercada por telas digitais verdes flutuantes que mostram pessoas. O ambiente é futurista e focado em tecnologia."
       />
-
       <section>
         <form onSubmit={handleSubmit}>
-          <Titulo>Login</Titulo>
-          <SubTitulo>Boas Vindas! Faça seu Login.</SubTitulo>
-
+          <Titulo>Cadastro</Titulo>
+          <SubTitulo>Olá! Preencha Seus Dados.</SubTitulo>
+          <CampoDigitacao
+            label="Nome"
+            tipo="text"
+            placeholder="Nome Completo"
+            value={nome}
+            setValor={setNome}
+          />
           <CampoDigitacao
             label="E-mail ou usuário"
             tipo="email"
@@ -53,35 +55,34 @@ function Login() {
             value={senha}
             setValor={setSenha}
           />
-
           <fieldset className="form__opcoes">
             <CheckBox />
-            <p
-              aria-label="Recuperar senha esquecida"
-              title="Recuperar senha esquecida - em desenvolvimento"
-            >
-              <a href="#" aria-disabled="true" className="disabled">
-                Esqueci a senha
-              </a>
-            </p>
           </fieldset>
-
-          <Botao>Login</Botao>
+          <Botao>Cadastrar</Botao>
         </form>
-
         <div className="container-links">
           <Txt classe="container-links__titulo">ou entre com outras contas</Txt>
           <ul>
-            <RedesSociais nome="Github" icon={githubIcon} />
-            <RedesSociais nome="Google" icon={googleIcon} />
+            <RedesSociais
+              link="https://www.github.com"
+              nome="Github"
+              icon={githubIcon}
+            />
+            <RedesSociais
+              link="https://www.google.com"
+              nome="Google"
+              icon={googleIcon}
+            />
           </ul>
 
-          <Txt classe="container-links__texto">Ainda não tem conta?</Txt>
-          <Link link="cadastro.html">Crie seu cadastro!</Link>
+          <Txt classe="container-links__texto">Já tem conta ?</Txt>
+          <Link link="login.html">Faça seu login!</Link>
         </div>
       </section>
     </div>
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<Login />);
+ReactDOM.createRoot(document.getElementById("rootCadastro")).render(
+  <Cadastro />
+);
