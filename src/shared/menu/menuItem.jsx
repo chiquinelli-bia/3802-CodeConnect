@@ -5,15 +5,17 @@ export default function MenuItem({
   label,
   srcImagem,
 }) {
-  <li title={title}>
-    <a
-      href={disabled ? "#" : href}
-      aria-disabled={disabled}
-      aria-label={disabled ? " — funcionalidade em desenvolvimento" : label}
-      class={disabled ? "disabled" : ""}
-    >
-      <img src={srcImagem} />
-      {label}
-    </a>
-  </li>;
+  return (
+    <li title={title}>
+      <a
+        href={disabled ? "#" : href}
+        aria-disabled={disabled}
+        aria-label={disabled ? " — funcionalidade em desenvolvimento" : label}
+        class={disabled ? "disabled" : ""}
+      >
+        <img src={srcImagem} />
+        {label}
+      </a>
+    </li>
+  );
 }
