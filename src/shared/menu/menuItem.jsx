@@ -3,7 +3,7 @@ export default function MenuItem({
   disabled = false,
   href,
   label,
-  srcImagem,
+  src,
 }) {
   return (
     <li title={title}>
@@ -11,9 +11,9 @@ export default function MenuItem({
         href={disabled ? "#" : href}
         aria-disabled={disabled}
         aria-label={disabled ? " — funcionalidade em desenvolvimento" : label}
-        class={disabled ? "disabled" : ""}
+        className={disabled ? "disabled" : ""}
       >
-        <img src={srcImagem} />
+        <img src={src} />
         {label}
       </a>
     </li>

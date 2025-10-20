@@ -1,4 +1,5 @@
 import MenuList from "./menuList.jsx";
+import "../../styles/styles.css";
 import {
   logo,
   iconeLogin,
@@ -11,11 +12,9 @@ export default function Menu() {
   const menuItens = [
     { href: "./login.html", src: iconeLogin, label: "Autenticação" },
     {
-      href: "#",
+      href: "./feed.html",
       src: iconeFeed,
       label: "Feed",
-      disabled: true,
-      title: "Feed — em desenvolvimento",
     },
     {
       href: "#",
