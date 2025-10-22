@@ -1,10 +1,12 @@
 @import url(sidebar.css);
 @import url(upload-area.css);
 @import url(form-descricao.css);
+@import url(../pages/feed/feed.css);
 
 :root {
   --background-color: #00090e;
   --text-color: #e1e1e1;
+  --text-input: #bcbcbc;
   --primary-color: #81fe88;
   --secondary-color: #888888;
   --tag-color: #171d1f;
