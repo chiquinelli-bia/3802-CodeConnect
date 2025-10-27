@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../feed/feed.css";
+import { setupTags } from "../../../modules/tagsLogic.js";
 export default function Search() {
   const [termoPesquisa, setTermoPesquisa] = useState("");
+  useEffect(() => {
+    setupTags();
+  }, []);
   console.log(termoPesquisa);
   return (
     <input
