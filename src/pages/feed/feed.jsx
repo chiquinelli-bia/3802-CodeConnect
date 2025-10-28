@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import Menu from "../../shared/menu/menu.jsx";
 import Search from "./search/search.jsx";
 import "./feed.css";
-// import Filtro from "./filtro/filtro.jsx";
+import Filtro from "./filtro/filtro.jsx";
 
 function Feed() {
   return (
@@ -11,7 +11,7 @@ function Feed() {
       <Menu />
       <div>
         <Search />
-        {/* <Filtro /> */}
+        <Filtro />
       </div>
     </div>
   );

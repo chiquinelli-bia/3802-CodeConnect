@@ -19,14 +19,8 @@
   font-family: var(--fonte);
   font-size: 22px;
 }
-.container-filtro {
+.container-pesquisa {
   display: flex;
   justify-content: space-between;
   margin-top: 1em;
-}
-.container-filtro button {
-  border: none;
-  background-color: transparent;
-  color: var(--secondary-color);
-  font-size: 18px;
 }

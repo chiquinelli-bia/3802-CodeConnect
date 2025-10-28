@@ -41,8 +41,14 @@ body {
   display: none;
 }
 .botao-limpar-tags {
-  display: none;
+  color: var(--secondary-color);
+  font-family: var(--font-family);
+  font-size: 14px;
+  background-color: transparent;
+  border: none;
+  display: block;
 }
+
 main {
   background-color: var(--itens-background);
   border-radius: 10px;
@@ -76,14 +82,6 @@ main {
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: self-start;
-  }
-  .botao-limpar-tags {
-    color: var(--secondary-color);
-    font-family: var(--font-family);
-    font-size: 14px;
-    background-color: transparent;
-    border: none;
-    display: block;
   }
   main {
     width: 100%;

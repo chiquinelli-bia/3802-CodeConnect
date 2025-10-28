@@ -42,7 +42,10 @@ export function setupTags() {
     if (!listaTags) {
       listaTags = document.createElement("ul");
       listaTags.classList.add("lista-tags");
-      input.after(listaTags);
+      const container = input.nextElementSibling;
+      if (container) {
+        container.appendChild(listaTags);
+      }
     }
 
     input.addEventListener("keydown", async (evento) => {
@@ -65,12 +68,18 @@ export function setupTags() {
           const newTag = document.createElement("li");
           newTag.classList.add("lista-tag-element");
           newTag.innerHTML = `
-            <p>${tagTxt.toLowerCase()}</p>
+          <p>${tagTxt.toLowerCase()}</p>
             <img src="./src/img/close-black.svg" class="remove-tag" alt="Remover tag">
-          `;
+            `;
 
           listaTags.appendChild(newTag);
           input.value = "";
+
+          listaTags.addEventListener("click", (e) => {
+            if (e.target.classList.contains("remove-tag")) {
+              e.target.closest("li")?.remove();
+            }
+          });
         } catch (error) {
           console.error("Erro ao verificar a existência da tag", error);
           alert("Erro ao verificar a existência da tag. Verifique o console.");
@@ -78,20 +87,14 @@ export function setupTags() {
       }
     });
   });
-  //   const tag = document.querySelector("lista-tag-element");
+}
+export function botaoLimpartags() {
+  const botaoLimpar = document.querySelector(".botao-limpar-tags");
 
-  // estou tentando pegar a tag para excluir pelo target
+  botaoLimpar.addEventListener("click", () => {
+    const container = botaoLimpar.closest(".container-pesquisa");
+    const lista = container.querySelector(".lista-tags");
 
-  //   listaTags.addEventListener("click", (evento) => {
-  //     if (evento.target.classList.contains("remove-tag")) {
-  //       const tagQueQueremosRemover = evento.target.parentElement;
-  //       listaTags.removeChild(tagQueQueremosRemover);
-  //     }
-  //   });
-  //   const botaoRemoverTag = document.querySelector(".botao-limpar-tags");
-  //   botaoRemoverTag.addEventListener("click", () => {
-  //     const inputPesquisa = document.querySelector(".pesquisa");
-  //     const ulPesquisa = inputPesquisa.nextElementSibling;
-  //     ulPesquisa.innerHTML = "";
-  //   });
+    if (lista) lista.innerHTML = "";
+  });
 }

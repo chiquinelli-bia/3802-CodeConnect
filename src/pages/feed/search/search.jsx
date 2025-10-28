@@ -6,7 +6,6 @@ export default function Search() {
   useEffect(() => {
     setupTags();
   }, []);
-  console.log(termoPesquisa);
   return (
     <input
       type="search"
