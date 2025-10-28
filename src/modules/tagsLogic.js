@@ -75,11 +75,7 @@ export function setupTags() {
           listaTags.appendChild(newTag);
           input.value = "";
 
-          listaTags.addEventListener("click", (e) => {
-            if (e.target.classList.contains("remove-tag")) {
-              e.target.closest("li")?.remove();
-            }
-          });
+          excluirTags(listaTags);
         } catch (error) {
           console.error("Erro ao verificar a existência da tag", error);
           alert("Erro ao verificar a existência da tag. Verifique o console.");
@@ -96,5 +92,12 @@ export function botaoLimpartags() {
     const lista = container.querySelector(".lista-tags");
 
     if (lista) lista.innerHTML = "";
+  });
+}
+export function excluirTags(listaTags) {
+  listaTags.addEventListener("click", (e) => {
+    if (e.target.classList.contains("remove-tag")) {
+      e.target.closest("li")?.remove();
+    }
   });
 }

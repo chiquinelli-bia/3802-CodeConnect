@@ -15,4 +15,3 @@ export default function Filtro() {
     </section>
   );
 }
-//separa em funções exluir tags, ver como esta o layout em telas menores
