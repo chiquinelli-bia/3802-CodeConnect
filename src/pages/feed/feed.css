@@ -24,3 +24,12 @@
   justify-content: space-between;
   margin-top: 1em;
 }
+
+@media screen and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    margin: 0;
+  }
+}
