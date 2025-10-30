@@ -7,6 +7,11 @@ import iconeLogin from "./login.png";
 import iconeFeed from "./feed.svg";
 import iconePerfil from "./account_circle.svg";
 import iconeSobre from "./info.svg";
+import imgCard from "./Code_editor.svg";
+import iconeCode from "./code.svg";
+import iconeShare from "./share.svg";
+import iconeChat from "./chat.svg";
+import iconeUsuario from "./Ellipse.svg";
 
 export {
   imagemLogin,
@@ -18,4 +23,9 @@ export {
   iconeFeed,
   iconePerfil,
   iconeSobre,
+  imgCard,
+  iconeCode,
+  iconeShare,
+  iconeChat,
+  iconeUsuario,
 };
