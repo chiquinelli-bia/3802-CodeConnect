@@ -5,6 +5,7 @@ import Search from "./search/search.jsx";
 import "./feed.css";
 import Filtro from "./filtro/filtro.jsx";
 import Card from "./card/card.jsx";
+import Ordenacao from "./ordenacao/ordenacao.jsx";
 
 function Feed() {
   const [dados, setDados] = useState([]);
@@ -25,6 +26,7 @@ function Feed() {
       <div>
         <Search />
         <Filtro />
+        <Ordenacao />
         <ul className="lista-cards">
           {dados
             ? dados.map((item, index) => (
