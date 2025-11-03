@@ -24,13 +24,14 @@
   justify-content: space-between;
   margin-top: 1em;
 }
+/* card */
 .card {
   color: var(--text-input);
   text-decoration: none;
   background-color: var(--itens-background);
   border-radius: 8px;
 
-  width: 50%;
+  width: 100%;
 
   display: grid;
 }
@@ -39,7 +40,7 @@
   height: 240px;
   background-color: var(--secondary-color);
   border-radius: 8px;
-  padding: 20px 0 0 0;
+  padding: 20px 0 20px 0;
 
   display: flex;
   justify-content: center;
@@ -102,6 +103,13 @@
   height: 32px;
   border-radius: 100%;
   object-fit: cover;
+}
+.lista-cards {
+  display: grid;
+  list-style-type: none;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 24px;
 }
 
 @media screen and (max-width: 1024px) {
