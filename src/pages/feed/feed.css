@@ -144,3 +144,8 @@
     margin: 0;
   }
 }
+@media (max-width: 770px) {
+  .lista-cards {
+    grid-template-columns: auto;
+  }
+}
