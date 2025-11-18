@@ -18,7 +18,9 @@ export default function Search({
       const tagExiste = await verificaTagsDisponiveis(valor);
 
       if (!tagExiste) {
-        alert("Essa tag não existe na lista de tags permitidas.");
+        alert(
+          "Tag não encontrada. Use apenas tags de tecnologia, como front-end, back-end, programação, linguagens (HTML, CSS, JS), ferramentas (Git, GitHub), design (UX/UI, Figma), etc."
+        );
         return;
       }
 
