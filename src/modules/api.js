@@ -15,16 +15,18 @@ export function filtrarProjetos(projetos, termoPesquisa, tagsSelecionadas) {
   const termoLower = termoPesquisa.toLowerCase();
 
   return projetos.filter((projeto) => {
-    const tituloValido = projeto.titulo.toLowerCase().includes(termoLower);
+    const tituloValido =
+      termoLower === ""
+        ? true
+        : projeto.titulo.toLowerCase().includes(termoLower);
+
     const tagsValido =
       tagsSelecionadas.length === 0
         ? true
         : tagsSelecionadas.every((tag) =>
-            projeto.tags
-              .map((tag) => tag.toLowerCase())
-              .includes(tag.toLowerCase())
+            projeto.tags.map((t) => t.toLowerCase()).includes(tag.toLowerCase())
           );
 
-    return tituloValido || tagsValido;
+    return tituloValido && tagsValido;
   });
 }
