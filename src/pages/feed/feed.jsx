@@ -1,52 +1,63 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { filtrarProjetos } from "../../modules/api.js";
 import Menu from "../../shared/menu/menu.jsx";
 import Search from "./search/search.jsx";
-import "./feed.css";
-import Filtro from "./filtro/filtro.jsx";
 import Card from "./card/card.jsx";
-import Ordenacao from "./ordenacao/ordenacao.jsx";
+import "./feed.css";
+import { buscarProjetos } from "../../modules/api.js";
 
-function Feed() {
+export default function Feed() {
+  const [todosDados, setTodosDados] = useState([]);
   const [dados, setDados] = useState([]);
+  const [termoPesquisa, setTermoPesquisa] = useState("");
+  const [tagsSelecionadas, setTagsSelecionadas] = useState([]);
+  filtrarProjetos;
   useEffect(() => {
-    axios
-      .get(
-        "https://my-json-server.typicode.com/MonicaHillman/codeconnect-api/publicacoes"
-      )
-      .then((res) => {
-        setDados(res.data);
-        console.log(dados);
-      })
-      .catch((erro) => console.error("Erro ao buscar dados:", erro));
+    async function carregar() {
+      const projetos = await buscarProjetos();
+      setTodosDados(projetos);
+
+      setDados(projetos);
+    }
+    carregar();
   }, []);
+
+  useEffect(() => {
+    const filtrados = filtrarProjetos(
+      todosDados,
+      termoPesquisa,
+      tagsSelecionadas
+    );
+    setDados(filtrados);
+  }, [termoPesquisa, tagsSelecionadas, todosDados]);
+
   return (
-    <div className="container">
+    <>
       <Menu />
-      <div>
-        <Search />
-        <Filtro />
-        <Ordenacao />
+      <div className="container">
+        <Search
+          termoPesquisa={termoPesquisa}
+          setTermoPesquisa={setTermoPesquisa}
+          tagsSelecionadas={tagsSelecionadas}
+          setTagsSelecionadas={setTagsSelecionadas}
+        />
         <ul className="lista-cards">
-          {dados
-            ? dados.map((item, index) => (
-                <li key={index}>
-                  <Card
-                    id={item.id}
-                    imagemUrl={item.imagem_capa}
-                    titulo={item.titulo}
-                    resumo={item.resumo}
-                    linhasDeCodigo={item.linhas_de_codigo}
-                    compartilhamentos={item.compartilhamentos}
-                    comentarios={item.comentarios}
-                    usuario={item.usuario}
-                  />
-                </li>
-              ))
-            : null}
+          {dados.map((item) => (
+            <li key={item.id}>
+              <Card
+                id={item.id}
+                imagemUrl={item.imagem_capa}
+                titulo={item.titulo}
+                resumo={item.resumo}
+                linhasDeCodigo={item.linhas_de_codigo}
+                compartilhamentos={item.compartilhamentos}
+                comentarios={item.comentarios}
+                usuario={item.usuario}
+              />
+            </li>
+          ))}
         </ul>
       </div>
-    </div>
+    </>
   );
 }
-export default Feed;
