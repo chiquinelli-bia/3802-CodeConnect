@@ -3,6 +3,7 @@ import { botaoLimpartags, setupTags } from "./tagsLogic.js";
 import { setupPublicar } from "./publicar.js";
 import { setupDescartar } from "./descartar.js";
 import { setupResponsividade } from "./responsividade.js";
+import { filtrarCards } from "./api.js";
 document.addEventListener("DOMContentLoaded", () => {
   setupUpload();
   setupTags();
@@ -10,4 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setupPublicar();
   setupDescartar();
   setupResponsividade();
+  filtrarCards();
 });
