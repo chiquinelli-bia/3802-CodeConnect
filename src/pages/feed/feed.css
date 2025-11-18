@@ -1,7 +1,12 @@
+#root {
+  display: flex;
+  gap: 2rem;
+}
 .container {
   width: 62vw;
-  margin: 3.5em auto;
+  margin: 0.5em auto;
   display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
@@ -137,6 +142,9 @@
 }
 
 @media screen and (max-width: 1024px) {
+  #root {
+    display: block;
+  }
   .container {
     flex-direction: column;
     width: 100%;
