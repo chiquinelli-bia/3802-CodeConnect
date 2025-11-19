@@ -26,7 +26,8 @@
 }
 .container-pesquisa {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: normal;
   margin-top: 1em;
 }
 /* ordenação */

@@ -42,7 +42,7 @@ export default function Search({
   };
 
   return (
-    <div>
+    <>
       <input
         type="text"
         placeholder="Digite para pesquisar ou adicionar tag e aperte Enter"
@@ -61,6 +61,6 @@ export default function Search({
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }

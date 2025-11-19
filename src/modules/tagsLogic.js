@@ -32,67 +32,10 @@ export async function verificaTagsDisponiveis(tagTexto) {
     }, 1000);
   });
 }
-export async function setupTags(evento) {
-  if (!evento) {
-    console.error("Evento não recebido no setupTags");
-    return;
-  }
-  const input = evento.target;
-  if (evento.key === "Enter") {
-    evento.preventDefault();
-
-    const container = input.closest("div");
-    let listaTags = container.querySelector(".lista-tags");
-
-    if (!listaTags) {
-      listaTags = document.createElement("ul");
-      listaTags.classList.add("lista-tags");
-      const containerSib = input.nextElementSibling;
-      if (containerSib) {
-        containerSib.appendChild(listaTags);
-      }
-    }
-
-    const tagTxt = input.value.trim();
-    if (!tagTxt) return;
-
-    try {
-      const tagExiste = await verificaTagsDisponiveis(tagTxt);
-      if (!tagExiste) {
-        alert(`Tag não foi encontrada. tags disponíveis: ${tagsDisponiveis}.`);
-        return;
-      }
-
-      const newTag = document.createElement("li");
-      newTag.classList.add("lista-tag-element");
-      newTag.innerHTML = `
-        <p>${tagTxt.toLowerCase()}</p>
-        <img src="./src/img/close-black.svg" class="remove-tag" alt="Remover tag">
-      `;
-
-      listaTags.appendChild(newTag);
-      input.value = "";
-
-      excluirTags(listaTags);
-    } catch (error) {
-      console.error("Erro ao verificar a existência da tag", error);
-      alert("Erro ao verificar a existência da tag. Verifique o console.");
-    }
-  }
-}
-
 export function botaoLimpartags() {
   const botaoLimpar = document.querySelector(".botao-limpar-tags");
-  botaoLimpar.addEventListener("click", () => {
-    const container = botaoLimpar.closest(".container-pesquisa");
-    const lista = container.querySelector(".lista-tags");
-    if (lista) lista.innerHTML = "";
-  });
-}
-export function excluirTags(listaTags) {
-  listaTags.addEventListener("click", (e) => {
-    if (e.target.classList.contains("remove-tag")) {
-      e.target.closest("li")?.remove();
-    }
-  });
+
+  const container = botaoLimpar.closest(".container-pesquisa");
+  const lista = container.querySelector(".lista-tags");
+  if (lista) lista.innerHTML = "";
 }

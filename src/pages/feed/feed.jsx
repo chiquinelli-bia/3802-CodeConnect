@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { filtrarProjetos } from "../../modules/api.js";
 import Menu from "../../shared/menu/menu.jsx";
 import Search from "./search/search.jsx";
+import BotaoLimparTags from "./filtro/filtro.jsx";
 import Card from "./card/card.jsx";
 import "./feed.css";
 import { buscarProjetos } from "../../modules/api.js";
@@ -34,13 +35,16 @@ export default function Feed() {
   return (
     <>
       <Menu />
-      <div className="container">
-        <Search
-          termoPesquisa={termoPesquisa}
-          setTermoPesquisa={setTermoPesquisa}
-          tagsSelecionadas={tagsSelecionadas}
-          setTagsSelecionadas={setTagsSelecionadas}
-        />
+      <section className="container">
+        <div className="container-pesquisa">
+          <Search
+            termoPesquisa={termoPesquisa}
+            setTermoPesquisa={setTermoPesquisa}
+            tagsSelecionadas={tagsSelecionadas}
+            setTagsSelecionadas={setTagsSelecionadas}
+          />
+          <BotaoLimparTags />
+        </div>
         <ul className="lista-cards">
           {dados.map((item) => (
             <li key={item.id}>
@@ -57,7 +61,7 @@ export default function Feed() {
             </li>
           ))}
         </ul>
-      </div>
+      </section>
     </>
   );
 }
