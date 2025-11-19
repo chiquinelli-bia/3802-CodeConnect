@@ -12,7 +12,6 @@ export default function Feed() {
   const [dados, setDados] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState("");
   const [tagsSelecionadas, setTagsSelecionadas] = useState([]);
-  filtrarProjetos;
   useEffect(() => {
     async function carregar() {
       const projetos = await buscarProjetos();

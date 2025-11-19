@@ -36,7 +36,7 @@ export default function Menu() {
       <img src={logo} alt="logo do codeconnect" className="logo" />
       <nav>
         <li className="link-destaque">
-          <a href="#">Publicar</a>
+          <a href="publicar.html">Publicar</a>
         </li>
         <MenuList items={menuItens}></MenuList>
       </nav>
