@@ -10,6 +10,8 @@ import iconeSobre from "./info.svg";
 import iconeCode from "./code.svg";
 import iconeShare from "./share.svg";
 import iconeChat from "./chat.svg";
+import imgExemplo from "./imagem1.png";
+import imgX from "./close.svg";
 
 export {
   imagemLogin,
@@ -24,4 +26,6 @@ export {
   iconeCode,
   iconeShare,
   iconeChat,
+  imgExemplo,
+  imgX,
 };
