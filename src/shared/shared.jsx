@@ -11,6 +11,7 @@ export function Input({
   placeholder,
   id,
   accept,
+  name,
   value,
   setValor,
 }) {
@@ -23,6 +24,7 @@ export function Input({
         required
         id={id}
         accept={accept || undefined}
+        name={name || undefined}
         value={value}
         onChange={(evento) => setValor(evento.target.value)}
       />
