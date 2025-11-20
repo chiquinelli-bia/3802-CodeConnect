@@ -1,10 +1,3 @@
-export function Titulo({ children }) {
-  return <h1 className="form__titulo">{children}</h1>;
-}
-
-export function SubTitulo({ children }) {
-  return <h2 className="form__texto">{children}</h2>;
-}
 export function Input({
   label,
   tipo,
@@ -55,9 +48,6 @@ export function Botao({ disabled, title, className, type, id, children }) {
       {children}
     </button>
   );
-}
-export function Txt({ classe, children }) {
-  return <p className={classe}>{children}</p>;
 }
 
 export function RedesSociais({ nome, icon }) {

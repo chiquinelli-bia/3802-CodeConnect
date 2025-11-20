@@ -1,14 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  Titulo,
-  SubTitulo,
-  CheckBox,
-  Botao,
-  Txt,
-  RedesSociais,
-  Link,
-} from "../../shared/shared.jsx";
+import { CheckBox, Botao, RedesSociais, Link } from "../../shared/shared.jsx";
 
 import { imagemLogin, githubIcon, googleIcon } from "../../img/index.js";
 import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
@@ -33,8 +25,8 @@ function Login() {
 
       <section>
         <form onSubmit={handleSubmit}>
-          <Titulo>Login</Titulo>
-          <SubTitulo>Boas Vindas! Faça seu Login.</SubTitulo>
+          <h1 className="form__titulo">Login</h1>
+          <h2 className="form__texto">Boas Vindas! Faça seu Login.</h2>
 
           <CamposDigitacao
             email={email}
@@ -61,13 +53,13 @@ function Login() {
         </form>
 
         <div className="container-links">
-          <Txt classe="container-links__titulo">ou entre com outras contas</Txt>
+          <p classe="container-links__titulo">ou entre com outras contas</p>
           <ul>
             <RedesSociais nome="Github" icon={githubIcon} />
             <RedesSociais nome="Google" icon={googleIcon} />
           </ul>
 
-          <Txt classe="container-links__texto">Ainda não tem conta?</Txt>
+          <p classe="container-links__texto">Ainda não tem conta?</p>
           <Link link="cadastro.html">Crie seu cadastro!</Link>
         </div>
       </section>

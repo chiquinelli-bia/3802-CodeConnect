@@ -1,14 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  Titulo,
-  SubTitulo,
-  CheckBox,
-  Botao,
-  Txt,
-  RedesSociais,
-  Link,
-} from "../../shared/shared.jsx";
+import { CheckBox, Botao, RedesSociais, Link } from "../../shared/shared.jsx";
 
 import { imagemCadastro, githubIcon, googleIcon } from "../../img/index.js";
 import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
@@ -32,8 +24,8 @@ function Cadastro() {
       />
       <section>
         <form onSubmit={handleSubmit}>
-          <Titulo>Cadastro</Titulo>
-          <SubTitulo>Olá! Preencha Seus Dados.</SubTitulo>
+          <h1 className="form__titulo">Cadastro</h1>
+          <h2 className="form__texto">Olá! Preencha Seus Dados.</h2>
           <CamposDigitacao
             nome={nome}
             setNome={setNome}
@@ -50,7 +42,7 @@ function Cadastro() {
           </Botao>
         </form>
         <div className="container-links">
-          <Txt classe="container-links__titulo">ou entre com outras contas</Txt>
+          <p classe="container-links__titulo">ou entre com outras contas</p>
           <ul>
             <RedesSociais
               link="https://www.github.com"
@@ -64,7 +56,7 @@ function Cadastro() {
             />
           </ul>
 
-          <Txt classe="container-links__texto">Já tem conta ?</Txt>
+          <p className="container-links__texto">Já tem conta ?</p>
           <Link link="login.html">Faça seu login!</Link>
         </div>
       </section>
