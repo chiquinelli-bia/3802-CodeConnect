@@ -11,7 +11,7 @@ import {
 } from "../../shared/shared.jsx";
 
 import { imagemCadastro, githubIcon, googleIcon } from "../../img/index.js";
-import { CamposDigitacao } from "../../shared/campos-autenticacao/campo-autenticacao.jsx";
+import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
 
 function Cadastro() {
   const [nome, setNome] = React.useState("");
