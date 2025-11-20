@@ -55,7 +55,9 @@ function Login() {
             </p>
           </fieldset>
 
-          <Botao>Login</Botao>
+          <Botao disabled="true" className="form__botao" type="submit">
+            Login
+          </Botao>
         </form>
 
         <div className="container-links">

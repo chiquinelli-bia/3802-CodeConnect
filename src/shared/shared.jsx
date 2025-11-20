@@ -43,13 +43,14 @@ export function CheckBox() {
     </>
   );
 }
-export function Botao({ children }) {
+export function Botao({ disabled, title, className, type, id, children }) {
   return (
     <button
-      aria-disabled="true"
-      title="Funcionalidade em desenvolvimento"
-      className="form__botao"
-      type="submit"
+      aria-disabled={disabled || false}
+      title={title || "Funcionalidade em desenvolvimento"}
+      className={className}
+      type={type}
+      id={id}
     >
       {children}
     </button>

@@ -45,7 +45,9 @@ function Cadastro() {
           <fieldset className="form__opcoes">
             <CheckBox />
           </fieldset>
-          <Botao>Cadastrar</Botao>
+          <Botao disabled="true" className="form__botao" type="submit">
+            Cadastrar
+          </Botao>
         </form>
         <div className="container-links">
           <Txt classe="container-links__titulo">ou entre com outras contas</Txt>
