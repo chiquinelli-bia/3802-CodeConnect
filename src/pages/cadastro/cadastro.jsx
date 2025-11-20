@@ -3,14 +3,15 @@ import ReactDOM from "react-dom/client";
 import {
   Titulo,
   SubTitulo,
-  CampoDigitacao,
   CheckBox,
   Botao,
   Txt,
   RedesSociais,
   Link,
 } from "../../shared/shared.jsx";
+
 import { imagemCadastro, githubIcon, googleIcon } from "../../img/index.js";
+import { CamposDigitacao } from "../../shared/campos-autenticacao/campo-autenticacao.jsx";
 
 function Cadastro() {
   const [nome, setNome] = React.useState("");
@@ -33,27 +34,13 @@ function Cadastro() {
         <form onSubmit={handleSubmit}>
           <Titulo>Cadastro</Titulo>
           <SubTitulo>Olá! Preencha Seus Dados.</SubTitulo>
-          <CampoDigitacao
-            label="Nome"
-            tipo="text"
-            placeholder="Nome Completo"
-            value={nome}
-            setValor={setNome}
-          />
-          <CampoDigitacao
-            label="E-mail ou usuário"
-            tipo="email"
-            placeholder="Digite o seu email ou usuário"
-            value={email}
-            setValor={setEmail}
-          />
-
-          <CampoDigitacao
-            label="Senha"
-            tipo="password"
-            placeholder="Digite a sua senha"
-            value={senha}
-            setValor={setSenha}
+          <CamposDigitacao
+            nome={nome}
+            setNome={setNome}
+            email={email}
+            setEmail={setEmail}
+            senha={senha}
+            setSenha={setSenha}
           />
           <fieldset className="form__opcoes">
             <CheckBox />

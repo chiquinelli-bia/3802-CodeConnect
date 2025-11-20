@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import {
   Titulo,
   SubTitulo,
-  CampoDigitacao,
   CheckBox,
   Botao,
   Txt,
@@ -12,6 +11,7 @@ import {
 } from "../../shared/shared.jsx";
 
 import { imagemLogin, githubIcon, googleIcon } from "../../img/index.js";
+import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
 
 function Login() {
   const [email, setEmail] = React.useState("");
@@ -36,20 +36,11 @@ function Login() {
           <Titulo>Login</Titulo>
           <SubTitulo>Boas Vindas! Faça seu Login.</SubTitulo>
 
-          <CampoDigitacao
-            label="E-mail ou usuário"
-            tipo="email"
-            placeholder="Digite o seu email ou usuário"
-            value={email}
-            setValor={setEmail}
-          />
-
-          <CampoDigitacao
-            label="Senha"
-            tipo="password"
-            placeholder="Digite a sua senha"
-            value={senha}
-            setValor={setSenha}
+          <CamposDigitacao
+            email={email}
+            setEmail={setEmail}
+            senha={senha}
+            setSenha={setSenha}
           />
 
           <fieldset className="form__opcoes">
