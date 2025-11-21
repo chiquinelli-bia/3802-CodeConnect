@@ -1,6 +1,7 @@
 import { Input } from "../../../shared/shared";
+import { Textarea } from "./textarea/textarea";
 
-export function Form({ titulo, setTitulo }) {
+export function Form({ titulo, setTitulo, descricao, setDescricao }) {
   return (
     <form>
       <div>
@@ -13,19 +14,11 @@ export function Form({ titulo, setTitulo }) {
           setValor={setTitulo}
         />
       </div>
-      <div>
-        <label htmlFor="descricao">Descricao</label>
-        <textarea id="descricao" name="descricao"></textarea>
-      </div>
-      {/* <div>
-              <label for="categoria">Tags</label>
-              <input type="text" id="categoria" name="categoria" />
-              <ul className="lista-tags"></ul>
-            </div> */}
-      {/* <div className="container-botoes">
-              <button className="botao-descartar">Descartar</button>
-              <button className="botao-publicar">Publicar</button>
-            </div> */}
+      <Textarea
+        value={descricao}
+        onChange={(e) => setDescricao(e.target.value)}
+        setDescricao={setDescricao}
+      />
     </form>
   );
 }

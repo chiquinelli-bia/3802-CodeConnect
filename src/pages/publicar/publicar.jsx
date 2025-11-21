@@ -6,8 +6,8 @@ import { Form } from "./form/form.jsx";
 
 export default function Publicar() {
   const [titulo, setTitulo] = useState("");
+  const [descricao, setDescricao] = useState("");
   const [termoPesquisa, setTermoPesquisa] = useState("");
-  const [tagsSelecionadas, setTagsSelecionadas] = useState([]);
   return (
     <>
       <Menu />
@@ -15,7 +15,12 @@ export default function Publicar() {
         <UploadImg />
         <div className="container-descricao">
           <h2>Novo projeto</h2>
-          <Form titulo={titulo} setTitulo={setTitulo} />
+          <Form
+            titulo={titulo}
+            setTitulo={setTitulo}
+            descricao={descricao}
+            setDescricao={setDescricao}
+          />
         </div>
       </main>
     </>
