@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { verificaTagsDisponiveis } from "../../../modules/tagsLogic.js";
+import { Botao } from "../../../shared/shared.jsx";
 
 export default function Search({
+  label,
+  id,
   termoPesquisa,
   setTermoPesquisa,
   tagsSelecionadas,
@@ -43,9 +46,12 @@ export default function Search({
 
   return (
     <>
+      {label && <label htmlFor="categorias">{label}</label>}
+
       <input
+        id={id || undefined}
         type="text"
-        placeholder="Digite para pesquisar ou adicionar tag e aperte Enter"
+        placeholder="Digite e aperte Enter"
         className="form__search"
         value={input}
         onChange={onChange}
@@ -55,9 +61,9 @@ export default function Search({
         {tagsSelecionadas.map((tag) => (
           <li key={tag} className="lista-tag-element">
             {tag}{" "}
-            <button type="button" onClick={() => removeTag(tag)}>
+            <Botao type="button" onClick={() => removeTag(tag)}>
               x
-            </button>
+            </Botao>
           </li>
         ))}
       </ul>
