@@ -1,5 +1,6 @@
 import { Input } from "../../../shared/shared";
 import Search from "../../feed/search/search";
+import { Buttons } from "./buttons/buttons";
 import { Textarea } from "./textarea/textarea";
 
 export function Form({
@@ -41,6 +42,9 @@ export function Form({
           tagsSelecionadas={tagsSelecionadas}
           setTagsSelecionadas={setTagsSelecionadas}
         />
+      </div>
+      <div className="container-botoes">
+        <Buttons />
       </div>
     </form>
   );
