@@ -1,35 +1,31 @@
-export function setupUpload () {
-    const uploadBtn = document.getElementById("upload-btn");
-    const inputUpload = document.getElementById("image-upload");
+export function setupUpload() {
+  const inputUpload = document.getElementById("image-upload");
+  const imagemUpload = document.querySelector(".main-imagem");
+  const nomeImagemUpload = document.querySelector(".container-imagem-nome p");
 
-    uploadBtn.addEventListener("click", () => {
-        inputUpload.click();
-    })
-    function lerConteudoDoArquivo(arquivo) {
-        return new Promise((resolve, reject) => {
-            const leitor = new FileReader();
-            leitor.onload = () => {
-                resolve({ url: leitor.result, nome: arquivo.name })
-            }
-            leitor.onerror = () => {
-                reject(`Erro na leitura do arquivo ${arquivo.name}`)
-            }
-            leitor.readAsDataURL(arquivo)
-        })
+  // abre o input file
+  inputUpload.click();
+
+  // quando usuário escolhe o arquivo
+  inputUpload.onchange = async (evento) => {
+    const file = evento.target.files[0];
+    if (!file) return;
+
+    try {
+      const url = await lerConteudoDoArquivo(file);
+      imagemUpload.src = url;
+      nomeImagemUpload.textContent = file.name;
+    } catch (erro) {
+      console.error("Erro ao ler arquivo", erro);
     }
+  };
+}
 
-    const imagemUpload = document.querySelector(".main-imagem");
-    const nomeImagemUpload = document.querySelector(".container-imagem-nome p");
-    inputUpload.addEventListener("change", async (evento) => {
-        const file = evento.target.files[0];
-        if (file) {
-            try {
-                const conteudoDoArquivo = await lerConteudoDoArquivo(file);
-                imagemUpload.src = conteudoDoArquivo.url;
-                nomeImagemUpload.textContent = conteudoDoArquivo.nome;
-            } catch (erro) {
-                console.error("Erro na leitura do arquivo")
-            }
-        }    
-    })
+function lerConteudoDoArquivo(arquivo) {
+  return new Promise((resolve, reject) => {
+    const leitor = new FileReader();
+    leitor.onload = () => resolve(leitor.result);
+    leitor.onerror = () => reject();
+    leitor.readAsDataURL(arquivo);
+  });
 }
