@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { verificaTagsDisponiveis } from "../../../modules/tagsLogic.js";
 import { Botao } from "../../../shared/shared.jsx";
 
@@ -9,6 +9,7 @@ export default function Search({
   setTermoPesquisa,
   tagsSelecionadas,
   setTagsSelecionadas,
+  className,
 }) {
   const [input, setInput] = useState("");
   const handleKeyDown = async (e) => {
@@ -52,7 +53,7 @@ export default function Search({
         id={id || undefined}
         type="text"
         placeholder="Digite e aperte Enter"
-        className="form__search"
+        className={className || "form__search"}
         value={input}
         onChange={onChange}
         onKeyDown={handleKeyDown}

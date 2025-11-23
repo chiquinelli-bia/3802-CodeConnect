@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Menu from "../../shared/menu/menu.jsx";
 import { UploadImg } from "./uploadImg/uploadImg.jsx";
 import { Form } from "./form/form.jsx";
-// importar css
+import "./styles.css";
 
 export default function Publicar() {
   const [titulo, setTitulo] = useState("");

@@ -1,7 +1,7 @@
-@import url(sidebar.css);
-@import url(upload-area.css);
-@import url(form-descricao.css);
-@import url(../pages/feed/feed.css);
+@import url(../../styles/sidebar.css);
+@import url(../../styles/upload-area.css);
+@import url(../../styles/form-descricao.css);
+@import url(../feed/feed.css);
 
 :root {
   --background-color: #00090e;

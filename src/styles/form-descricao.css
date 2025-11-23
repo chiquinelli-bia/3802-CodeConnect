@@ -17,7 +17,7 @@ form div label {
   display: block;
   margin-bottom: 8px;
 }
-form div input,
+.input-campo,
 textarea {
   width: 100%;
   padding: 8px 16px;
@@ -27,7 +27,7 @@ textarea {
   font-family: var(--font-family);
   line-height: 22.5px;
 }
-form div input {
+.input-campo {
   height: 39px;
 }
 textarea {

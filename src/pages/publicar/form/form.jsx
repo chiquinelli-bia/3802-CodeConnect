@@ -20,6 +20,7 @@ export function Form({
           tipo="text"
           id="titulo"
           name="titulo"
+          className="input-campo"
           value={titulo}
           setValor={setTitulo}
         />
@@ -34,6 +35,7 @@ export function Form({
         <Search
           label="tags"
           id="tags"
+          className="input-campo"
           termoPesquisa={termoPesquisa}
           setTermoPesquisa={setTermoPesquisa}
           tagsSelecionadas={tagsSelecionadas}

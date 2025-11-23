@@ -1,5 +1,5 @@
 import MenuList from "./menuList.jsx";
-import "../../styles/styles.css";
+import "../../pages/publicar/styles.css";
 import {
   logo,
   iconeLogin,

@@ -2,6 +2,7 @@ export function Input({
   label,
   tipo,
   placeholder,
+  className,
   id,
   accept,
   name,
@@ -15,6 +16,7 @@ export function Input({
         type={tipo}
         placeholder={placeholder || undefined}
         required
+        className={className}
         id={id}
         accept={accept || undefined}
         name={name || undefined}
@@ -36,7 +38,15 @@ export function CheckBox() {
     </>
   );
 }
-export function Botao({ disabled, title, className, type, id, children }) {
+export function Botao({
+  disabled,
+  title,
+  className,
+  type,
+  id,
+  onClick,
+  children,
+}) {
   return (
     <button
       aria-disabled={disabled || false}
@@ -44,6 +54,7 @@ export function Botao({ disabled, title, className, type, id, children }) {
       className={className}
       type={type}
       id={id}
+      onClick={disabled ? undefined : onClick}
     >
       {children}
     </button>
