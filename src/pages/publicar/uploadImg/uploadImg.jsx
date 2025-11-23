@@ -1,5 +1,6 @@
-import { Botao } from "../../../shared/shared";
+import { Botao, Input } from "../../../shared/shared";
 import { imgExemplo, imgX } from "../../../img/index.js";
+import { setupUpload } from "../../../modules/upload.js";
 
 export function UploadImg() {
   return (
@@ -7,7 +8,15 @@ export function UploadImg() {
       <div className="container-imagem">
         <img src={imgExemplo} alt="imagem de exemplo" className="main-imagem" />
       </div>
-      <Botao id="upload-btn">Carregar imagem</Botao>
+      <Botao id="upload-btn" onClick={setupUpload}>
+        Carregar imagem
+      </Botao>
+      <Input
+        tipo="file"
+        id="image-upload"
+        accept="image/*"
+        className="hidden"
+      />
 
       <div className="container-imagem-nome">
         <p>Imagem_projeto.png</p>

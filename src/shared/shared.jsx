@@ -20,8 +20,12 @@ export function Input({
         id={id}
         accept={accept || undefined}
         name={name || undefined}
-        value={value}
-        onChange={(evento) => setValor(evento.target.value)}
+        {...(tipo === "file"
+          ? {}
+          : {
+              value: value,
+              onChange: (e) => setValor && setValor(e.target.value),
+            })}
       />
     </>
   );
