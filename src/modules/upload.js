@@ -3,10 +3,8 @@ export function setupUpload() {
   const imagemUpload = document.querySelector(".main-imagem");
   const nomeImagemUpload = document.querySelector(".container-imagem-nome p");
 
-  // abre o input file
   inputUpload.click();
 
-  // quando usuário escolhe o arquivo
   inputUpload.onchange = async (evento) => {
     const file = evento.target.files[0];
     if (!file) return;

@@ -29,6 +29,9 @@ body {
   gap: 27px;
   padding: 56px 0;
 }
+.hidden {
+  display: none;
+}
 .disabled {
   opacity: 35%;
   pointer-events: none;

@@ -42,7 +42,7 @@ function Cadastro() {
           </Botao>
         </form>
         <div className="container-links">
-          <p classe="container-links__titulo">ou entre com outras contas</p>
+          <p className="container-links__titulo">ou entre com outras contas</p>
           <ul>
             <RedesSociais
               link="https://www.github.com"

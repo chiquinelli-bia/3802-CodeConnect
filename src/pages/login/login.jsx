@@ -53,13 +53,13 @@ function Login() {
         </form>
 
         <div className="container-links">
-          <p classe="container-links__titulo">ou entre com outras contas</p>
+          <p className="container-links__titulo">ou entre com outras contas</p>
           <ul>
             <RedesSociais nome="Github" icon={githubIcon} />
             <RedesSociais nome="Google" icon={googleIcon} />
           </ul>
 
-          <p classe="container-links__texto">Ainda não tem conta?</p>
+          <p className="container-links__texto">Ainda não tem conta?</p>
           <Link link="cadastro.html">Crie seu cadastro!</Link>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { botaoLimpartags } from "../../../modules/tagsLogic";
-import "../../../styles/styles.css";
+import "../../../pages/publicar/styles.css";
 
 export default function BotaoLimparTags() {
   function handleClean() {
