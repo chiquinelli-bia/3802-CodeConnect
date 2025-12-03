@@ -1,3 +1,8 @@
+let imagemBase64 = null;
+export function getImagemBase64() {
+  return imagemBase64;
+}
+
 export function setupUpload() {
   const inputUpload = document.getElementById("image-upload");
   const imagemUpload = document.querySelector(".main-imagem");
@@ -12,6 +17,8 @@ export function setupUpload() {
     try {
       const url = await lerConteudoDoArquivo(file);
       imagemUpload.src = url;
+      imagemBase64 = url; // SALVA O BASE64 REAL
+
       nomeImagemUpload.textContent = file.name;
     } catch (erro) {
       console.error("Erro ao ler arquivo", erro);
