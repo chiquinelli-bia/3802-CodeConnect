@@ -5,10 +5,10 @@ import { Botao } from "../../../../shared/shared";
 export function Buttons() {
   return (
     <div className="container-botoes">
-      <Botao className="botao-descartar" onClick={setupDescartar}>
+      <Botao className="botao-descartar" type="button" onClick={setupDescartar}>
         Descartar
       </Botao>
-      <Botao className="botao-publicar" type="submit" onClick={setupPublicar}>
+      <Botao className="botao-publicar" type="button" onClick={setupPublicar}>
         Publicar
       </Botao>
     </div>
