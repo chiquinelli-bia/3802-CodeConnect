@@ -1,6 +1,12 @@
 let imagemBase64 = null;
+let imagemFile = null;
+
 export function getImagemBase64() {
   return imagemBase64;
+}
+
+export function getImagemFile() {
+  return imagemFile;
 }
 
 export function setupUpload() {
@@ -8,6 +14,7 @@ export function setupUpload() {
   const imagemUpload = document.querySelector(".main-imagem");
   const nomeImagemUpload = document.querySelector(".container-imagem-nome p");
 
+  // abrir o seletor de arquivo automaticamente
   inputUpload.click();
 
   inputUpload.onchange = async (evento) => {
@@ -15,10 +22,15 @@ export function setupUpload() {
     if (!file) return;
 
     try {
-      const url = await lerConteudoDoArquivo(file);
-      imagemUpload.src = url;
-      imagemBase64 = url; // SALVA O BASE64 REAL
+      // salva o arquivo real para envio
+      imagemFile = file;
 
+      // converte para base64 só para mostrar na tela
+      const url = await lerConteudoDoArquivo(file);
+      imagemBase64 = url;
+
+      // atualiza preview
+      imagemUpload.src = url;
       nomeImagemUpload.textContent = file.name;
     } catch (erro) {
       console.error("Erro ao ler arquivo", erro);
