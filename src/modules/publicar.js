@@ -2,64 +2,67 @@
 // no array de projetos, q apague a imagem tbm. ai apagar pelo postman
 
 import axios from "axios";
-import { getImagemFile } from "../modules/upload.js"; // ← usar FILE real
-
 const URL_BASE = "https://codeconnect-api-upload.onrender.com";
 
-async function publicarProjeto(
+export async function publicarProjeto(
   imagemFile,
   titulo,
   resumo,
   tags,
-  linhas_de_codigo,
+  linhasDeCodigo,
   compartilhamentos,
   comentarios,
   usuario,
-  conteudo_codigo,
-  comentarios_postagem
+  conteudoCodigo,
+  comentariosPostagem
 ) {
   try {
-    const formData = new FormData();
+    // ==============================
+    // 1. ENVIAR IMAGEM PARA /uploads
+    // ==============================
+    const formImg = new FormData();
+    formImg.append("image", imagemFile);
 
-    // imagem → real file
-    if (imagemFile) {
-      formData.append("imagem", imagemFile);
-    }
-
-    formData.append("titulo", titulo);
-    formData.append("resumo", resumo);
-    formData.append("tags", JSON.stringify(tags));
-    formData.append("linhas_de_codigo", linhas_de_codigo);
-    formData.append("compartilhamentos", compartilhamentos);
-    formData.append("comentarios", comentarios);
-    formData.append("usuario", JSON.stringify(usuario));
-    formData.append("conteudo_codigo", conteudo_codigo);
-    formData.append(
-      "comentarios_postagem",
-      JSON.stringify(comentarios_postagem)
-    );
-
-    for (let pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
-
-    const resposta = await axios.post(`${URL_BASE}/projetos`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+    const upload = await axios.post(`${URL_BASE}/uploads`, formImg, {
+      headers: { "Content-Type": "multipart/form-data" },
     });
 
+    const imagemUrl = upload.data.url; // URL real do GitHub
+    console.log("Imagem enviada:", imagemUrl);
+
+    // ===============================
+    // 2. ENVIAR PROJETO PARA /projetos
+    // ===============================
+
+    const projeto = {
+      imagem_capa: imagemUrl,
+      titulo,
+      resumo,
+      tags,
+      linhas_de_codigo: linhasDeCodigo,
+      compartilhamentos,
+      comentarios,
+      usuario,
+      conteudo_codigo: conteudoCodigo,
+      comentarios_postagem: comentariosPostagem,
+    };
+
+    const resposta = await axios.post(`${URL_BASE}/projetos`, projeto);
+
+    console.log("Projeto criado com sucesso:", resposta.data);
     return resposta.data;
   } catch (error) {
-    console.log("Erro ao enviar:", error);
+    console.error("Erro ao publicar projeto:", error);
     throw error;
   }
 }
 
+import { getImagemFile } from "../modules/upload.js";
+
 export async function setupPublicar() {
   const listaTags = document.querySelector(".lista-tags");
 
-  const imagemFile = getImagemFile(); // ← agora pega o FILE real
+  const imagemFile = getImagemFile(); // ← FILE real
 
   const titulo = document.getElementById("titulo").value;
   const resumo = document.getElementById("descricao").value;
@@ -68,7 +71,7 @@ export async function setupPublicar() {
     (tag) => tag.textContent
   );
 
-  const linhas_de_codigo = "0";
+  const linhasDeCodigo = "0";
   const compartilhamentos = "0";
   const comentarios = "0";
 
@@ -78,29 +81,27 @@ export async function setupPublicar() {
     nome: "Usuario",
   };
 
-  const conteudo_codigo = " ";
-  const comentarios_postagem = [];
+  const conteudoCodigo = " ";
+  const comentariosPostagem = [];
 
   try {
+    alert("Enviando projeto, aguarde...");
+
     const resultado = await publicarProjeto(
       imagemFile,
       titulo,
       resumo,
       tags,
-      linhas_de_codigo,
+      linhasDeCodigo,
       compartilhamentos,
       comentarios,
       usuario,
-      conteudo_codigo,
-      comentarios_postagem
+      conteudoCodigo,
+      comentariosPostagem
     );
 
     console.log(resultado);
-
-    alert("Enviando projeto. Aguarde um instante");
-    if (resultado) {
-      alert("Projeto enviado com sucesso!");
-    }
+    alert("Projeto enviado com sucesso!");
   } catch (error) {
     console.log("Erro ao enviar:", error.response?.data || error.message);
     alert("Erro ao enviar projeto!");
