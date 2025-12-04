@@ -1,9 +1,9 @@
 import axios from "axios";
-const URL_BASE = "https://codeconnect-api-1.onrender.com/projetos";
+const URL_BASE = "https://codeconnect-api-upload.onrender.com";
 
 export async function buscarProjetos() {
   try {
-    const cards = await axios.get(URL_BASE);
+    const cards = await axios.get(`${URL_BASE}/projetos`);
     return cards.data;
   } catch (error) {
     alert("Erro ao buscar projetos.");
