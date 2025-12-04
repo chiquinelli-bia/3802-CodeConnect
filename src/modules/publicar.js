@@ -1,13 +1,13 @@
-import { getImagemBase64 } from "./upload";
+// futuramente pedir para criar uma rota para delete no server.js(da api)
+// no array de projetos, q apague a imagem tbm. ai apagar pelo postman
 
-const botoesPublicar = document.querySelectorAll(
-  ".botao-publicar, .link-destaque"
-);
+import axios from "axios";
+import { getImagemFile } from "../modules/upload.js"; // ← usar FILE real
 
-const listaTags = document.querySelector(".lista-tags");
+const URL_BASE = "https://codeconnect-api-upload.onrender.com";
+
 async function publicarProjeto(
-  id,
-  imagem_capa,
+  imagemFile,
   titulo,
   resumo,
   tags,
@@ -15,76 +15,94 @@ async function publicarProjeto(
   compartilhamentos,
   comentarios,
   usuario,
-  conteudo_codigo
+  conteudo_codigo,
+  comentarios_postagem
 ) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // mandar pra api
-      const deuCerto = console.log(
-        id,
-        imagem_capa,
-        titulo,
-        resumo,
-        tags,
-        linhas_de_codigo,
-        compartilhamentos,
-        comentarios,
-        usuario,
-        conteudo_codigo
-      );
-      // ajustar os alerts
-      if (deuCerto) {
-        resolve(
-          "Simulação de envio — resultado aleatório, ainda em fase de testes.  Projeto publicado com sucesso."
-        );
-      } else {
-        reject(
-          "Simulação de envio — resultado aleatório, ainda em fase de testes. Erro ao publicar o projeto."
-        );
-      }
-    }, 2000);
-  });
-}
-export function setupPublicar() {
-  botoesPublicar.forEach((botao) => {
-    botao.addEventListener("click", async (evento) => {
-      evento.preventDefault();
-      // buscar a foto
-      const id = 2;
-      const imagem_capa = getImagemBase64();
-      const titulo = document.getElementById("nome").value;
-      const resumo = document.getElementById("descricao").value;
-      const tags = Array.from(listaTags.querySelectorAll("p")).map(
-        (tag) => tag.textContent
-      );
-      const linhas_de_codigo = "x";
-      const compartilhamentos = "x";
-      const comentarios = "x";
-      const usuario = {
-        imagem:
-          "https://github.com/MonicaHillman/codeconnect-api/blob/main/img/icone2.png?raw=true",
-        nome: "Amanda",
-      };
-      const conteudo_codigo = "";
-      try {
-        const resultado = await publicarProjeto(
-          id,
-          imagem_capa,
-          titulo,
-          resumo,
-          tags,
-          linhas_de_codigo,
-          compartilhamentos,
-          comentarios,
-          usuario,
-          conteudo_codigo
-        );
-        console.log(resultado);
-        alert(resultado);
-      } catch (error) {
-        console.log("Deu errado: ", error);
-        alert(error);
-      }
+  try {
+    const formData = new FormData();
+
+    // imagem → real file
+    if (imagemFile) {
+      formData.append("imagem", imagemFile);
+    }
+
+    formData.append("titulo", titulo);
+    formData.append("resumo", resumo);
+    formData.append("tags", JSON.stringify(tags));
+    formData.append("linhas_de_codigo", linhas_de_codigo);
+    formData.append("compartilhamentos", compartilhamentos);
+    formData.append("comentarios", comentarios);
+    formData.append("usuario", JSON.stringify(usuario));
+    formData.append("conteudo_codigo", conteudo_codigo);
+    formData.append(
+      "comentarios_postagem",
+      JSON.stringify(comentarios_postagem)
+    );
+
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
+    const resposta = await axios.post(`${URL_BASE}/projetos`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
-  });
+
+    return resposta.data;
+  } catch (error) {
+    console.log("Erro ao enviar:", error);
+    throw error;
+  }
+}
+
+export async function setupPublicar() {
+  const listaTags = document.querySelector(".lista-tags");
+
+  const imagemFile = getImagemFile(); // ← agora pega o FILE real
+
+  const titulo = document.getElementById("titulo").value;
+  const resumo = document.getElementById("descricao").value;
+
+  const tags = Array.from(listaTags.querySelectorAll("li")).map(
+    (tag) => tag.textContent
+  );
+
+  const linhas_de_codigo = "0";
+  const compartilhamentos = "0";
+  const comentarios = "0";
+
+  const usuario = {
+    imagem:
+      "https://raw.githubusercontent.com/chiquinelli-bia/codeconnect-api-2/main/uploads/download.png?raw=true",
+    nome: "Usuario",
+  };
+
+  const conteudo_codigo = " ";
+  const comentarios_postagem = [];
+
+  try {
+    const resultado = await publicarProjeto(
+      imagemFile,
+      titulo,
+      resumo,
+      tags,
+      linhas_de_codigo,
+      compartilhamentos,
+      comentarios,
+      usuario,
+      conteudo_codigo,
+      comentarios_postagem
+    );
+
+    console.log(resultado);
+
+    alert("Enviando projeto. Aguarde um instante");
+    if (resultado) {
+      alert("Projeto enviado com sucesso!");
+    }
+  } catch (error) {
+    console.log("Erro ao enviar:", error.response?.data || error.message);
+    alert("Erro ao enviar projeto!");
+  }
 }
