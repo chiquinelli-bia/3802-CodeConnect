@@ -17,9 +17,7 @@ export async function publicarProjeto(
   comentariosPostagem
 ) {
   try {
-    // ==============================
     // 1. ENVIAR IMAGEM PARA /uploads
-    // ==============================
     const formImg = new FormData();
     formImg.append("image", imagemFile);
 
@@ -30,9 +28,7 @@ export async function publicarProjeto(
     const imagemUrl = upload.data.url; // URL real do GitHub
     console.log("Imagem enviada:", imagemUrl);
 
-    // ===============================
     // 2. ENVIAR PROJETO PARA /projetos
-    // ===============================
 
     const projeto = {
       imagem_capa: imagemUrl,

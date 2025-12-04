@@ -49,7 +49,7 @@ export default function Feed() {
             <li key={item.id}>
               <Card
                 id={item.id}
-                imagemUrl={item.imagem_capa}
+                imagemUrl={item.imagem_capa || item.imagem}
                 titulo={item.titulo}
                 resumo={item.resumo}
                 linhasDeCodigo={item.linhas_de_codigo}

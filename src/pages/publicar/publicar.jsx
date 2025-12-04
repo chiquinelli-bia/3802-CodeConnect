@@ -8,10 +8,6 @@ export default function Publicar() {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [termoPesquisa, setTermoPesquisa] = useState("");
-  const [tagsSelecionadas, setTagsSelecionadas] = useState([]);
-  useEffect(() => {
-    console.log(tagsSelecionadas);
-  });
   return (
     <>
       <Menu />
