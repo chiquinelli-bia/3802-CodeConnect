@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { setupDescartar } from "../../modules/descartar.js";
 import Menu from "../../shared/menu/menu.jsx";
 import { UploadImg } from "./uploadImg/uploadImg.jsx";
 import { Form } from "./form/form.jsx";
@@ -9,6 +10,14 @@ export default function Publicar() {
   const [descricao, setDescricao] = useState("");
   const [termoPesquisa, setTermoPesquisa] = useState("");
   const [tagsSelecionadas, setTagsSelecionadas] = useState([]);
+  const onReset = () => {
+    setupDescartar(
+      setDescricao,
+      setTagsSelecionadas,
+      setTermoPesquisa,
+      setTitulo
+    );
+  };
 
   return (
     <>
@@ -26,6 +35,7 @@ export default function Publicar() {
             setTermoPesquisa={setTermoPesquisa}
             tagsSelecionadas={tagsSelecionadas}
             setTagsSelecionadas={setTagsSelecionadas}
+            onReset={onReset}
           />
         </div>
       </main>

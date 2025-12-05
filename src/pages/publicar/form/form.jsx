@@ -12,6 +12,7 @@ export function Form({
   setTagsSelecionadas,
   setTermoPesquisa,
   tagsSelecionadas,
+  onReset,
 }) {
   return (
     <form>
@@ -44,7 +45,7 @@ export function Form({
         />
       </div>
       <div className="container-botoes">
-        <Buttons />
+        <Buttons onReset={onReset} />
       </div>
     </form>
   );
