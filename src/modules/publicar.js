@@ -63,8 +63,8 @@ export async function setupPublicar() {
   const titulo = document.getElementById("titulo").value;
   const resumo = document.getElementById("descricao").value;
 
-  const tags = Array.from(listaTags.querySelectorAll("li")).map(
-    (tag) => tag.textContent
+  const tags = Array.from(listaTags.querySelectorAll("li")).map((tag) =>
+    tag.childNodes[0].textContent.trim()
   );
 
   const linhasDeCodigo = "0";
