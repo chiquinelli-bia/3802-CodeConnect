@@ -29,10 +29,10 @@ body {
   height: 100vh;
 }
 
-#root,
+#rootLogin,
 #rootCadastro {
   display: flex;
-  flex-direction: column;
+  gap: 3em;
   justify-content: center;
   align-items: center;
   min-height: auto;
@@ -42,4 +42,18 @@ body {
   opacity: 35%;
   pointer-events: none;
   cursor: not-allowed;
+}
+@media screen and (max-width: 1024px) {
+  body {
+    display: block;
+  }
+  #rootLogin,
+  #rootCadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+    min-width: auto;
+  }
 }
