@@ -37,6 +37,10 @@ aside {
   width: 40px;
   height: 30px;
 }
+.lista-links li:nth-child(3) a img {
+  width: 52px;
+  height: 60px;
+}
 @media screen and (max-width: 1024px) {
   aside {
     width: 100%;

@@ -4,7 +4,7 @@ import {
   logo,
   iconeLogin,
   iconeFeed,
-  iconePerfil,
+  iconePublicar,
   iconeSobre,
 } from "../../img/index.js";
 
@@ -17,11 +17,9 @@ export default function Menu() {
       label: "Feed",
     },
     {
-      href: "#",
-      src: iconePerfil,
-      label: "Perfil",
-      disabled: true,
-      title: "Perfil — em desenvolvimento",
+      href: "publicar.html",
+      src: iconePublicar,
+      label: "Publicar",
     },
     {
       href: "#",
