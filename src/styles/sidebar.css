@@ -59,6 +59,8 @@ aside {
     position: fixed;
     bottom: 0;
     width: 100%;
+    border-top: 5px solid var(--secondary-color);
+
     display: flex;
     flex-direction: row;
     justify-self: anchor-center;
@@ -70,5 +72,6 @@ aside {
   }
   .lista-links li a {
     font-size: 16px;
+    margin: 12px 0 0;
   }
 }

@@ -10,7 +10,7 @@ import {
 
 export default function Menu() {
   const menuItens = [
-    { href: "./login.html", src: iconeLogin, label: "Autenticação" },
+    { href: "./index.html", src: iconeLogin, label: "Autenticação" },
     {
       href: "./feed.html",
       src: iconeFeed,

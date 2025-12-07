@@ -1,112 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/styles/styles.css" />
-    <title>CodeConnect</title>
+    <link rel="stylesheet" href="src/styles/autenticacao.css" />
+    <title>Login | CodeConnect</title>
   </head>
 
   <body>
-    <aside>
-      <img src="./src/img/Logo.svg" alt="logo do codeconnect" class="logo" />
-      <nav>
-        <li class="link-destaque">
-          <a href="#">Publicar</a>
-        </li>
-        <ul class="lista-links">
-          <li>
-            <a href="./login.html">
-              <img class="autenticacao-img" src="./src/img/login.png" />
-              autenticacão
-            </a>
-          </li>
-          <li>
-            <a href="./feed.html" aria-disabled="true">
-              <img src="./src/img/feed.svg" />
-              Feed
-            </a>
-          </li>
-          <li title="Perfil — em desenvolvimento">
-            <a
-              href="#"
-              aria-disabled="true"
-              aria-label="Perfil — funcionalidade em desenvolvimento"
-              class="disabled"
-            >
-              <img src="./src/img/account_circle.svg" />
-              Perfil
-            </a>
-          </li>
-          <li title="Sobre Nós — em desenvolvimento">
-            <a
-              href="#"
-              aria-disabled="true"
-              aria-label="Sobre Nós — funcionalidade em desenvolvimento"
-              class="disabled"
-            >
-              <img src="./src/img/info.svg" />
-              Sobre nós
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-    <main>
-      <input
-        type="search"
-        name="categoria"
-        class="pesquisa"
-        placeholder="Digite o que você procura."
-      />
-      <div class="container-pesquisa">
-        <button class="botao-limpar-tags">Limpar Tudo</button>
-      </div>
-      <div class="container-upload-imagem">
-        <div class="container-imagem">
-          <img src="./src/img/imagem1.png" alt="" class="main-imagem" />
-        </div>
-        <button id="upload-btn">Carregar imagem</button>
-        <input
-          type="file"
-          id="image-upload"
-          accept="image/"
-          style="display: none"
-        />
-        <div class="container-imagem-nome">
-          <p>Imagem_projeto.png</p>
-          <img src="./src/img/close.svg" />
-        </div>
-      </div>
-      <div class="container-descricao">
-        <h2>Novo projeto</h2>
-        <form>
-          <div>
-            <label for="nome">Nome do projeto</label>
-            <input type="text" id="nome" name="nome" />
-          </div>
-          <div>
-            <label for="descricao">Descricao</label>
-            <textarea id="descricao" name="descricao"></textarea>
-          </div>
-          <div>
-            <label for="categoria">Tags</label>
-            <input type="text" id="categoria" name="categoria" />
-            <ul class="lista-tags"></ul>
-          </div>
-          <div class="container-botoes">
-            <button class="botao-descartar">Descartar</button>
-            <button class="botao-publicar">Publicar</button>
-          </div>
-        </form>
-      </div>
-    </main>
-    <script type="module" src="./src/modules/scripts.js" defer></script>
+    <div id="rootLogin"></div>
+    <script type="module" src="./src/pages/login/login.jsx"></script>
   </body>
 </html>
