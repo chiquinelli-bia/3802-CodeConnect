@@ -1,6 +1,3 @@
-// futuramente pedir para criar uma rota para delete no server.js(da api)
-// no array de projetos, q apague a imagem tbm. ai apagar pelo postman
-
 import axios from "axios";
 const URL_BASE = "https://codeconnect-api-upload.onrender.com";
 
