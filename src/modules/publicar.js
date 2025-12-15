@@ -25,13 +25,17 @@ export async function publicarProjeto(
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    const imagemUrl = upload.data.url; // URL real do GitHub
-    console.log("Imagem enviada:", imagemUrl);
+    const imagem = {
+      url: upload.data.url,
+      repo_path: upload.data.repo_path,
+    };
+    // URL real do GitHub
+    console.log("Imagem enviada:", imagem);
 
     // 2. ENVIAR PROJETO PARA /projetos
 
     const projeto = {
-      imagem_capa: imagemUrl,
+      imagem_capa: imagem,
       titulo,
       resumo,
       tags,
@@ -60,6 +64,10 @@ export async function setupPublicar() {
 
   const imagemFile = getImagemFile(); // ← FILE real
 
+  if (!imagemFile) {
+    alert("Selecione uma imagem antes de publicar.");
+    return;
+  }
   const titulo = document.getElementById("titulo").value;
   const resumo = document.getElementById("descricao").value;
 
