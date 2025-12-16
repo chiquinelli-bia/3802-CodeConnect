@@ -3,6 +3,7 @@ import { filtrarProjetos } from "../../modules/api.js";
 import Menu from "../../shared/menu/menu.jsx";
 import Search from "./search/search.jsx";
 import BotaoLimparTags from "./filtro/filtro.jsx";
+import Ordenacao from "./ordenacao/ordenacao.jsx";
 import Card from "./card/card.jsx";
 import "./feed.css";
 import { buscarProjetos } from "../../modules/api.js";
@@ -44,6 +45,7 @@ export default function Feed() {
           />
           <BotaoLimparTags />
         </div>
+        <Ordenacao />
         <ul className="lista-cards">
           {dados.map((item) => (
             <li key={item.id}>

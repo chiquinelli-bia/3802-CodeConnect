@@ -31,7 +31,7 @@ export default function Search({
       if (!tagsSelecionadas.includes(valor)) {
         setTagsSelecionadas([...tagsSelecionadas, valor]);
       }
-
+      setTermoPesquisa("");
       setInput("");
     }
   };

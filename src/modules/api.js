@@ -14,19 +14,17 @@ export async function buscarProjetos() {
 export function filtrarProjetos(projetos, termoPesquisa, tagsSelecionadas) {
   const termoLower = termoPesquisa.toLowerCase();
 
-  return projetos.filter((projeto) => {
-    const tituloValido =
-      termoLower === ""
-        ? true
-        : projeto.titulo.toLowerCase().includes(termoLower);
+  return projetos
+    .filter((projeto) => {
+      if (tagsSelecionadas.length === 0) return true;
 
-    const tagsValido =
-      tagsSelecionadas.length === 0
-        ? true
-        : tagsSelecionadas.every((tag) =>
-            projeto.tags.map((t) => t.toLowerCase()).includes(tag.toLowerCase())
-          );
+      return tagsSelecionadas.every((tag) =>
+        projeto.tags.some((t) => t.toLowerCase() === tag.toLowerCase())
+      );
+    })
+    .filter((projeto) => {
+      if (!termoLower) return true;
 
-    return tituloValido && tagsValido;
-  });
+      return projeto.titulo.toLowerCase().includes(termoLower);
+    });
 }
