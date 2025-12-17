@@ -24,6 +24,9 @@ const tagsDisponiveis = [
   "tailwind",
   "acessibilidade",
   "design system",
+  "axios",
+  "vite",
+  "react",
 ];
 export async function verificaTagsDisponiveis(tagTexto) {
   return new Promise((resolve) => {
