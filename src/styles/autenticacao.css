@@ -55,5 +55,6 @@ body {
     align-items: center;
     min-height: auto;
     min-width: auto;
+    padding-bottom: 5em;
   }
 }

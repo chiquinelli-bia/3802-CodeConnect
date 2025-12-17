@@ -37,10 +37,6 @@ aside {
   width: 40px;
   height: 30px;
 }
-.lista-links li:nth-child(3) a img {
-  width: 52px;
-  height: 60px;
-}
 @media screen and (max-width: 1024px) {
   aside {
     width: 100%;
@@ -77,5 +73,14 @@ aside {
   .lista-links li a {
     font-size: 16px;
     margin: 12px 0 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .lista-links li a img {
+    width: 35px;
+    height: 27px;
+  }
+  .lista-links li a {
+    font-size: 14px;
   }
 }
