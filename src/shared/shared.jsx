@@ -8,10 +8,11 @@ export function Input({
   name,
   value,
   setValor,
+  ...props
 }) {
   return (
     <>
-      {label && <label htmlFor={tipo}>{label}</label>}
+      {label && <label htmlFor={id}>{label}</label>}
       <input
         type={tipo}
         placeholder={placeholder || undefined}
@@ -20,6 +21,7 @@ export function Input({
         id={id}
         accept={accept || undefined}
         name={name || undefined}
+        {...props}
         {...(tipo === "file"
           ? {}
           : {
