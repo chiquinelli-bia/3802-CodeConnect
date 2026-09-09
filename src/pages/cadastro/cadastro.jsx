@@ -9,7 +9,7 @@ import { FirebaseUserRepository } from "../../infra/userFirebaseRepository.js";
 
 const createUser = new CreateUser(new FirebaseUserRepository());
 
-function Cadastro() {
+export function Cadastro() {
   const [nome, setNome] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
@@ -41,7 +41,7 @@ function Cadastro() {
           src={imagemCadastro}
           alt="Uma mulher de óculos trabalha em um laptop..."
         />
-        <section>
+        <section className="container-form">
           <form onSubmit={handleSubmit}>
             <h1 className="form__titulo">Cadastro</h1>
             <h2 className="form__texto">Olá! Preencha Seus Dados.</h2>
@@ -86,7 +86,3 @@ function Cadastro() {
     </>
   );
 }
-
-ReactDOM.createRoot(document.getElementById("rootCadastro")).render(
-  <Cadastro />,
-);

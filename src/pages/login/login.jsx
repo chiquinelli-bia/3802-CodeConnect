@@ -1,12 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import Menu from "../../shared/menu/menu.jsx";
 import { CheckBox, Botao, RedesSociais, Link } from "../../shared/shared.jsx";
 
 import { imagemLogin, githubIcon, googleIcon } from "../../img/index.js";
 import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
 
-function Login() {
+export function Login() {
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
 
@@ -26,7 +24,7 @@ function Login() {
           alt="uma mulher negra de cabelos crespos usando óculos e mexendo no computador, também há o logo da codeconnect"
         />
 
-        <section>
+        <section className="container-form">
           <form onSubmit={handleSubmit}>
             <h1 className="form__titulo">Login</h1>
             <h2 className="form__texto">Boas Vindas! Faça seu Login.</h2>
@@ -72,5 +70,3 @@ function Login() {
     </>
   );
 }
-
-ReactDOM.createRoot(document.getElementById("rootLogin")).render(<Login />);

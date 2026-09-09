@@ -8,7 +8,7 @@ import Card from "./card/card.jsx";
 import "./feed.css";
 import { buscarProjetos } from "../../modules/api.js";
 
-export default function Feed() {
+export function Feed() {
   const [todosDados, setTodosDados] = useState([]);
   const [dados, setDados] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState("");
@@ -27,7 +27,7 @@ export default function Feed() {
     const filtrados = filtrarProjetos(
       todosDados,
       termoPesquisa,
-      tagsSelecionadas
+      tagsSelecionadas,
     );
     setDados(filtrados);
   }, [termoPesquisa, tagsSelecionadas, todosDados]);

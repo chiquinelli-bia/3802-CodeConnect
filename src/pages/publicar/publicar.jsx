@@ -5,7 +5,7 @@ import { UploadImg } from "./uploadImg/uploadImg.jsx";
 import { Form } from "./form/form.jsx";
 import "./styles.css";
 
-export default function Publicar() {
+export function Publicar() {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [termoPesquisa, setTermoPesquisa] = useState("");
@@ -15,7 +15,7 @@ export default function Publicar() {
       setDescricao,
       setTagsSelecionadas,
       setTermoPesquisa,
-      setTitulo
+      setTitulo,
     );
   };
 
