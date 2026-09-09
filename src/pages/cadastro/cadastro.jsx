@@ -6,6 +6,7 @@ import { imagemCadastro, githubIcon, googleIcon } from "../../img/index.js";
 import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
 import { CreateUser } from "../../domain/useCases/createUser.js";
 import { FirebaseUserRepository } from "../../infra/userFirebaseRepository.js";
+import { toast } from "react-toastify";
 
 const createUser = new CreateUser(new FirebaseUserRepository());
 
@@ -23,13 +24,14 @@ export function Cadastro() {
         password: senha,
       });
 
-      console.log("Usuário cadastrado com sucesso!");
+      toast.success("Usuário registrado com sucesso!");
 
       setNome("");
       setEmail("");
       setSenha("");
     } catch (error) {
-      console.log("Falha ao cadastrar usuário", error);
+      toast.error("ops! houve um problema durante o registro.");
+      console.error;
     }
   };
 
