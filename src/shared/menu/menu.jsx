@@ -1,4 +1,5 @@
-import MenuList from "./menuList.jsx";
+import { Link } from "react-router-dom";
+import MenuItem from "./menuItem.jsx";
 import "../../pages/publicar/styles.css";
 import {
   logo,
@@ -10,33 +11,38 @@ import {
 
 export default function Menu() {
   const menuItens = [
-    { href: "./index.html", src: iconeLogin, label: "Autenticação" },
+    { to: "/", src: iconeLogin, label: "Autenticação" },
     {
-      href: "./feed.html",
+      to: "/feed",
       src: iconeFeed,
       label: "Feed",
     },
     {
-      href: "publicar.html",
+      to: "/publicar",
       src: iconePublicar,
       label: "Publicar",
     },
     {
-      href: "#",
+      to: "#",
       src: iconeSobre,
       label: "Sobre nós",
       disabled: true,
       title: "Sobre Nós — em desenvolvimento",
     },
   ];
+
   return (
     <aside>
       <img src={logo} alt="logo do codeconnect" className="logo" />
       <nav>
-        <li className="link-destaque">
-          <a href="publicar.html">Publicar</a>
-        </li>
-        <MenuList items={menuItens}></MenuList>
+        <ul className="lista-links">
+          <li className="link-destaque">
+            <Link to="/publicar">Publicar</Link>
+          </li>
+          {menuItens.map((item) => (
+            <MenuItem key={item.label} {...item} />
+          ))}
+        </ul>
       </nav>
     </aside>
   );
