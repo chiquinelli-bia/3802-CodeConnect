@@ -8,8 +8,11 @@
 }
 .container-autenticacao > img {
   object-fit: cover;
+  max-width: 425px;
 }
-
+.container-form {
+  min-width: 350px;
+}
 .container-autenticacao form {
   margin: 0 14.5px;
   font-size: 18px;
@@ -203,6 +206,10 @@
     width: 100vw;
     padding: 3em;
   }
+  .container-form {
+    width: auto;
+    min-width: auto;
+  }
   .container-autenticacao > img {
     width: 65%;
     height: 460px;
@@ -210,6 +217,7 @@
     object-position: center bottom;
     margin: auto;
   }
+
   .container-autenticacao .container-autenticacao__login {
     height: 535px;
   }

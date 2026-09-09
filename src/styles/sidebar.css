@@ -10,7 +10,7 @@ aside {
   list-style-type: none;
   border-radius: 10px;
   padding: 12px 18px;
-  margin: 3em 0;
+  margin-top: 3em;
 }
 .link-destaque:first-of-type a {
   color: var(--primary-color);
@@ -55,9 +55,13 @@ aside {
     padding: 12px 20px;
     margin: 1em 0;
   }
+  .lista-links li:first-child {
+    display: none;
+  }
   .lista-links {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     border-top: 5px solid var(--secondary-color);
 
