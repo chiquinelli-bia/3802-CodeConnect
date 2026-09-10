@@ -1,5 +1,5 @@
-import { IUser } from "../domain/entities/IUser";
-import { IUserRepository } from "../domain/repositories/IUserRepository";
+import type { IUser } from "../domain/entities/IUser";
+import type { IUserRepository } from "../domain/repositories/IUserRepository";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";

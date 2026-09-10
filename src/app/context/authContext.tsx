@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { auth } from "../../infra/firebase";
-import { onAuthStateChanged, signOut, User } from "firebase/auth";
+import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 
 export interface IAuthContext {
   user: User | null;
