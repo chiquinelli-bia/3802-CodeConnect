@@ -1,3 +1,5 @@
+import { Link as LinkRouter } from "react-router-dom";
+
 export function Input({
   label,
   tipo,
@@ -79,8 +81,8 @@ export function RedesSociais({ nome, icon }) {
 
 export function Link({ link, children }) {
   return (
-    <a href={link} className="container-links__link">
+    <LinkRouter to={link} className="container-links__link">
       {children}
-    </a>
+    </LinkRouter>
   );
 }

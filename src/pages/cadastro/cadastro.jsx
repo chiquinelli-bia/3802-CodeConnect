@@ -81,7 +81,7 @@ export function Cadastro() {
             </ul>
 
             <p className="container-links__texto">Já tem conta ?</p>
-            <Link link="index.html">Faça seu login!</Link>
+            <Link link="/login">Faça seu login!</Link>
           </div>
         </section>
       </div>
