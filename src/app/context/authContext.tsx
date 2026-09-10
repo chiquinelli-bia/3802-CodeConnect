@@ -1,22 +1,32 @@
 import {
   createContext,
-  ReactNode,
+  type ReactNode,
   useCallback,
   useEffect,
   useState,
 } from "react";
-import { auth } from "../../infra/firebase";
-import { onAuthStateChanged, signOut, type User } from "firebase/auth";
+import { auth } from "../../infra/firebase.js";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  type User,
+} from "firebase/auth";
 
 export interface IAuthContext {
   user: User | null;
   logout: () => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+
+  const login = async (email: string, password: string) => {
+    await signInWithEmailAndPassword(auth, email, password);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -32,7 +42,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, logout }}>
+    <AuthContext.Provider value={{ user, logout, login }}>
       {children}
     </AuthContext.Provider>
   );
