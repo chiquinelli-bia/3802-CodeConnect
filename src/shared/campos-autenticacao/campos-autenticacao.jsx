@@ -10,7 +10,7 @@ export function CamposDigitacao({
 }) {
   return (
     <>
-      {camposOpcionais.nome && (
+      {camposOpcionais?.nome && (
         <div className="form__campo-digitacao">
           <Input
             label="Nome"
