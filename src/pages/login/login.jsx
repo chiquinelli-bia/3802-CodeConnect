@@ -3,15 +3,28 @@ import { CheckBox, Botao, RedesSociais, Link } from "../../shared/shared.jsx";
 
 import { imagemLogin, githubIcon, googleIcon } from "../../img/index.js";
 import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
+import { useState } from "react";
+import { useAuthContext } from "../../app/hooks/useAuthContext.js";
+import { toast } from "react-toastify";
 
 export function Login() {
-  const [email, setEmail] = React.useState("");
-  const [senha, setSenha] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const handleSubmit = (event) => {
+  const { login } = useAuthContext();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("email " + email);
-    console.log("senha " + senha);
+    try {
+      await login(email, senha);
+
+      setEmail("");
+      setSenha("");
+      toast.success("Boas vindas ao Code Connect!");
+    } catch (error) {
+      console.log("Falha ao efetuar login!", error);
+      toast.error("Falha ao efetuar login, confirme seu e-mail e senha.");
+    }
   };
 
   return (
@@ -48,7 +61,7 @@ export function Login() {
               </p>
             </fieldset>
 
-            <Botao disabled="true" className="form__botao" type="submit">
+            <Botao className="form__botao" type="submit">
               Login
             </Botao>
           </form>
@@ -63,7 +76,7 @@ export function Login() {
             </ul>
 
             <p className="container-links__texto">Ainda não tem conta?</p>
-            <Link link="cadastro.html">Crie seu cadastro!</Link>
+            <Link link="/">Crie seu cadastro!</Link>
           </div>
         </section>
       </div>
