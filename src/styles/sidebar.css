@@ -25,7 +25,8 @@ aside {
 }
 
 .lista-links li a,
-.lista-links li button {
+.lista-links li button,
+.lista-links li span {
   display: flex;
   flex-direction: column;
   gap: 10px;
