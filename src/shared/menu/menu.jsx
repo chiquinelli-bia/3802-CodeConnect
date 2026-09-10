@@ -6,10 +6,12 @@ import {
   iconeLogin,
   iconeFeed,
   iconePublicar,
-  iconeSobre,
+  iconeLogout,
 } from "../../img/index.js";
+import { useAuthContext } from "../../app/hooks/useAuthContext.js";
 
 export default function Menu() {
+  const { logout } = useAuthContext();
   const menuItens = [
     { to: "/", src: iconeLogin, label: "Autenticação" },
     {
@@ -23,12 +25,17 @@ export default function Menu() {
       label: "Publicar",
     },
     {
-      to: "#",
-      src: iconeSobre,
-      label: "Sobre nós",
-      disabled: true,
-      title: "Sobre Nós — em desenvolvimento",
+      onClick: logout,
+      src: iconeLogout,
+      label: "Sair",
     },
+    // {
+    //   to: "#",
+    //   src: iconeSobre,
+    //   label: "Sobre nós",
+    //   disabled: true,
+    //   title: "Sobre Nós — em desenvolvimento",
+    // },
   ];
 
   return (
