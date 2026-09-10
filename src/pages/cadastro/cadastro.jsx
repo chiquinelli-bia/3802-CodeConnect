@@ -7,6 +7,7 @@ import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenti
 import { CreateUser } from "../../domain/useCases/createUser.js";
 import { FirebaseUserRepository } from "../../infra/userFirebaseRepository.js";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const createUser = new CreateUser(new FirebaseUserRepository());
 
@@ -14,6 +15,8 @@ export function Cadastro() {
   const [nome, setNome] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,9 +32,10 @@ export function Cadastro() {
       setNome("");
       setEmail("");
       setSenha("");
+      navigate("/login");
     } catch (error) {
       toast.error("ops! houve um problema durante o registro.");
-      console.error;
+      console.error(error);
     }
   };
 

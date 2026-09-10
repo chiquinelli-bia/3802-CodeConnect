@@ -6,12 +6,14 @@ import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenti
 import { useState } from "react";
 import { useAuthContext } from "../../app/hooks/useAuthContext.js";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   const { login } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,6 +23,7 @@ export function Login() {
       setEmail("");
       setSenha("");
       toast.success("Boas vindas ao Code Connect!");
+      navigate("/feed");
     } catch (error) {
       console.log("Falha ao efetuar login!", error);
       toast.error("Falha ao efetuar login, confirme seu e-mail e senha.");
