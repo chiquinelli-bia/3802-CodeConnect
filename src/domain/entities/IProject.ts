@@ -1,4 +1,10 @@
-import type { IUser } from "./IUser.js";
+import type { IUser } from "./IUser";
+
+// O autor do projeto herda de IUser, garantindo os mesmos tipos
+export interface IProjectUser extends Pick<IUser, "id" | "email"> {
+  nome: string;
+  imagem: string;
+}
 
 export interface IProject {
   id: number | string;
@@ -11,7 +17,7 @@ export interface IProject {
   compartilhamentos?: number;
   tags: string[];
   comentarios_postagem?: any[];
-  usuario: IUser;
+  usuario: IProjectUser;
 }
 
 export type ICreateProjectInput = Omit<
