@@ -1,21 +1,24 @@
 import { Input, Botao } from "../../../shared/shared";
 import Search from "../../feed/search/search";
 import { Textarea } from "./textarea/textarea";
+import { useProject } from "../../../app/hooks/useProjectContext";
 
-export function Form({
-  titulo,
-  setTitulo,
-  descricao,
-  setDescricao,
-  termoPesquisa,
-  setTermoPesquisa,
-  tagsSelecionadas,
-  setTagsSelecionadas,
-  onReset,
-  onSubmit,
-}) {
+export function Form() {
+  const {
+    titulo,
+    setTitulo,
+    descricao,
+    setDescricao,
+    termoPesquisa,
+    setTermoPesquisa,
+    tagsSelecionadas,
+    setTagsSelecionadas,
+    onReset,
+    handlePublicar,
+  } = useProject();
+
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handlePublicar}>
       <div>
         <Input
           label="Título do Projeto"
