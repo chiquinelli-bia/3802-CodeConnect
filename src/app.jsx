@@ -4,8 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Cadastro } from "./pages/cadastro/cadastro.jsx";
 import { Login } from "./pages/login/login.jsx";
-import { Feed } from "./pages/feed/Feed.jsx";
-import { Publicar } from "./pages/publicar/Publicar.jsx";
+import { Feed } from "./pages/feed/feed.jsx";
+import { Publicar } from "./pages/publicar/publicar.jsx";
 import { ProtectedRoute } from "./shared/protectedRoute";
 import { useFocusResponsivo } from "./app/hooks/useFocusResponsivo.jsx";
 

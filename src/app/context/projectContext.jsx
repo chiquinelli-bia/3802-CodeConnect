@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import { setupDescartar } from "../../modules/descartar.js";
 import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository.js";
-import { CreateProject } from "../../domain/useCases/CreateProject";
+import { CreateProject } from "../../domain/useCases/createProject";
 
 const repository = new FirebaseProjectRepository();
 const createProjectUseCase = new CreateProject(repository);
