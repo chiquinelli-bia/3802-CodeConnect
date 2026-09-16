@@ -13,6 +13,7 @@ import iconeChat from "./chat.svg";
 import imgExemplo from "./imagem1.png";
 import imgX from "./close.svg";
 import iconePublicar from "./enviar.png";
+import iconeLogout from "./logout.svg";
 
 export {
   imagemLogin,
@@ -30,4 +31,5 @@ export {
   iconeChat,
   imgExemplo,
   imgX,
+  iconeLogout,
 };

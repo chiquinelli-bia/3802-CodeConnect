@@ -1,3 +1,5 @@
+import { Link as LinkRouter } from "react-router-dom";
+
 export function Input({
   label,
   tipo,
@@ -8,10 +10,11 @@ export function Input({
   name,
   value,
   setValor,
+  ...props
 }) {
   return (
     <>
-      {label && <label htmlFor={tipo}>{label}</label>}
+      {label && <label htmlFor={id}>{label}</label>}
       <input
         type={tipo}
         placeholder={placeholder || undefined}
@@ -20,6 +23,7 @@ export function Input({
         id={id}
         accept={accept || undefined}
         name={name || undefined}
+        {...props}
         {...(tipo === "file"
           ? {}
           : {
@@ -77,8 +81,8 @@ export function RedesSociais({ nome, icon }) {
 
 export function Link({ link, children }) {
   return (
-    <a href={link} className="container-links__link">
+    <LinkRouter to={link} className="container-links__link">
       {children}
-    </a>
+    </LinkRouter>
   );
 }

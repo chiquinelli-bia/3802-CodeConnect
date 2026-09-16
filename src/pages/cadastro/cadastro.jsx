@@ -4,27 +4,50 @@ import { CheckBox, Botao, RedesSociais, Link } from "../../shared/shared.jsx";
 import Menu from "../../shared/menu/menu.jsx";
 import { imagemCadastro, githubIcon, googleIcon } from "../../img/index.js";
 import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
+import { CreateUser } from "../../domain/useCases/createUser.js";
+import { FirebaseUserRepository } from "../../infra/userFirebaseRepository.js";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-function Cadastro() {
+const createUser = new CreateUser(new FirebaseUserRepository());
+
+export function Cadastro() {
   const [nome, setNome] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [senha, setSenha] = React.useState("");
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("nome " + nome);
-    console.log("email " + email);
-    console.log("senha " + senha);
+    try {
+      await createUser.execute({
+        name: nome,
+        email: email,
+        password: senha,
+      });
+
+      toast.success("Usuário registrado com sucesso!");
+
+      setNome("");
+      setEmail("");
+      setSenha("");
+      navigate("/login");
+    } catch (error) {
+      toast.error("ops! houve um problema durante o registro.");
+      console.error(error);
+    }
   };
+
   return (
     <>
       <Menu></Menu>
       <div className="container-autenticacao">
         <img
           src={imagemCadastro}
-          alt="Uma mulher de óculos trabalha em um laptop cercada por telas digitais verdes flutuantes que mostram pessoas. O ambiente é futurista e focado em tecnologia."
+          alt="Uma mulher de óculos trabalha em um laptop..."
         />
-        <section>
+        <section className="container-form">
           <form onSubmit={handleSubmit}>
             <h1 className="form__titulo">Cadastro</h1>
             <h2 className="form__texto">Olá! Preencha Seus Dados.</h2>
@@ -35,11 +58,12 @@ function Cadastro() {
               setEmail={setEmail}
               senha={senha}
               setSenha={setSenha}
+              camposOpcionais={{ nome: true }}
             />
             <fieldset className="form__opcoes">
               <CheckBox />
             </fieldset>
-            <Botao disabled="true" className="form__botao" type="submit">
+            <Botao className="form__botao" type="submit">
               Cadastrar
             </Botao>
           </form>
@@ -61,14 +85,10 @@ function Cadastro() {
             </ul>
 
             <p className="container-links__texto">Já tem conta ?</p>
-            <Link link="index.html">Faça seu login!</Link>
+            <Link link="/login">Faça seu login!</Link>
           </div>
         </section>
       </div>
     </>
   );
 }
-
-ReactDOM.createRoot(document.getElementById("rootCadastro")).render(
-  <Cadastro />
-);

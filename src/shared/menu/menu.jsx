@@ -1,42 +1,63 @@
-import MenuList from "./menuList.jsx";
+import { Link } from "react-router-dom";
+import MenuItem from "./menuItem.jsx";
 import "../../pages/publicar/styles.css";
 import {
   logo,
   iconeLogin,
   iconeFeed,
   iconePublicar,
+  iconeLogout,
+  iconePerfil,
   iconeSobre,
 } from "../../img/index.js";
+import { useAuthContext } from "../../app/hooks/useAuthContext.js";
 
 export default function Menu() {
+  const { logout, user } = useAuthContext();
+  const primeiroNome = user?.displayName?.split(" ")[0] || "Perfil";
   const menuItens = [
-    { href: "./index.html", src: iconeLogin, label: "Autenticação" },
+    { to: "/", src: iconeLogin, label: "Autenticação" },
     {
-      href: "./feed.html",
+      to: "/feed",
       src: iconeFeed,
       label: "Feed",
     },
     {
-      href: "publicar.html",
+      to: "/publicar",
       src: iconePublicar,
       label: "Publicar",
     },
-    {
-      href: "#",
-      src: iconeSobre,
-      label: "Sobre nós",
-      disabled: true,
-      title: "Sobre Nós — em desenvolvimento",
-    },
+    ...(user
+      ? [
+          {
+            src: iconePerfil,
+            label: primeiroNome,
+          },
+          { onClick: logout, src: iconeLogout, label: "Sair" },
+        ]
+      : [
+          {
+            to: "#",
+            src: iconeSobre,
+            label: "Sobre nós",
+            disabled: true,
+            title: "Sobre Nós — em desenvolvimento",
+          },
+        ]),
   ];
+
   return (
     <aside>
       <img src={logo} alt="logo do codeconnect" className="logo" />
       <nav>
-        <li className="link-destaque">
-          <a href="publicar.html">Publicar</a>
-        </li>
-        <MenuList items={menuItens}></MenuList>
+        <ul className="lista-links">
+          <li className="link-destaque">
+            <Link to="/publicar">Publicar</Link>
+          </li>
+          {menuItens.map((item) => (
+            <MenuItem key={item.label} {...item} />
+          ))}
+        </ul>
       </nav>
     </aside>
   );

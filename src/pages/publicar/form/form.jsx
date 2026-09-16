@@ -1,21 +1,24 @@
-import { Input } from "../../../shared/shared";
+import { Input, Botao } from "../../../shared/shared";
 import Search from "../../feed/search/search";
-import { Buttons } from "./buttons/buttons";
 import { Textarea } from "./textarea/textarea";
+import { useProject } from "../../../app/hooks/useProjectContext";
 
-export function Form({
-  titulo,
-  setTitulo,
-  descricao,
-  setDescricao,
-  termoPesquisa,
-  setTagsSelecionadas,
-  setTermoPesquisa,
-  tagsSelecionadas,
-  onReset,
-}) {
+export function Form() {
+  const {
+    titulo,
+    setTitulo,
+    descricao,
+    setDescricao,
+    termoPesquisa,
+    setTermoPesquisa,
+    tagsSelecionadas,
+    setTagsSelecionadas,
+    onReset,
+    handlePublicar,
+  } = useProject();
+
   return (
-    <form>
+    <form onSubmit={handlePublicar}>
       <div>
         <Input
           label="Título do Projeto"
@@ -27,8 +30,9 @@ export function Form({
           setValor={setTitulo}
         />
       </div>
+
       <Textarea
-        value={descricao}
+        descricao={descricao}
         onChange={(e) => setDescricao(e.target.value)}
         setDescricao={setDescricao}
       />
@@ -44,8 +48,14 @@ export function Form({
           setTagsSelecionadas={setTagsSelecionadas}
         />
       </div>
+
       <div className="container-botoes">
-        <Buttons onReset={onReset} />
+        <Botao className="botao-descartar" type="button" onClick={onReset}>
+          Descartar
+        </Botao>
+        <Botao className="botao-publicar" type="submit">
+          Publicar
+        </Botao>
       </div>
     </form>
   );

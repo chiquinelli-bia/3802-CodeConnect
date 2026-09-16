@@ -6,10 +6,11 @@ export function CamposDigitacao({
   setEmail,
   senha,
   setSenha,
+  camposOpcionais,
 }) {
   return (
     <>
-      {nome && (
+      {camposOpcionais?.nome && (
         <div className="form__campo-digitacao">
           <Input
             label="Nome"
@@ -35,10 +36,11 @@ export function CamposDigitacao({
         <Input
           label="Senha"
           tipo="password"
-          placeholder="Digite a sua senha"
+          placeholder="senha de no mínimo 6 caracteres"
           id="password"
           value={senha}
           setValor={setSenha}
+          minLength={6}
         />
       </div>
     </>
