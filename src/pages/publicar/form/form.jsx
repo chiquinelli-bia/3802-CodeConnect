@@ -32,7 +32,7 @@ export function Form() {
       </div>
 
       <Textarea
-        value={descricao}
+        descricao={descricao}
         onChange={(e) => setDescricao(e.target.value)}
         setDescricao={setDescricao}
       />
