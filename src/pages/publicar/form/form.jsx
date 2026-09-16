@@ -1,6 +1,5 @@
-import { Input } from "../../../shared/shared";
+import { Input, Botao } from "../../../shared/shared";
 import Search from "../../feed/search/search";
-import { Buttons } from "./buttons/buttons";
 import { Textarea } from "./textarea/textarea";
 
 export function Form({
@@ -9,13 +8,14 @@ export function Form({
   descricao,
   setDescricao,
   termoPesquisa,
-  setTagsSelecionadas,
   setTermoPesquisa,
   tagsSelecionadas,
+  setTagsSelecionadas,
   onReset,
+  onSubmit,
 }) {
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <div>
         <Input
           label="Título do Projeto"
@@ -27,6 +27,7 @@ export function Form({
           setValor={setTitulo}
         />
       </div>
+
       <Textarea
         value={descricao}
         onChange={(e) => setDescricao(e.target.value)}
@@ -44,8 +45,14 @@ export function Form({
           setTagsSelecionadas={setTagsSelecionadas}
         />
       </div>
+
       <div className="container-botoes">
-        <Buttons onReset={onReset} />
+        <Botao className="botao-descartar" type="button" onClick={onReset}>
+          Descartar
+        </Botao>
+        <Botao className="botao-publicar" type="submit">
+          Publicar
+        </Botao>
       </div>
     </form>
   );
