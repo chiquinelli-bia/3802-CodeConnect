@@ -6,7 +6,7 @@ import { Cadastro } from "./pages/cadastro/cadastro.jsx";
 import { Login } from "./pages/login/login.jsx";
 import { Feed } from "./pages/feed/Feed.jsx";
 import { Publicar } from "./pages/publicar/Publicar.jsx";
-import { ProtectedRoute } from "./shared/protectedRoute";
+import { ProtectedRoute } from "./components/protectedRoute";
 import { useFocusResponsivo } from "./app/hooks/useFocusResponsivo.jsx";
 
 export default function App() {

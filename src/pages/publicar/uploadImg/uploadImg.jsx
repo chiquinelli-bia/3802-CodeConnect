@@ -1,4 +1,4 @@
-import { Botao, Input } from "../../../shared/shared";
+import { Botao, Input } from "../../../components/shared";
 import { imgExemplo, imgX } from "../../../img/index.js";
 import { useProject } from "../../../app/hooks/useProjectContext";
 

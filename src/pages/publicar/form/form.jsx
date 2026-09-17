@@ -1,4 +1,4 @@
-import { Input, Botao } from "../../../shared/shared";
+import { Input, Botao } from "../../../components/shared";
 import Search from "../../feed/search/search";
 import { Textarea } from "./textarea/textarea";
 import { useProject } from "../../../app/hooks/useProjectContext";

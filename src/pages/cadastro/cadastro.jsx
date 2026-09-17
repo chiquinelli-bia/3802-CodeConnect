@@ -1,9 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { CheckBox, Botao, RedesSociais, Link } from "../../shared/shared.jsx";
-import Menu from "../../shared/menu/menu.jsx";
+import {
+  CheckBox,
+  Botao,
+  RedesSociais,
+  Link,
+} from "../../components/shared.jsx";
+import Menu from "../../components/menu/menu.jsx";
 import { imagemCadastro, githubIcon, googleIcon } from "../../img/index.js";
-import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
+import { CamposDigitacao } from "../../components/campos-autenticacao/campos-autenticacao.jsx";
 import { CreateUser } from "../../domain/useCases/createUser.js";
 import { FirebaseUserRepository } from "../../infra/userFirebaseRepository.js";
 import { toast } from "react-toastify";

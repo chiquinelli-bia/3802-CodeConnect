@@ -1,8 +1,13 @@
-import Menu from "../../shared/menu/menu.jsx";
-import { CheckBox, Botao, RedesSociais, Link } from "../../shared/shared.jsx";
+import Menu from "../../components/menu/menu.jsx";
+import {
+  CheckBox,
+  Botao,
+  RedesSociais,
+  Link,
+} from "../../components/shared.jsx";
 
 import { imagemLogin, githubIcon, googleIcon } from "../../img/index.js";
-import { CamposDigitacao } from "../../shared/campos-autenticacao/campos-autenticacao.jsx";
+import { CamposDigitacao } from "../../components/campos-autenticacao/campos-autenticacao.jsx";
 import { useState } from "react";
 import { useAuthContext } from "../../app/hooks/useAuthContext.js";
 import { toast } from "react-toastify";
