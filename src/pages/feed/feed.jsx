@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Menu from "../../shared/menu/menu.jsx";
+import Menu from "../../components/menu/menu.jsx";
 import Search from "./search/search.jsx";
 import BotaoLimparTags from "./filtro/filtro.jsx";
 import Ordenacao from "./ordenacao/ordenacao.jsx";

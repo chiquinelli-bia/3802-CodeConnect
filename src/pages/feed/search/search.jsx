@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { verificaTagsDisponiveis } from "../../../modules/tagsLogic.js";
-import { Botao } from "../../../shared/shared.jsx";
+import { Botao } from "../../../components/shared.jsx";
 
 export default function Search({
   label,

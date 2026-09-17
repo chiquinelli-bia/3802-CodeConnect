@@ -1,4 +1,4 @@
-import Menu from "../../shared/menu/menu.jsx";
+import Menu from "../../components/menu/menu.jsx";
 import { UploadImg } from "./uploadImg/uploadImg.jsx";
 import { Form } from "./form/form.jsx";
 import "./styles.css";
