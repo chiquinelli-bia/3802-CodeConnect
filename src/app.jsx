@@ -4,8 +4,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Cadastro } from "./pages/cadastro/cadastro.jsx";
 import { Login } from "./pages/login/login.jsx";
-import { Feed } from "./pages/feed/Feed.jsx";
-import { Publicar } from "./pages/publicar/Publicar.jsx";
+import { Feed } from "./pages/feed/feed.jsx";
+import { Publicar } from "./pages/publicar/publicar.jsx";
+import { BlogPost } from "./pages/blogPost/index.jsx";
 import { ProtectedRoute } from "./components/protectedRoute";
 import { useFocusResponsivo } from "./app/hooks/useFocusResponsivo.jsx";
 
@@ -36,6 +37,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="blog-post/:slug" element={<BlogPost />} />
       </Routes>
     </>
   );
