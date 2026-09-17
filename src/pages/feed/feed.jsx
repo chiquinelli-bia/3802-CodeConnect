@@ -7,7 +7,7 @@ import Card from "./card/card.jsx";
 import "./feed.css";
 import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository";
 import { ListProjects } from "../../domain/useCases/api/listProjects.js";
-import { FilterProjects } from "../../domain/useCases/api/FilterProjects";
+import { FilterProjects } from "../../domain/useCases/api/filterProjects";
 import { toast } from "react-toastify";
 
 const repository = new FirebaseProjectRepository();

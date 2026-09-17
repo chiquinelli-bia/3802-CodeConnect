@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import { IconButton } from "../IconButton";
+import { IconButton } from "../iconButton";
 import { Modal } from "../modal";
-import { Textarea } from "../textarea";
-import { Subheading } from "../Subheading";
+import { Textarea } from "../textarea/textarea.jsx";
+import { Subheading } from "../subHeading";
 import { IconChat } from "../../img/icons/IconChat";
 import { IconArrowFoward } from "../../img/icons/IconArrowFoward";
-import { Spinner } from "../Spinner";
+import { Spinner } from "../spinner";
 import styles from "./modalComment.module.css";
 import { Botao } from "../shared.jsx";
 
