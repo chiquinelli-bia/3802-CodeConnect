@@ -6,13 +6,16 @@ import { ToastContainer } from "react-toastify";
 
 import "./styles/autenticacao.css";
 import { AuthProvider } from "./app/context/authContext.js";
+import { ProjectProvider } from "./app/context/projectContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <ToastContainer />
-        <App />
+        <ProjectProvider>
+          <ToastContainer />
+          <App />
+        </ProjectProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,

@@ -2,11 +2,10 @@ import Menu from "../../components/menu/menu.jsx";
 import { UploadImg } from "./uploadImg/uploadImg.jsx";
 import { Form } from "./form/form.jsx";
 import "./styles.css";
-import { ProjectProvider } from "../../app/context/projectContext.jsx";
 
 export function Publicar() {
   return (
-    <ProjectProvider>
+    <>
       <Menu />
       <main>
         <UploadImg />
@@ -15,6 +14,6 @@ export function Publicar() {
           <Form />
         </div>
       </main>
-    </ProjectProvider>
+    </>
   );
 }

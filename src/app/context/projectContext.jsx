@@ -3,9 +3,11 @@ import { toast } from "react-toastify";
 import { setupDescartar } from "../../modules/descartar.js";
 import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository.js";
 import { CreateProject } from "../../domain/useCases/createProject";
+import { LikeProject } from "../../domain/useCases/api/LikeProject";
 
 const repository = new FirebaseProjectRepository();
 const createProjectUseCase = new CreateProject(repository);
+const likeProjectUseCase = new LikeProject(repository);
 
 export const ProjectContext = createContext();
 
@@ -83,6 +85,14 @@ export function ProjectProvider({ children }) {
       });
     }
   };
+  const handleLike = async (projectId) => {
+    try {
+      await likeProjectUseCase.execute(projectId);
+    } catch (error) {
+      toast.error(`Erro ao registrar a curtida: ${error.message}`);
+      throw error;
+    }
+  };
 
   return (
     <ProjectContext.Provider
@@ -100,6 +110,7 @@ export function ProjectProvider({ children }) {
         handleImageChange,
         handleRemoverImagem,
         handlePublicar,
+        handleLike,
         onReset,
       }}
     >
