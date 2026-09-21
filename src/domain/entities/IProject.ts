@@ -9,6 +9,7 @@ export interface IProjectUser extends Pick<IUser, "id" | "email"> {
 export interface IProject {
   id: number | string;
   titulo: string;
+  slug: string;
   resumo: string;
   conteudo_codigo?: string;
   imagem_capa: string;
@@ -22,5 +23,5 @@ export interface IProject {
 
 export type ICreateProjectInput = Omit<
   IProject,
-  "id" | "comentarios" | "compartilhamentos" | "comentarios_postagem"
+  "id" | "slug" | "comentarios" | "compartilhamentos" | "comentarios_postagem"
 >;
