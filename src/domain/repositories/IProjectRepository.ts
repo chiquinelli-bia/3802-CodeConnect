@@ -9,4 +9,5 @@ export interface IProjectRepository {
     projectData: ICreateProjectInput,
     collectionName?: string,
   ): Promise<void>;
+  likeProject(projectId: string, collectionName: string): Promise<void>;
 }
