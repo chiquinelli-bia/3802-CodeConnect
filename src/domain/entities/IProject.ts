@@ -10,6 +10,7 @@ export interface IProject {
   id: number | string;
   titulo: string;
   slug: string;
+  likes: number;
   resumo: string;
   conteudo_codigo?: string;
   imagem_capa: string;

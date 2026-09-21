@@ -1,4 +1,6 @@
-import { iconeChat, iconeCode, iconeShare } from "../../../img";
+import { iconeChat, iconeCode } from "../../../img";
+import { IconThumbsUp } from "../../../img/icons/IconThumbsUp";
+import { IconButton } from "../../../components/iconButton";
 
 export default function Card({
   id,
@@ -6,7 +8,7 @@ export default function Card({
   titulo,
   resumo,
   linhasDeCodigo,
-  compartilhamentos,
+  projectLikes,
   comentarios,
   usuario,
 }) {
@@ -27,11 +29,13 @@ export default function Card({
               {linhasDeCodigo}
             </li>
             <li>
-              <img src={iconeShare} alt="Ìcone de compartilhamento" />
-              {compartilhamentos}
+              <IconButton>
+                <IconThumbsUp />
+              </IconButton>
+              {projectLikes}
             </li>
             <li>
-              <img src={iconeChat} alt="Ìcone de cmentários" />
+              <img src={iconeChat} alt="Ìcone de comentários" />
               {comentarios}
             </li>
           </ul>

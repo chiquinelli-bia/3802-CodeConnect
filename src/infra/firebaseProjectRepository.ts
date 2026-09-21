@@ -1,4 +1,11 @@
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  updateDoc,
+  increment,
+} from "firebase/firestore";
 import { db } from "./firebase";
 import type {
   IProject,
@@ -7,32 +14,35 @@ import type {
 import type { IProjectRepository } from "../domain/repositories/IProjectRepository";
 
 export class FirebaseProjectRepository implements IProjectRepository {
-  // Caso não seja passado o nome no parâmetro, usa "projetos" como padrão
   private defaultCollection = "projetos";
 
   async listAll(collectionName?: string): Promise<IProject[]> {
     const targetCollection = collectionName || this.defaultCollection;
     const querySnapshot = await getDocs(collection(db, targetCollection));
 
-    return querySnapshot.docs.map((doc) => {
-      const data = doc.data();
+    return querySnapshot.docs.map((docSnap) => {
+      const data = docSnap.data();
 
       return {
-        id: data.id ?? doc.id,
+        id: docSnap.id,
+        slug: data.slug ?? "",
         titulo: data.titulo ?? "",
         resumo: data.resumo ?? "",
         conteudo_codigo: data.conteudo_codigo ?? "",
         imagem_capa: data.imagem_capa || data.imagem || "",
         linhas_de_codigo: data.linhas_de_codigo ?? 0,
+        likes: data.likes ?? 0, // Campo de likes devidamente mapeado
         comentarios: data.comentarios ?? 0,
         compartilhamentos: data.compartilhamentos ?? 0,
         tags: data.tags ?? [],
         comentarios_postagem: data.comentarios_postagem ?? [],
         usuario: {
+          id: data.usuario?.id ?? "", // <-- Propriedade obrigatória em IProjectUser
+          email: data.usuario?.email ?? "", // <-- Propriedade obrigatória em IProjectUser
           nome: data.usuario?.nome ?? "Anônimo",
           imagem: data.usuario?.imagem ?? "",
         },
-      } as IProject;
+      } satisfies IProject;
     });
   }
 
@@ -63,12 +73,21 @@ export class FirebaseProjectRepository implements IProjectRepository {
 
     await addDoc(collection(db, targetCollection), {
       ...projectData,
-      id: Date.now(),
+      likes: 0, // Garante que novos projetos nasçam com 0 likes
       linhas_de_codigo: projectData.linhas_de_codigo ?? 0,
       comentarios: 0,
       compartilhamentos: 0,
       comentarios_postagem: [],
       createdAt: new Date(),
+    });
+  }
+
+  async likeProject(projectId: string, collectionName?: string): Promise<void> {
+    const targetCollection = collectionName || this.defaultCollection;
+    const projectRef = doc(db, targetCollection, projectId);
+
+    await updateDoc(projectRef, {
+      likes: increment(1),
     });
   }
 }
