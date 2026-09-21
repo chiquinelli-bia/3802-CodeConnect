@@ -1,5 +1,7 @@
 import { iconeChat, iconeCode } from "../../../img";
 import { IconThumbsUp } from "../../../img/icons/IconThumbsUp";
+import { useState, useContext } from "react";
+import { ProjectContext } from "../../../app/context/projectContext";
 import { IconButton } from "../../../components/iconButton";
 
 export default function Card({
@@ -12,6 +14,25 @@ export default function Card({
   comentarios,
   usuario,
 }) {
+  const { handleLike } = useContext(ProjectContext);
+  const [likes, setLikes] = useState(projectLikes || 0);
+  const [loading, setLoading] = useState(false);
+
+  const onLikeClick = async () => {
+    if (loading) return;
+
+    setLikes((prev) => prev + 1);
+    setLoading(true);
+
+    try {
+      await handleLike(id);
+    } catch (error) {
+      setLikes((prev) => prev - 1);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <article className="card">
       <div className="card__img">
@@ -29,10 +50,10 @@ export default function Card({
               {linhasDeCodigo}
             </li>
             <li>
-              <IconButton>
+              <IconButton onClick={onLikeClick}>
                 <IconThumbsUp />
               </IconButton>
-              {projectLikes}
+              {likes}
             </li>
             <li>
               <img src={iconeChat} alt="Ìcone de comentários" />
