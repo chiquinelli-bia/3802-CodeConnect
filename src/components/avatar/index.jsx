@@ -1,7 +1,7 @@
 import styles from "./avatar.module.css";
 
 export const Avatar = ({ author }) => {
-  const imgSrc = author.avatar;
+  const imgSrc = author.imagem;
 
   return (
     <div className={styles.container}>
@@ -10,7 +10,7 @@ export const Avatar = ({ author }) => {
           src={imgSrc}
           width={32}
           height={32}
-          alt={`Avatar do(a) ${author.name}`}
+          alt={`Avatar do(a) ${author.nome}`}
         />
       )}
     </div>

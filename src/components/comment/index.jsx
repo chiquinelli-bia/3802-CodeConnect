@@ -5,7 +5,7 @@ export const Comment = ({ comment }) => {
   return (
     <div className={styles.comment}>
       <Avatar author={comment.author} />
-      <strong>@{comment.author.name}</strong>
+      <strong>@{comment.author.nome}</strong>
       <p>{comment.text}</p>
     </div>
   );
