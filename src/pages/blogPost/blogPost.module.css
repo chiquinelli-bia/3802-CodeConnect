@@ -1,78 +1,88 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  max-width: 750px;
+}
+
 .card {
   width: 100%;
   border-radius: 8px;
-  background: var(--dark-gray);
+  background: var(--itens-background);
+  padding: 0;
 }
 
 .header {
-  border-radius: 8px 8px 0px 0px;
-  background: var(--medium-gray);
+  background: var(--secondary-color);
+  border-radius: 8px;
   padding: 24px;
-}
 
-.header figure {
-  margin: 0;
-  position: relative;
+  figure {
+    margin: 0;
+    position: relative;
+  }
 }
 
 .figure {
   height: 368px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.24);
+  }
 }
 
-.figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 4px;
-  box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.24);
+.wrapperContent {
+  padding: 32px;
 }
 
 .body {
-  color: var(--light-gray);
+  color: var(--cinza-claro);
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
 
-.body h2 {
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 150%;
-  margin: 0;
-}
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 150%;
+    margin: 0;
+  }
 
-.body p {
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  margin: 0;
-  flex-grow: 1;
-}
+  p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 150%;
+    margin: 0;
+    flex-grow: 1;
+  }
 
-.body a {
-  text-decoration: none;
-  color: var(--light-gray);
-  margin: 16px 0;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+    margin: 16px 0;
 
-.body a:hover {
-  opacity: 0.8;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 }
 
 .footer {
   padding: 16px;
   display: flex;
   justify-content: space-between;
-}
 
-.footer p {
-  margin: 0;
-  color: var(--medium-gray);
-  font-size: 15px;
-  text-align: center;
+  p {
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: 15px;
+    text-align: center;
+  }
 }
 
 .actions {
@@ -94,66 +104,67 @@
   cursor: pointer;
 }
 
+/* Área do código e regras globais do Markdown */
 .code {
   padding: 16px;
   border-radius: 8px;
-  background: var(--dark-gray);
+  background: var(--itens-background);
   box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.24);
-  max-height: 250px;
-  overflow-y: scroll;
-  color: var(--light-gray);
+  max-height: 270px;
+  overflow-y: auto;
+  color: var(--cinza-claro);
   line-height: 150%;
   font-size: 15px;
-}
+  overflow: hidden;
 
-/* Estilos para o markdown renderizado */
-.code :global(pre) {
-  background: var(--graphite);
-  border-radius: 4px;
-  padding: 16px;
-  margin: 0;
-  overflow-x: auto;
-  border: 1px solid var(--gray);
-}
+  .pre {
+    background: var(--grafite);
+    border-radius: 4px;
+    padding: 16px;
+    margin: 0;
+    overflow-x: auto;
+    border: 1px solid var(--cinza);
+    max-height: 230px;
+  }
 
-.code :global(code) {
-  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--offwhite);
-}
+  .codeBlock {
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--offwhite);
+  }
 
-.code :global(p) {
-  margin: 0;
-  color: var(--light-gray);
-}
+  /* Estilos para o markdown renderizado */
+  :global {
+    p {
+      margin: 0;
+    }
 
-.code :global(h1),
-.code :global(h2),
-.code :global(h3),
-.code :global(h4),
-.code :global(h5),
-.code :global(h6) {
-  color: var(--light-gray);
-  margin: 16px 0 8px 0;
-}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 16px 0 8px 0;
+    }
 
-.code :global(ul),
-.code :global(ol) {
-  margin: 8px 0;
-  padding-left: 20px;
-  color: var(--light-gray);
-}
+    ul,
+    ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
 
-.code :global(li) {
-  margin: 4px 0;
-  color: var(--light-gray);
-}
+    li {
+      margin: 4px 0;
+    }
 
-.code :global(blockquote) {
-  border-left: 4px solid var(--medium-gray);
-  padding-left: 16px;
-  margin: 16px 0;
-  color: var(--medium-gray);
-  font-style: italic;
+    blockquote {
+      border-left: 4px solid var(--secondary-color);
+      padding-left: 16px;
+      margin: 16px 0;
+      color: var(--secondary-color);
+      font-style: italic;
+    }
+  }
 }
