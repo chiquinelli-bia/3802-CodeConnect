@@ -30,10 +30,8 @@ export const BlogPost = () => {
       setLoading(true);
 
       try {
-        // Busca todos os projetos utilizando o seu UseCase existente
         const projetos = await listProjectsUseCase.execute();
 
-        // Procura o post pelo slug (ou id/titulo amigável) na lista
         const postEncontrado = projetos.find(
           (p) => p.slug === slug || p.id === slug,
         );
@@ -50,7 +48,6 @@ export const BlogPost = () => {
         }
 
         setPost(postEncontrado);
-
         toast.update(toastId, {
           render: "Post carregado com sucesso!",
           type: "success",
@@ -89,29 +86,39 @@ export const BlogPost = () => {
             />
           </figure>
         </header>
-        <section className={styles.body}>
-          <h2>{post.titulo || post.title}</h2>
-          <p>{post.resumo || post.body}</p>
-        </section>
-        <footer className={styles.footer}>
-          <div className={styles.actions}>
-            <div className={styles.action}>
-              <ThumbsUpButton loading={false} />
-              <p>{post.likes ?? 0}</p>
+        <div className={styles.wrapperContent}>
+          <section className={styles.body}>
+            <h2>{post.titulo || post.title}</h2>
+            <p>{post.resumo || post.body}</p>
+          </section>
+          <footer className={styles.footer}>
+            <div className={styles.actions}>
+              <div className={styles.action}>
+                <ThumbsUpButton loading={false} />
+                <p>{post.likes ?? 0}</p>
+              </div>
+              <div className={styles.action}>
+                <ModalComment />
+                <p>{post.comentarios?.length ?? post.comments?.length ?? 0}</p>
+              </div>
             </div>
-            <div className={styles.action}>
-              <ModalComment />
-              <p>{post.comentarios?.length ?? post.comments?.length ?? 0}</p>
-            </div>
-          </div>
-          <Author author={post.usuario || post.author} />
-        </footer>
+            <Author author={post.usuario} />
+          </footer>
+        </div>
       </article>
       <Typography variant="h3">Código:</Typography>
       <div className={styles.code}>
-        <ReactMarkdown>{post.markdown || post.linhas_de_codigo}</ReactMarkdown>
+        <pre className={styles.pre}>
+          <code className={styles.codeBlock}>
+            <ReactMarkdown>
+              {`\`\`\`js\n${post.conteudo_codigo}\n\`\`\``}
+            </ReactMarkdown>
+          </code>
+        </pre>
       </div>
-      <CommentList comments={post.comentarios || post.comments || []} />
+      <CommentList
+        comments={post.comentarios_postagem || post.comments_postagem || []}
+      />
     </main>
   );
 };
