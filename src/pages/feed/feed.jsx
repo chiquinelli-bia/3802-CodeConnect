@@ -76,7 +76,8 @@ export function Feed() {
           {dadosFiltrados.map((item) => (
             <li key={item.id}>
               <Card
-                id={item.id} // ID do documento no Firestore (ex: "abc123xyz")
+                id={item.id}
+                slug={item.slug}
                 imagemUrl={item.imagem_capa || item.imagem}
                 titulo={item.titulo}
                 resumo={item.resumo}

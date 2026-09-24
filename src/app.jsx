@@ -37,7 +37,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="blog-post/:slug" element={<BlogPost />} />
+        <Route path="/blog-post/:slug" element={<BlogPost />} />
       </Routes>
     </>
   );
