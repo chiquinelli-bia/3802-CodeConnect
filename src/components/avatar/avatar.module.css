@@ -3,4 +3,14 @@
   overflow: hidden;
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a imagem preencher o círculo mantendo as proporções */
 }

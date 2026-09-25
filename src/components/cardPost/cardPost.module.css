@@ -1,12 +1,12 @@
 .card {
   width: 486px;
   border-radius: 8px;
-  background: var(--dark-gray);
+  background: var(--cinza-escuro);
 }
 
 .header {
   border-radius: 8px 8px 0px 0px;
-  background: var(--medium-gray);
+  background: var(--cinza-medio);
   padding: 24px;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .body {
-  color: var(--light-gray);
+  color: var(--cinza-claro);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@
 
 .body a {
   text-decoration: none;
-  color: var(--light-gray);
+  color: var(--cinza-claro);
   margin: 16px 0;
 }
 
@@ -69,7 +69,7 @@
 
 .footer p {
   margin: 0;
-  color: var(--medium-gray);
+  color: var(--cinza-medio);
   font-size: 15px;
   text-align: center;
 }
