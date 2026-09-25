@@ -11,7 +11,8 @@ import { CommentList } from "../../components/commentList";
 import { ModalComment } from "../../components/modalComment";
 
 import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository";
-import { ListProjects } from "../../domain/useCases/api/listProjects.js";
+import { ListProjects } from "../../domain/useCases/api/listProjects";
+
 const repository = new FirebaseProjectRepository();
 const listProjectsUseCase = new ListProjects(repository);
 
@@ -33,7 +34,7 @@ export const BlogPost = () => {
         const projetos = await listProjectsUseCase.execute();
 
         const postEncontrado = projetos.find(
-          (p) => p.slug === slug || p.id === slug,
+          (p) => p.slug === slug || String(p.id) === slug,
         );
 
         if (!postEncontrado) {
@@ -46,7 +47,7 @@ export const BlogPost = () => {
           navigate("/not-found");
           return;
         }
-
+        console.log(postEncontrado);
         setPost(postEncontrado);
         toast.update(toastId, {
           render: "Post carregado com sucesso!",
@@ -81,15 +82,15 @@ export const BlogPost = () => {
         <header className={styles.header}>
           <figure className={styles.figure}>
             <img
-              src={post.imagem_capa || post.cover}
-              alt={`Capa do post de título: ${post.titulo || post.title}`}
+              src={post.imagem_capa}
+              alt={`Capa do post de título: ${post.titulo}`}
             />
           </figure>
         </header>
         <div className={styles.wrapperContent}>
           <section className={styles.body}>
-            <h2>{post.titulo || post.title}</h2>
-            <p>{post.resumo || post.body}</p>
+            <h2>{post.titulo}</h2>
+            <p>{post.resumo}</p>
           </section>
           <footer className={styles.footer}>
             <div className={styles.actions}>
@@ -99,26 +100,30 @@ export const BlogPost = () => {
               </div>
               <div className={styles.action}>
                 <ModalComment />
-                <p>{post.comentarios?.length ?? post.comments?.length ?? 0}</p>
+                <p>{post.comentarios_postagem?.length ?? 0}</p>
               </div>
             </div>
             <Author author={post.usuario} />
           </footer>
         </div>
       </article>
-      <Typography variant="h3">Código:</Typography>
-      <div className={styles.code}>
-        <pre className={styles.pre}>
-          <code className={styles.codeBlock}>
-            <ReactMarkdown>
-              {`\`\`\`js\n${post.conteudo_codigo}\n\`\`\``}
-            </ReactMarkdown>
-          </code>
-        </pre>
-      </div>
-      <CommentList
-        comments={post.comentarios_postagem || post.comments_postagem || []}
-      />
+
+      {post.conteudo_codigo && (
+        <>
+          <Typography variant="h3">Código:</Typography>
+          <div className={styles.code}>
+            <pre className={styles.pre}>
+              <code className={styles.codeBlock}>
+                <ReactMarkdown>
+                  {`\`\`\`js\n${post.conteudo_codigo}\n\`\`\``}
+                </ReactMarkdown>
+              </code>
+            </pre>
+          </div>
+        </>
+      )}
+
+      <CommentList comments={post.comentarios_postagem ?? []} />
     </main>
   );
 };
