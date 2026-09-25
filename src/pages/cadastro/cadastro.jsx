@@ -1,5 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import {
   CheckBox,
   Botao,
@@ -9,10 +11,9 @@ import {
 import Menu from "../../components/menu/menu.jsx";
 import { imagemCadastro, githubIcon, googleIcon } from "../../img/index.js";
 import { CamposDigitacao } from "../../components/campos-autenticacao/campos-autenticacao.jsx";
+
 import { CreateUser } from "../../domain/useCases/createUser.js";
 import { FirebaseUserRepository } from "../../infra/userFirebaseRepository.js";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const createUser = new CreateUser(new FirebaseUserRepository());
 
@@ -27,7 +28,7 @@ export function Cadastro() {
     event.preventDefault();
     try {
       await createUser.execute({
-        name: nome,
+        nome: nome, // Atualizado de "name" para "nome"
         email: email,
         password: senha,
       });
@@ -39,14 +40,14 @@ export function Cadastro() {
       setSenha("");
       navigate("/login");
     } catch (error) {
-      toast.error("ops! houve um problema durante o registro.");
+      toast.error("Ops! Houve um problema durante o registro.");
       console.error(error);
     }
   };
 
   return (
     <>
-      <Menu></Menu>
+      <Menu />
       <div className="container-autenticacao">
         <img
           src={imagemCadastro}
@@ -89,7 +90,7 @@ export function Cadastro() {
               />
             </ul>
 
-            <p className="container-links__texto">Já tem conta ?</p>
+            <p className="container-links__texto">Já tem conta?</p>
             <Link link="/login">Faça seu login!</Link>
           </div>
         </section>
