@@ -10,6 +10,7 @@ import { db } from "./firebase";
 import type {
   IProject,
   ICreateProjectInput,
+  IProjectComment,
 } from "../domain/entities/IProject";
 import type { IProjectRepository } from "../domain/repositories/IProjectRepository";
 
@@ -23,6 +24,21 @@ export class FirebaseProjectRepository implements IProjectRepository {
     return querySnapshot.docs.map((docSnap) => {
       const data = docSnap.data();
 
+      const comentariosPostagem: IProjectComment[] = (
+        data.comentarios_postagem ?? []
+      ).map((c: any) => ({
+        id: c.id ?? "",
+        // Lê 'text' (do seu banco) ou 'texto' (fallback)
+        texto: c.text || c.texto || "",
+        usuario: {
+          id: c.author?.id || c.usuario?.id || "",
+          // Lê 'author.nome' (do seu banco) ou 'usuario.nome'
+          nome: c.author?.nome || c.usuario?.nome || "Anônimo",
+          // Lê 'author.imagem' (do seu banco) ou 'usuario.imagem'
+          imagem: c.author?.imagem || c.usuario?.imagem || "",
+        },
+      }));
+
       return {
         id: docSnap.id,
         slug: data.slug ?? "",
@@ -31,14 +47,13 @@ export class FirebaseProjectRepository implements IProjectRepository {
         conteudo_codigo: data.conteudo_codigo ?? "",
         imagem_capa: data.imagem_capa || data.imagem || "",
         linhas_de_codigo: data.linhas_de_codigo ?? 0,
-        likes: data.likes ?? 0, // Campo de likes devidamente mapeado
-        comentarios: data.comentarios ?? 0,
+        likes: data.likes ?? 0,
         compartilhamentos: data.compartilhamentos ?? 0,
         tags: data.tags ?? [],
-        comentarios_postagem: data.comentarios_postagem ?? [],
+        comentarios_postagem: comentariosPostagem,
         usuario: {
-          id: data.usuario?.id ?? "", // <-- Propriedade obrigatória em IProjectUser
-          email: data.usuario?.email ?? "", // <-- Propriedade obrigatória em IProjectUser
+          id: data.usuario?.id ?? "",
+          email: data.usuario?.email ?? "",
           nome: data.usuario?.nome ?? "Anônimo",
           imagem: data.usuario?.imagem ?? "",
         },
@@ -73,9 +88,8 @@ export class FirebaseProjectRepository implements IProjectRepository {
 
     await addDoc(collection(db, targetCollection), {
       ...projectData,
-      likes: 0, // Garante que novos projetos nasçam com 0 likes
+      likes: projectData.likes ?? 0,
       linhas_de_codigo: projectData.linhas_de_codigo ?? 0,
-      comentarios: 0,
       compartilhamentos: 0,
       comentarios_postagem: [],
       createdAt: new Date(),
