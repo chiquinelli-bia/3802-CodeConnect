@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { ProjectContext } from "../../../app/context/projectContext";
 import { IconButton } from "../../../components/iconButton";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../../components/button";
 
 export default function Card({
   id,
@@ -39,9 +40,9 @@ export default function Card({
   const handleGoToBlogPost = () => {
     const target = slug || id;
     if (target) {
-      navigate(`/blog-post/${target}`); 
+      navigate(`/blog-post/${target}`);
+    }
   };
-
   return (
     <article className="card">
       <div className="card__img">
@@ -52,13 +53,11 @@ export default function Card({
           <h3>{titulo}</h3>
           <p>{resumo}</p>
         </div>
-        <button onClick={handleGoToBlogPost} className="btn-ver-projeto">
-          Ver Projeto
-        </button>
+        <Button onClick={handleGoToBlogPost}>Ver Projeto</Button>
         <div className="conteudo__rodape">
           <ul>
             <li>
-              <img src={iconeCode} alt="Ìcone de códigos" />
+              <img src={iconeCode} alt="Ícone de códigos" />
               {linhasDeCodigo}
             </li>
             <li>
@@ -68,13 +67,13 @@ export default function Card({
               {likes}
             </li>
             <li>
-              <img src={iconeChat} alt="Ìcone de comentários" />
+              <img src={iconeChat} alt="Ícone de comentários" />
               {comentarios}
             </li>
           </ul>
           <div className="rodape__usuario">
-            <img src={usuario.imagem} alt="imagem do usuário" />
-            {usuario.nome}
+            <img src={usuario?.imagem} alt="imagem do usuário" />
+            {usuario?.nome}
           </div>
         </div>
       </div>

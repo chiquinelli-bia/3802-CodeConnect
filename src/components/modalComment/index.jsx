@@ -8,6 +8,7 @@ import { IconArrowFoward } from "../../img/icons/IconArrowFoward";
 import { Spinner } from "../spinner";
 import styles from "./modalComment.module.css";
 import { Botao } from "../shared.jsx";
+import { Button } from "../button";
 
 export const ModalComment = ({ isEditing }) => {
   const modalRef = useRef(null);
@@ -44,7 +45,7 @@ export const ModalComment = ({ isEditing }) => {
             placeholder="Digite aqui..."
           />
           <div className={styles.footer}>
-            <Botao disabled={loading} type="submit">
+            <Button disabled={loading} type="submit">
               {loading ? (
                 <Spinner />
               ) : (
@@ -52,7 +53,7 @@ export const ModalComment = ({ isEditing }) => {
                   {isEditing ? "Atualizar" : "Comentar"} <IconArrowFoward />
                 </>
               )}
-            </Botao>
+            </Button>
           </div>
         </form>
       </Modal>
