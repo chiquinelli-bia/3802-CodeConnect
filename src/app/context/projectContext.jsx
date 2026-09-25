@@ -1,9 +1,10 @@
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
-import { setupDescartar } from "../../modules/descartar.js";
-import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository.js";
+import { setupDescartar } from "../../modules/descartar";
+import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository";
 import { CreateProject } from "../../domain/useCases/createProject";
 import { LikeProject } from "../../domain/useCases/api/LikeProject";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const repository = new FirebaseProjectRepository();
 const createProjectUseCase = new CreateProject(repository);
@@ -18,6 +19,9 @@ export function ProjectProvider({ children }) {
   const [tagsSelecionadas, setTagsSelecionadas] = useState([]);
   const [imagemCapa, setImagemCapa] = useState("");
   const [nomeArquivo, setNomeArquivo] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { usuarioLogado } = useAuthContext();
 
   const onReset = () => {
     setupDescartar(
@@ -31,7 +35,7 @@ export function ProjectProvider({ children }) {
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
     if (!file) return;
 
     setNomeArquivo(file.name);
@@ -51,7 +55,10 @@ export function ProjectProvider({ children }) {
   const handlePublicar = async (e) => {
     e?.preventDefault();
 
+    if (loading) return;
+
     const toastId = toast.loading("Publicando projeto...");
+    setLoading(true);
 
     try {
       await createProjectUseCase.execute({
@@ -62,8 +69,11 @@ export function ProjectProvider({ children }) {
           "https://raw.githubusercontent.com/chiquinelli-bia/codeconnect-api-2/main/uploads/fokus.png?raw=true",
         tags: tagsSelecionadas,
         usuario: {
-          nome: "Usuário Logado",
+          id: usuarioLogado?.id || "anon-id",
+          email: usuarioLogado?.email || "anonimo@codeconnect.com",
+          nome: usuarioLogado?.nome || "Anônimo",
           imagem:
+            usuarioLogado?.imagem ||
             "https://raw.githubusercontent.com/chiquinelli-bia/codeconnect-api-2/main/uploads/download.png?raw=true",
         },
       });
@@ -83,8 +93,11 @@ export function ProjectProvider({ children }) {
         isLoading: false,
         autoClose: 4000,
       });
+    } finally {
+      setLoading(false);
     }
   };
+
   const handleLike = async (projectId) => {
     try {
       await likeProjectUseCase.execute(projectId);
@@ -107,6 +120,7 @@ export function ProjectProvider({ children }) {
         setTagsSelecionadas,
         imagemCapa,
         nomeArquivo,
+        loading,
         handleImageChange,
         handleRemoverImagem,
         handlePublicar,
