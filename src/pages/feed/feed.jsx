@@ -5,8 +5,9 @@ import BotaoLimparTags from "./filtro/filtro.jsx";
 import Ordenacao from "./ordenacao/ordenacao.jsx";
 import Card from "./card/card.jsx";
 import "./feed.css";
+
 import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository";
-import { ListProjects } from "../../domain/useCases/api/listProjects.js";
+import { ListProjects } from "../../domain/useCases/api/listProjects";
 import { FilterProjects } from "../../domain/useCases/api/filterProjects";
 import { toast } from "react-toastify";
 
@@ -49,7 +50,6 @@ export function Feed() {
     carregar();
   }, []);
 
-  // Cálculo derivado da lista filtrada em tempo de renderização
   const dadosFiltrados = useMemo(() => {
     return filterProjectsUseCase.execute(
       todosDados,
@@ -78,14 +78,12 @@ export function Feed() {
               <Card
                 id={item.id}
                 slug={item.slug}
-                imagemUrl={item.imagem_capa || item.imagem}
+                imagemUrl={item.imagem_capa}
                 titulo={item.titulo}
                 resumo={item.resumo}
-                linhasDeCodigo={
-                  item.linhas_de_codigo || item.linhasDeCodigo || 0
-                }
-                projectLikes={item.likes ?? item.projectLikes ?? 0} // Garante a busca no campo 'likes' do Firestore
-                comentarios={item.comentarios || 0}
+                linhasDeCodigo={item.linhas_de_codigo ?? 0}
+                projectLikes={item.likes ?? 0}
+                comentarios={item.comentarios_postagem?.length ?? 0}
                 usuario={item.usuario}
               />
             </li>
