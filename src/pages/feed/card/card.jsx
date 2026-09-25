@@ -1,9 +1,10 @@
+import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { iconeChat, iconeCode } from "../../../img";
 import { IconThumbsUp } from "../../../img/icons/IconThumbsUp";
-import { useState, useContext } from "react";
 import { ProjectContext } from "../../../app/context/projectContext";
 import { IconButton } from "../../../components/iconButton";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/button";
 
 export default function Card({
@@ -12,15 +13,20 @@ export default function Card({
   imagemUrl,
   titulo,
   resumo,
-  linhasDeCodigo,
-  projectLikes,
-  comentarios,
+  linhasDeCodigo = 0,
+  projectLikes = 0,
+  comentarios = 0,
   usuario,
 }) {
   const { handleLike } = useContext(ProjectContext);
-  const [likes, setLikes] = useState(projectLikes || 0);
+  const [likes, setLikes] = useState(projectLikes);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Mantém o estado de likes sincronizado com as props quando a lista recarrega
+  useEffect(() => {
+    setLikes(projectLikes);
+  }, [projectLikes]);
 
   const onLikeClick = async () => {
     if (loading) return;
@@ -32,6 +38,7 @@ export default function Card({
       await handleLike(id);
     } catch (error) {
       setLikes((prev) => prev - 1);
+      console.error("Erro ao dar like no projeto:", error);
     } finally {
       setLoading(false);
     }
@@ -43,10 +50,11 @@ export default function Card({
       navigate(`/blog-post/${target}`);
     }
   };
+
   return (
     <article className="card">
       <div className="card__img">
-        <img src={imagemUrl} alt="imagem do post" />
+        <img src={imagemUrl} alt={`Capa do projeto ${titulo}`} />
       </div>
       <div className="conteudo__card">
         <div className="conteudo__texto">
@@ -57,11 +65,11 @@ export default function Card({
         <div className="conteudo__rodape">
           <ul>
             <li>
-              <img src={iconeCode} alt="Ícone de códigos" />
+              <img src={iconeCode} alt="Ícone de código" />
               {linhasDeCodigo}
             </li>
             <li>
-              <IconButton onClick={onLikeClick}>
+              <IconButton onClick={onLikeClick} disabled={loading}>
                 <IconThumbsUp />
               </IconButton>
               {likes}
@@ -72,8 +80,13 @@ export default function Card({
             </li>
           </ul>
           <div className="rodape__usuario">
-            <img src={usuario?.imagem} alt="imagem do usuário" />
-            {usuario?.nome}
+            {usuario?.imagem && (
+              <img
+                src={usuario.imagem}
+                alt={`Avatar de ${usuario.nome || "usuário"}`}
+              />
+            )}
+            <span>{usuario?.nome || "Anônimo"}</span>
           </div>
         </div>
       </div>
