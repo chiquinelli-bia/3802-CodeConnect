@@ -15,10 +15,17 @@ export function Form() {
     setTagsSelecionadas,
     onReset,
     handlePublicar,
+    loading = false,
   } = useProject();
 
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    if (loading) return;
+    await handlePublicar(event);
+  };
+
   return (
-    <form onSubmit={handlePublicar}>
+    <form onSubmit={onSubmit}>
       <div>
         <Input
           label="Título do Projeto"
@@ -50,11 +57,16 @@ export function Form() {
       </div>
 
       <div className="container-botoes">
-        <Botao className="botao-descartar" type="button" onClick={onReset}>
+        <Botao
+          className="botao-descartar"
+          type="button"
+          onClick={onReset}
+          disabled={loading}
+        >
           Descartar
         </Botao>
-        <Botao className="botao-publicar" type="submit">
-          Publicar
+        <Botao className="botao-publicar" type="submit" disabled={loading}>
+          {loading ? "Publicando..." : "Publicar"}
         </Botao>
       </div>
     </form>
