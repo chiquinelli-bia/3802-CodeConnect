@@ -1,4 +1,8 @@
-import type { IProject, ICreateProjectInput } from "../entities/IProject.js";
+import type {
+  IProject,
+  ICreateProjectInput,
+  IProjectComment,
+} from "../entities/IProject.js";
 
 export interface IProjectRepository {
   listAll(collectionName?: string): Promise<IProject[]>;
@@ -9,5 +13,12 @@ export interface IProjectRepository {
     projectData: ICreateProjectInput,
     collectionName?: string,
   ): Promise<void>;
-  likeProject(projectId: string, collectionName: string): Promise<void>;
+
+  likeProject(projectId: string, collectionName?: string): Promise<void>;
+
+  addComment(
+    projectId: string,
+    comment: IProjectComment,
+    collectionName?: string,
+  ): Promise<void>;
 }
