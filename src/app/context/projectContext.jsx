@@ -20,7 +20,7 @@ export function ProjectProvider({ children }) {
   const [imagemCapa, setImagemCapa] = useState("");
   const [nomeArquivo, setNomeArquivo] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [loadingComentario, setLoadingComentario] = useState(false);
   const { usuarioLogado } = useAuthContext();
 
   const onReset = () => {
@@ -106,6 +106,36 @@ export function ProjectProvider({ children }) {
       throw error;
     }
   };
+  const handleAdicionarComentario = async (projectId, texto) => {
+    if (!texto.trim()) {
+      toast.warn("Escreva algo antes de enviar o comentário.");
+      return false;
+    }
+
+    setLoadingComentario(true);
+
+    const novoComentario = {
+      id: String(Date.now()),
+      texto,
+      usuario: {
+        id: usuarioLogado?.id || "anonimo-id",
+        nome: usuarioLogado?.nome || "Anônimo",
+        imagem: usuarioLogado?.imagem || "",
+      },
+    };
+
+    try {
+      await repository.addComment(projectId, novoComentario);
+      toast.success("Comentário adicionado com sucesso!");
+      return novoComentario; // Retorna o comentário criado para o componente atualizar a tela
+    } catch (error) {
+      console.error("Erro ao adicionar comentário:", error);
+      toast.error("Falha ao salvar comentário. Tente novamente.");
+      throw error;
+    } finally {
+      setLoadingComentario(false);
+    }
+  };
 
   return (
     <ProjectContext.Provider
@@ -126,6 +156,8 @@ export function ProjectProvider({ children }) {
         handlePublicar,
         handleLike,
         onReset,
+        handleAdicionarComentario,
+        loadingComentario,
       }}
     >
       {children}
