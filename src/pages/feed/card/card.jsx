@@ -1,11 +1,12 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { iconeChat, iconeCode } from "../../../img";
+import { iconeCode } from "../../../img";
 import { IconThumbsUp } from "../../../img/icons/IconThumbsUp";
 import { ProjectContext } from "../../../app/context/projectContext";
 import { IconButton } from "../../../components/iconButton";
 import { Button } from "../../../components/button";
+import { ModalComment } from "../../../components/modalComment";
 
 export default function Card({
   id,
@@ -21,9 +22,10 @@ export default function Card({
   const { handleLike } = useContext(ProjectContext);
   const [likes, setLikes] = useState(projectLikes);
   const [loading, setLoading] = useState(false);
+  const [comments, setComments] = useState(comentarios ?? []);
+
   const navigate = useNavigate();
 
-  // Mantém o estado de likes sincronizado com as props quando a lista recarrega
   useEffect(() => {
     setLikes(projectLikes);
   }, [projectLikes]);
@@ -51,6 +53,9 @@ export default function Card({
     }
   };
 
+  const handleNewComment = (novoComentario) => {
+    setComments((prev) => [novoComentario, ...prev]);
+  };
   return (
     <article className="card">
       <div className="card__img">
@@ -75,8 +80,8 @@ export default function Card({
               {likes}
             </li>
             <li>
-              <img src={iconeChat} alt="Ícone de comentários" />
-              {comentarios}
+              <ModalComment onCommentAdded={handleNewComment} projectId={id} />
+              {comments}
             </li>
           </ul>
           <div className="rodape__usuario">

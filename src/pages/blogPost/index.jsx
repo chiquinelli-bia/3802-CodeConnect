@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactMarkdown from "react-markdown";
 
 import styles from "./blogPost.module.css";
-import { ThumbsUpButton } from "../../components/cardPost/thumbsUpButton";
+import { ThumbsUpButton } from "../../components/thumbsUpButton/thumbsUpButton";
 import { Author } from "../../components/author";
 import Typography from "../../components/typography";
 import { CommentList } from "../../components/commentList";
@@ -17,11 +17,12 @@ const repository = new FirebaseProjectRepository();
 const listProjectsUseCase = new ListProjects(repository);
 
 export const BlogPost = () => {
-  const { slug } = useParams();
-  const navigate = useNavigate();
-
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [comentarios, setComentarios] = useState([]);
+
+  const { slug } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function carregarPost() {
@@ -47,8 +48,10 @@ export const BlogPost = () => {
           navigate("/not-found");
           return;
         }
-        console.log(postEncontrado);
+
         setPost(postEncontrado);
+        setComentarios(postEncontrado.comentarios_postagem ?? []);
+
         toast.update(toastId, {
           render: "Post carregado com sucesso!",
           type: "success",
@@ -76,6 +79,10 @@ export const BlogPost = () => {
     return null;
   }
 
+  const handleNewComment = (novoComentario) => {
+    setComentarios((prev) => [novoComentario, ...prev]);
+  };
+
   return (
     <main className={styles.main}>
       <article className={styles.card}>
@@ -99,8 +106,11 @@ export const BlogPost = () => {
                 <p>{post.likes ?? 0}</p>
               </div>
               <div className={styles.action}>
-                <ModalComment />
-                <p>{post.comentarios_postagem?.length ?? 0}</p>
+                <ModalComment
+                  onSuccess={handleNewComment}
+                  projectId={post.id}
+                />
+                <p>{comentarios.length}</p>
               </div>
             </div>
             <Author author={post.usuario} />
@@ -123,7 +133,7 @@ export const BlogPost = () => {
         </>
       )}
 
-      <CommentList comments={post.comentarios_postagem ?? []} />
+      <CommentList comments={comentarios} />
     </main>
   );
 };
