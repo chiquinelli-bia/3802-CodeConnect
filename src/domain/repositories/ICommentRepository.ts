@@ -6,4 +6,10 @@ export interface ICommentRepository {
     comment: IProjectComment,
     collectionName?: string,
   ): Promise<void>;
+  updateComment(
+    projectId: string,
+    commentId: string,
+    newText: string,
+    collectionName?: string,
+  ): Promise<void>;
 }

@@ -28,4 +28,37 @@ export class FirebaseCommentRepository implements ICommentRepository {
       comentarios_postagem: arrayUnion(commentData),
     });
   }
+
+  async updateComment(
+    projectId: string,
+    commentId: string,
+    newText: string,
+    collectionName?: string,
+  ): Promise<void> {
+    const targetCollection = collectionName || this.defaultCollection;
+    const projectRef = doc(db, targetCollection, String(projectId));
+
+    const projectSnap = await getDoc(projectRef);
+    if (!projectSnap.exists()) {
+      throw new Error("Projeto não encontrado.");
+    }
+
+    const data = projectSnap.data();
+    const currentComments: any[] = data.comentarios_postagem ?? [];
+
+    const updatedComments = currentComments.map((c) => {
+      if (String(c.id) === String(commentId)) {
+        return {
+          ...c,
+          texto: newText,
+          text: newText,
+        };
+      }
+      return c;
+    });
+
+    await updateDoc(projectRef, {
+      comentarios_postagem: updatedComments,
+    });
+  }
 }

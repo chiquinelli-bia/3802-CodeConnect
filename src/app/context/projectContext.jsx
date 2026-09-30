@@ -142,6 +142,27 @@ export function ProjectProvider({ children }) {
     }
   };
 
+  const handleEditarComentario = async (projectId, commentId, texto) => {
+    if (!texto.trim()) {
+      toast.warn("Escreva algo antes de enviar o comentário.");
+      return false;
+    }
+
+    setLoadingComentario(true);
+
+    try {
+      await commentRepository.updateComment(projectId, commentId, texto);
+      toast.success("Comentário editado com sucesso!");
+      return { id: commentId, texto };
+    } catch (error) {
+      console.error("Erro ao editar comentário:", error);
+      toast.error("Falha ao editar comentário. Tente novamente.");
+      throw error;
+    } finally {
+      setLoadingComentario(false);
+    }
+  };
+
   return (
     <ProjectContext.Provider
       value={{
@@ -162,6 +183,7 @@ export function ProjectProvider({ children }) {
         handleLike,
         onReset,
         handleAdicionarComentario,
+        handleEditarComentario,
         loadingComentario,
       }}
     >
