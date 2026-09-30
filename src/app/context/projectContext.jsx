@@ -5,8 +5,10 @@ import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository
 import { CreateProject } from "../../domain/useCases/createProject";
 import { LikeProject } from "../../domain/useCases/api/LikeProject";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { FirebaseCommentRepository } from "../../infra/firebaseCommentRepository";
 
 const repository = new FirebaseProjectRepository();
+const commentRepository = new FirebaseCommentRepository();
 const createProjectUseCase = new CreateProject(repository);
 const likeProjectUseCase = new LikeProject(repository);
 
@@ -21,7 +23,7 @@ export function ProjectProvider({ children }) {
   const [nomeArquivo, setNomeArquivo] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingComentario, setLoadingComentario] = useState(false);
-  const { usuarioLogado } = useAuthContext();
+  const { user } = useAuthContext();
 
   const onReset = () => {
     setupDescartar(
@@ -69,11 +71,11 @@ export function ProjectProvider({ children }) {
           "https://raw.githubusercontent.com/chiquinelli-bia/codeconnect-api-2/main/uploads/fokus.png?raw=true",
         tags: tagsSelecionadas,
         usuario: {
-          id: usuarioLogado?.id || "anon-id",
-          email: usuarioLogado?.email || "anonimo@codeconnect.com",
-          nome: usuarioLogado?.nome || "Anônimo",
+          id: user?.id || "anonimo-id",
+          email: user?.email || "anonimo@codeconnect.com",
+          nome: user?.nome || "Anônimo",
           imagem:
-            usuarioLogado?.imagem ||
+            user?.photoURL ||
             "https://raw.githubusercontent.com/chiquinelli-bia/codeconnect-api-2/main/uploads/download.png?raw=true",
         },
       });
@@ -106,6 +108,7 @@ export function ProjectProvider({ children }) {
       throw error;
     }
   };
+
   const handleAdicionarComentario = async (projectId, texto) => {
     if (!texto.trim()) {
       toast.warn("Escreva algo antes de enviar o comentário.");
@@ -118,16 +121,18 @@ export function ProjectProvider({ children }) {
       id: String(Date.now()),
       texto,
       usuario: {
-        id: usuarioLogado?.id || "anonimo-id",
-        nome: usuarioLogado?.nome || "Anônimo",
-        imagem: usuarioLogado?.imagem || "",
+        id: user?.id || "anonimo-id",
+        nome: user?.nome || "Anônimo",
+        imagem:
+          user?.photoURL ||
+          "https://raw.githubusercontent.com/chiquinelli-bia/codeconnect-api-2/main/uploads/download.png?raw=true",
       },
     };
 
     try {
-      await repository.addComment(projectId, novoComentario);
+      await commentRepository.addComment(projectId, novoComentario);
       toast.success("Comentário adicionado com sucesso!");
-      return novoComentario; // Retorna o comentário criado para o componente atualizar a tela
+      return novoComentario;
     } catch (error) {
       console.error("Erro ao adicionar comentário:", error);
       toast.error("Falha ao salvar comentário. Tente novamente.");
