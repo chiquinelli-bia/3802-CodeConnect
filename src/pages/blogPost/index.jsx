@@ -133,7 +133,7 @@ export const BlogPost = () => {
         </>
       )}
 
-      <CommentList comments={comentarios} />
+      <CommentList comments={comentarios} projectId={post.id} />
     </main>
   );
 };

@@ -1,7 +1,7 @@
 import { Comment } from "../comment";
 import styles from "./commentList.module.css";
 
-export const CommentList = ({ comments }) => {
+export const CommentList = ({ comments, projectId }) => {
   return (
     <section className={styles.comments}>
       <h2>Comentários</h2>
@@ -12,6 +12,7 @@ export const CommentList = ({ comments }) => {
               comment={comment}
               key={comment.id}
               author={comment.usuario || comment.author}
+              projectId={projectId}
             />
           </li>
         ))}

@@ -11,7 +11,22 @@ export const Comment = ({ comment, projectId }) => {
   const isOwner = user && user.uid == autor.id;
 
   const handleEdit = (newComment) => {
-    setText(newComment.text);
+    if (typeof newComment === "string") {
+      setText(newComment);
+      return;
+    }
+
+    // 2. Se for um objeto, tenta ler .text ou .texto
+    const updatedText = newComment?.text || newComment?.texto;
+
+    if (updatedText) {
+      setText(updatedText);
+    } else {
+      console.warn(
+        "Retorno de onSuccess não contém 'text' nem 'texto':",
+        newComment,
+      );
+    }
   };
   return (
     <div className={styles.comment}>

@@ -11,11 +11,18 @@ import { Button } from "../button";
 
 import { ProjectContext } from "../../app/context/projectContext";
 
-export const ModalComment = ({ isEditing, projectId, onSuccess }) => {
+export const ModalComment = ({
+  isEditing,
+  projectId,
+  onSuccess,
+  defaultValue = "",
+  commentId,
+}) => {
   const modalRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
-  const { handleAdicionarComentario } = useContext(ProjectContext);
+  const { handleAdicionarComentario, handleEditarComentario } =
+    useContext(ProjectContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,13 +33,33 @@ export const ModalComment = ({ isEditing, projectId, onSuccess }) => {
 
     try {
       setLoading(true);
+      if (isEditing) {
+        const comentarioEditado = await handleEditarComentario(
+          projectId,
+          commentId,
+          text,
+        );
+<<<<<<< HEAD
 
-      const novoComentario = await handleAdicionarComentario(projectId, text);
+        if (onSuccess) {
+          onSuccess(comentarioEditado || { text, id: commentId });
+        }
+      } else {
+        const novoComentario = await handleAdicionarComentario(projectId, text);
 
-      if (novoComentario && onSuccess) {
-        onSuccess(novoComentario);
+=======
+        console.log(text);
+        if (comentarioEditado && onSuccess) {
+          onSuccess(comentarioEditado);
+        }
+      } else {
+        const novoComentario = await handleAdicionarComentario(projectId, text);
+
+>>>>>>> a140cd5aa5bf715efb5fd40d46027d0570c4c42e
+        if (novoComentario && onSuccess) {
+          onSuccess(novoComentario);
+        }
       }
-
       event.target.reset();
       modalRef.current?.closeModal();
     } catch (error) {
@@ -56,6 +83,7 @@ export const ModalComment = ({ isEditing, projectId, onSuccess }) => {
             rows={8}
             name="text"
             placeholder="Digite aqui..."
+            defaultValue={defaultValue}
           />
           <div className={styles.footer}>
             <Button disabled={loading} type="submit">
