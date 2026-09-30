@@ -15,10 +15,4 @@ export interface IProjectRepository {
   ): Promise<void>;
 
   likeProject(projectId: string, collectionName?: string): Promise<void>;
-
-  addComment(
-    projectId: string,
-    comment: IProjectComment,
-    collectionName?: string,
-  ): Promise<void>;
 }
