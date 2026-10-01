@@ -83,7 +83,7 @@ export function Feed() {
                 resumo={item.resumo}
                 linhasDeCodigo={item.linhas_de_codigo ?? 0}
                 projectLikes={item.likes ?? 0}
-                comentarios={item.comentarios_postagem?.length ?? 0}
+                comentarios={item.comentarios_postagem}
                 usuario={item.usuario}
               />
             </li>

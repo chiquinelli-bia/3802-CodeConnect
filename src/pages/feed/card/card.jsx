@@ -8,6 +8,19 @@ import { IconButton } from "../../../components/iconButton";
 import { Button } from "../../../components/button";
 import { ModalComment } from "../../../components/modalComment";
 
+import { CommentsProvider } from "../../../app/context/commentsContext";
+import { useComments } from "../../../app/hooks/useCommentsContext";
+
+const CardCommentAction = () => {
+  const { comments } = useComments();
+  return (
+    <>
+      <ModalComment />
+      <span>{comments.length}</span>
+    </>
+  );
+};
+
 export default function Card({
   id,
   slug,
@@ -16,13 +29,12 @@ export default function Card({
   resumo,
   linhasDeCodigo = 0,
   projectLikes = 0,
-  comentarios = 0,
+  comentarios = [], // Recebe o array de comentários do post
   usuario,
 }) {
   const { handleLike } = useContext(ProjectContext);
   const [likes, setLikes] = useState(projectLikes);
   const [loading, setLoading] = useState(false);
-  const [comments, setComments] = useState(comentarios ?? []);
 
   const navigate = useNavigate();
 
@@ -53,9 +65,6 @@ export default function Card({
     }
   };
 
-  const handleNewComment = (novoComentario) => {
-    setComments((prev) => [novoComentario, ...prev]);
-  };
   return (
     <article className="card">
       <div className="card__img">
@@ -80,8 +89,13 @@ export default function Card({
               {likes}
             </li>
             <li>
-              <ModalComment onCommentAdded={handleNewComment} projectId={id} />
-              {comments}
+              {/* Envolve o botão/modal e o contador com o Provider do projeto */}
+              <CommentsProvider
+                projectId={id}
+                initialComments={Array.isArray(comentarios) ? comentarios : []}
+              >
+                <CardCommentAction />
+              </CommentsProvider>
             </li>
           </ul>
           <div className="rodape__usuario">

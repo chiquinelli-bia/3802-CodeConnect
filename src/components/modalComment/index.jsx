@@ -1,6 +1,5 @@
-import { useRef, useState, useContext } from "react";
+import { useRef } from "react";
 import { IconButton } from "../iconButton";
-import { Modal } from "../modal";
 import { Textarea } from "../textarea/textarea.jsx";
 import { Subheading } from "../subHeading";
 import { IconChat } from "../../img/icons/IconChat";
@@ -8,21 +7,12 @@ import { IconArrowFoward } from "../../img/icons/IconArrowFoward";
 import { Spinner } from "../spinner";
 import styles from "./modalComment.module.css";
 import { Button } from "../button";
+import { useComments } from "../../app/hooks/useCommentsContext";
+import { Modal } from "../modal";
 
-import { ProjectContext } from "../../app/context/projectContext";
-
-export const ModalComment = ({
-  isEditing,
-  projectId,
-  onSuccess,
-  defaultValue = "",
-  commentId,
-}) => {
+export const ModalComment = ({ isEditing, defaultValue = "", commentId }) => {
   const modalRef = useRef(null);
-  const [loading, setLoading] = useState(false);
-
-  const { handleAdicionarComentario, handleEditarComentario } =
-    useContext(ProjectContext);
+  const { addComment, editComment, loading } = useComments();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,43 +22,17 @@ export const ModalComment = ({
     if (!text || !text.trim()) return;
 
     try {
-      setLoading(true);
       if (isEditing) {
-        const comentarioEditado = await handleEditarComentario(
-          projectId,
-          commentId,
-          text,
-        );
-<<<<<<< HEAD
-
-        if (onSuccess) {
-          onSuccess(comentarioEditado || { text, id: commentId });
-        }
+        await editComment(commentId, text);
       } else {
-        const novoComentario = await handleAdicionarComentario(projectId, text);
-
-=======
-        console.log(text);
-        if (comentarioEditado && onSuccess) {
-          onSuccess(comentarioEditado);
-        }
-      } else {
-        const novoComentario = await handleAdicionarComentario(projectId, text);
-
->>>>>>> a140cd5aa5bf715efb5fd40d46027d0570c4c42e
-        if (novoComentario && onSuccess) {
-          onSuccess(novoComentario);
-        }
+        await addComment(text);
       }
       event.target.reset();
       modalRef.current?.closeModal();
     } catch (error) {
-      console.error("Erro ao criar/atualizar comentário:", error);
-    } finally {
-      setLoading(false);
+      console.error("Erro no submit do comentário:", error);
     }
   };
-
   return (
     <>
       <Modal ref={modalRef}>

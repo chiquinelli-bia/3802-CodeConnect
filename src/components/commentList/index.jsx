@@ -1,7 +1,9 @@
+import { useComments } from "../../app/hooks/useCommentsContext";
 import { Comment } from "../comment";
 import styles from "./commentList.module.css";
 
-export const CommentList = ({ comments, projectId }) => {
+export const CommentList = () => {
+  const { comments, projectId } = useComments();
   return (
     <section className={styles.comments}>
       <h2>Comentários</h2>
