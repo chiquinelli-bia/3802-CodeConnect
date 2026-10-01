@@ -28,7 +28,7 @@ export function CommentsProvider({
       texto,
       usuario: {
         id: user?.uid || user?.id || "anonimo-id",
-        nome: user?.nome || "Anônimo",
+        nome: user?.displayName || "Anônimo",
         imagem: user?.photoURL || user?.imagem || "",
       },
     };
@@ -45,7 +45,6 @@ export function CommentsProvider({
     }
   };
 
-  // Editar Comentário
   const editComment = async (commentId, novoTexto) => {
     if (!novoTexto.trim()) {
       toast.warn("Escreva algo antes de enviar o comentário.");
@@ -73,6 +72,24 @@ export function CommentsProvider({
       setLoading(false);
     }
   };
+  const deleteComment = async (commentId) => {
+    setLoading(true);
+
+    try {
+      await commentRepository.deleteComment(projectId, commentId);
+
+      setComments((oldState) =>
+        oldState.filter((c) => String(c.id) !== String(commentId)),
+      );
+
+      toast.success("Comentário excluido com sucesso!");
+    } catch (error) {
+      console.error("Erro ao excluir comentário:", error);
+      toast.error("Falha ao excluir comentário.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <CommentsContext.Provider
@@ -81,6 +98,7 @@ export function CommentsProvider({
         loading,
         addComment,
         editComment,
+        deleteComment,
         projectId,
       }}
     >
