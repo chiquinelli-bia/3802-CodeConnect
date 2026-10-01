@@ -12,4 +12,9 @@ export interface ICommentRepository {
     newText: string,
     collectionName?: string,
   ): Promise<void>;
+  deleteComment(
+    projectId: string,
+    commentId: string,
+    collectionName?: string,
+  ): Promise<void>;
 }

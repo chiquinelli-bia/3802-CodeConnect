@@ -61,4 +61,27 @@ export class FirebaseCommentRepository implements ICommentRepository {
       comentarios_postagem: updatedComments,
     });
   }
+
+  async deleteComment(
+    projectId: string,
+    commentId: string,
+    collectionName?: string,
+  ): Promise<void> {
+    const targetCollection = collectionName || this.defaultCollection;
+    const projectRef = doc(db, targetCollection, String(projectId));
+
+    const projectSnap = await getDoc(projectRef);
+    if (!projectSnap.exists()) return;
+
+    const data = projectSnap.data();
+    const currentComments: any[] = data.comentarios_postagem ?? [];
+
+    const filteredComments = currentComments.filter(
+      (c) => String(c.id) !== String(commentId),
+    );
+
+    await updateDoc(projectRef, {
+      comentarios_postagem: filteredComments,
+    });
+  }
 }
