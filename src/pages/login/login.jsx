@@ -7,7 +7,7 @@ import {
 } from "../../components/shared.jsx";
 
 import { imagemLogin, githubIcon, googleIcon } from "../../img/index.js";
-import { CamposDigitacao } from "../../components/campos-autenticacao/campos-autenticacao.jsx";
+import { CamposAutenticacao } from "../../components/campos-autenticacao/campos-autenticacao.jsx";
 import { useState } from "react";
 import { useAuthContext } from "../../app/hooks/useAuthContext.js";
 import { toast } from "react-toastify";
@@ -50,7 +50,7 @@ export function Login() {
             <h1 className="form__titulo">Login</h1>
             <h2 className="form__texto">Boas Vindas! Faça seu Login.</h2>
 
-            <CamposDigitacao
+            <CamposAutenticacao
               email={email}
               setEmail={setEmail}
               senha={senha}
