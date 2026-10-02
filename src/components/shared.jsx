@@ -69,12 +69,17 @@ export function Botao({
   );
 }
 
-export function RedesSociais({ nome, icon }) {
+export function RedesSociais({ nome, icon, onClick }) {
   return (
-    <li title="em desenvolvimento">
-      <a href="#" aria-disabled="true" className="disabled">
-        <img src={icon} alt={`ícone do ${nome}`} /> {nome}
-      </a>
+    <li>
+      <button
+        type="button"
+        onClick={onClick}
+        className="container-links__botao-rede"
+      >
+        <img src={icon} alt={`ícone do ${nome}`} />
+        {nome}
+      </button>
     </li>
   );
 }
