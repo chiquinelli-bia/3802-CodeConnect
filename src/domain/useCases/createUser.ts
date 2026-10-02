@@ -1,9 +1,14 @@
-import type { IUser } from "../entities/IUser";
+import type { IUser, ICreateUserData } from "../entities/IUser";
 import type { IUserRepository } from "../repositories/IUserRepository";
 
 export class CreateUser {
-  constructor(private userRepository: IUserRepository) {}
-  async execute(user: Omit<IUser, "id">) {
-    this.userRepository.createUser(user);
+  constructor(private readonly userRepository: IUserRepository) {}
+
+  async execute(userData: ICreateUserData): Promise<IUser> {
+    if (!userData.email || !userData.nome) {
+      throw new Error("Nome e E-mail são obrigatórios.");
+    }
+
+    return await this.userRepository.createUser(userData);
   }
 }
