@@ -14,7 +14,7 @@ export function Cadastro() {
   const [foto, setFoto] = React.useState(null);
   const [fotoPreview, setFotoPreview] = React.useState(null);
 
-  const { signUp } = useAuthContext();
+  const { signUp, loginWithGithub, loginWithGoogle } = useAuthContext();
 
   const handleFotoChange = (event) => {
     const file = event.target.files?.[0];
@@ -69,17 +69,16 @@ export function Cadastro() {
             </p>
             <ul>
               <RedesSociais
-                link="https://www.github.com"
                 nome="Github"
+                onClick={loginWithGithub}
                 icon={githubIcon}
               />
               <RedesSociais
-                link="https://www.google.com"
                 nome="Google"
                 icon={googleIcon}
+                onClick={loginWithGoogle}
               />
             </ul>
-
             <p className="container-links__texto">Já tem conta?</p>
             <Link to="/login" className="container-links__link">
               Faça seu login!

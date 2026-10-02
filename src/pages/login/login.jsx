@@ -17,7 +17,7 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const { login } = useAuthContext();
+  const { login, loginWithGithub, loginWithGoogle } = useAuthContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -79,8 +79,16 @@ export function Login() {
               ou entre com outras contas
             </p>
             <ul>
-              <RedesSociais nome="Github" icon={githubIcon} />
-              <RedesSociais nome="Google" icon={googleIcon} />
+              <RedesSociais
+                nome="Github"
+                onClick={loginWithGithub}
+                icon={githubIcon}
+              />
+              <RedesSociais
+                nome="Google"
+                icon={googleIcon}
+                onClick={loginWithGoogle}
+              />
             </ul>
 
             <p className="container-links__texto">Ainda não tem conta?</p>
