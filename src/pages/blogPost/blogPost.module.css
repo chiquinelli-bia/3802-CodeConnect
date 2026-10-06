@@ -2,7 +2,11 @@
   display: flex;
   flex-direction: column;
   background: none;
+  width: 100%; /* Garante preenchimento total em telas menores */
   max-width: 750px;
+  margin: 0 auto; /* Centraliza o container principal */
+  box-sizing: border-box;
+  padding: 0 16px; /* Evita colar nas bordas em dispositivos móveis */
 }
 
 .card {
@@ -10,6 +14,7 @@
   border-radius: 8px;
   background: var(--itens-background);
   padding: 0;
+  box-sizing: border-box;
 }
 
 .header {
@@ -25,6 +30,7 @@
 
 .figure {
   height: 368px;
+  width: 100%;
 
   img {
     width: 100%;
@@ -37,6 +43,7 @@
 
 .wrapperContent {
   padding: 32px;
+  box-sizing: border-box;
 }
 
 .body {
@@ -76,6 +83,7 @@
   padding: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   p {
     margin: 0;
@@ -111,20 +119,20 @@
   background: var(--itens-background);
   box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.24);
   max-height: 270px;
-  overflow-y: auto;
+  box-sizing: border-box;
   color: var(--cinza-claro);
   line-height: 150%;
   font-size: 15px;
-  overflow: hidden;
 
   .pre {
     background: var(--grafite);
     border-radius: 4px;
     padding: 16px;
     margin: 0;
-    overflow-x: auto;
+    overflow-x: auto; /* Habilita rolagem horizontal para código longo */
     border: 1px solid var(--cinza);
     max-height: 230px;
+    box-sizing: border-box;
   }
 
   .codeBlock {
@@ -165,6 +173,61 @@
       margin: 16px 0;
       color: var(--secondary-color);
       font-style: italic;
+    }
+  }
+}
+
+/* ==========================================================================
+   Media Queries para Responsividade Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .header {
+    padding: 16px;
+  }
+
+  .figure {
+    height: 240px; /* Reduz a altura da imagem para telas intermediárias */
+  }
+
+  .wrapperContent {
+    padding: 20px;
+  }
+
+  .footer {
+    flex-direction: row;
+    gap: 16px;
+    align-items: stretch;
+
+    p {
+      text-align: left;
+    }
+  }
+
+  .actions {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 480px) {
+  .figure {
+    height: 180px; /* Ajusta a imagem para telefones pequenos */
+  }
+
+  .wrapperContent {
+    padding: 12px;
+  }
+
+  .body {
+    padding: 8px;
+  }
+
+  .code {
+    padding: 12px;
+    font-size: 14px;
+
+    .pre {
+      padding: 12px;
     }
   }
 }

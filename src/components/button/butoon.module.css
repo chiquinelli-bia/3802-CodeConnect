@@ -8,11 +8,16 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  margin: 12px 0 16px 0;
+  margin: 12px auto;
   width: fit-content;
 }
 
 .btn:hover {
   background-color: #86efac;
   color: #121212;
+}
+@media (max-width: 480px) {
+  .btn {
+    font-size: 10px;
+  }
 }
