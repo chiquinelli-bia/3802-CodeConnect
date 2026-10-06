@@ -7,7 +7,7 @@ export const Author = ({ author }) => {
       <li>
         <Avatar author={author} />
       </li>
-      <li>@{author.name}</li>
+      <li>@{author.nome}</li>
     </ul>
   );
 };

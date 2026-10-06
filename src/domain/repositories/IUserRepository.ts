@@ -1,5 +1,5 @@
-import type { IUser } from "../entities/IUser";
+import type { IUser, ICreateUserData } from "../entities/IUser";
 
 export interface IUserRepository {
-  createUser(user: Omit<IUser, "id">): Promise<void>;
+  createUser(userData: ICreateUserData): Promise<IUser>;
 }

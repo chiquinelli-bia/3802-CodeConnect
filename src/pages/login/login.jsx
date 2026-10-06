@@ -7,7 +7,7 @@ import {
 } from "../../components/shared.jsx";
 
 import { imagemLogin, githubIcon, googleIcon } from "../../img/index.js";
-import { CamposDigitacao } from "../../components/campos-autenticacao/campos-autenticacao.jsx";
+import { CamposAutenticacao } from "../../components/campos-autenticacao/campos-autenticacao.jsx";
 import { useState } from "react";
 import { useAuthContext } from "../../app/hooks/useAuthContext.js";
 import { toast } from "react-toastify";
@@ -17,7 +17,7 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const { login } = useAuthContext();
+  const { login, loginWithGithub, loginWithGoogle } = useAuthContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -50,7 +50,7 @@ export function Login() {
             <h1 className="form__titulo">Login</h1>
             <h2 className="form__texto">Boas Vindas! Faça seu Login.</h2>
 
-            <CamposDigitacao
+            <CamposAutenticacao
               email={email}
               setEmail={setEmail}
               senha={senha}
@@ -79,8 +79,16 @@ export function Login() {
               ou entre com outras contas
             </p>
             <ul>
-              <RedesSociais nome="Github" icon={githubIcon} />
-              <RedesSociais nome="Google" icon={googleIcon} />
+              <RedesSociais
+                nome="Github"
+                onClick={loginWithGithub}
+                icon={githubIcon}
+              />
+              <RedesSociais
+                nome="Google"
+                icon={googleIcon}
+                onClick={loginWithGoogle}
+              />
             </ul>
 
             <p className="container-links__texto">Ainda não tem conta?</p>

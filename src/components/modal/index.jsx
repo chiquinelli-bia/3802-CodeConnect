@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import styles from "./modal.module.css";
+import { Button } from "../button";
 
 export const Modal = forwardRef(({ children }, ref) => {
   const dialogRef = useRef(null);
@@ -12,7 +13,7 @@ export const Modal = forwardRef(({ children }, ref) => {
   return (
     <dialog className={styles.dialog} ref={dialogRef}>
       <header className={styles.header}>
-        <button onClick={() => dialogRef.current.close()}>X</button>
+        <Button onClick={() => dialogRef.current.close()}>X</Button>
       </header>
       {children}
     </dialog>

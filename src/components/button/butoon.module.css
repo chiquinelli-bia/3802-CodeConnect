@@ -1,0 +1,18 @@
+.btn {
+  background-color: transparent;
+  color: #86efac; /* Verde claro */
+  border: 2px solid #86efac;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin: 12px 0 16px 0;
+  width: fit-content;
+}
+
+.btn:hover {
+  background-color: #86efac;
+  color: #121212;
+}

@@ -1,37 +1,42 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { IconButton } from "../iconButton";
-import { Modal } from "../modal";
 import { Textarea } from "../textarea/textarea.jsx";
 import { Subheading } from "../subHeading";
 import { IconChat } from "../../img/icons/IconChat";
 import { IconArrowFoward } from "../../img/icons/IconArrowFoward";
 import { Spinner } from "../spinner";
 import styles from "./modalComment.module.css";
-import { Botao } from "../shared.jsx";
+import { Button } from "../button";
+import { useComments } from "../../app/hooks/useCommentsContext";
+import { Modal } from "../modal";
 
-export const ModalComment = ({ isEditing }) => {
+export const ModalComment = ({ isEditing, defaultValue = "", commentId }) => {
   const modalRef = useRef(null);
-  const [loading, setLoading] = useState(false);
+  const { addComment, editComment, loading } = useComments();
 
-  const onSubmit = async (formData) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
     const text = formData.get("text");
 
-    if (!text.trim()) return;
+    if (!text || !text.trim()) return;
 
     try {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-      modalRef.current.closeModal();
+      if (isEditing) {
+        await editComment(commentId, text);
+      } else {
+        await addComment(text);
+      }
+      event.target.reset();
+      modalRef.current?.closeModal();
     } catch (error) {
-      console.error("Erro ao criar/atualizar comentário:", error);
+      console.error("Erro no submit do comentário:", error);
     }
   };
   return (
     <>
       <Modal ref={modalRef}>
-        <form action={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <Subheading>
             {isEditing
               ? "Editar comentário:"
@@ -42,9 +47,10 @@ export const ModalComment = ({ isEditing }) => {
             rows={8}
             name="text"
             placeholder="Digite aqui..."
+            defaultValue={defaultValue}
           />
           <div className={styles.footer}>
-            <Botao disabled={loading} type="submit">
+            <Button disabled={loading} type="submit">
               {loading ? (
                 <Spinner />
               ) : (
@@ -52,11 +58,12 @@ export const ModalComment = ({ isEditing }) => {
                   {isEditing ? "Atualizar" : "Comentar"} <IconArrowFoward />
                 </>
               )}
-            </Botao>
+            </Button>
           </div>
         </form>
       </Modal>
-      <IconButton onClick={() => modalRef.current.openModal()}>
+
+      <IconButton onClick={() => modalRef.current?.openModal()}>
         <IconChat fill={isEditing ? "#000" : "#888888"} />
       </IconButton>
     </>

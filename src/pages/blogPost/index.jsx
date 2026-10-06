@@ -1,26 +1,40 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactMarkdown from "react-markdown";
 
 import styles from "./blogPost.module.css";
-import { ThumbsUpButton } from "../../components/cardPost/thumbsUpButton";
+import { ThumbsUpButton } from "../../components/thumbsUpButton/thumbsUpButton";
 import { Author } from "../../components/author";
 import Typography from "../../components/typography";
 import { CommentList } from "../../components/commentList";
 import { ModalComment } from "../../components/modalComment";
 
 import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository";
-import { ListProjects } from "../../domain/useCases/api/listProjects.js";
+import { ListProjects } from "../../domain/useCases/api/listProjects";
+import { CommentsProvider } from "../../app/context/commentsContext";
+import { useComments } from "../../app/hooks/useCommentsContext";
+
 const repository = new FirebaseProjectRepository();
 const listProjectsUseCase = new ListProjects(repository);
 
-export const BlogPost = () => {
-  const { slug } = useParams();
-  const navigate = useNavigate();
+// Componente auxiliar para consumir a contagem dinâmica do Contexto
+const PostCommentAction = () => {
+  const { comments } = useComments();
+  return (
+    <div className={styles.action}>
+      <ModalComment />
+      <p>{comments.length}</p>
+    </div>
+  );
+};
 
+export const BlogPost = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const { slug } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function carregarPost() {
@@ -30,12 +44,10 @@ export const BlogPost = () => {
       setLoading(true);
 
       try {
-        // Busca todos os projetos utilizando o seu UseCase existente
         const projetos = await listProjectsUseCase.execute();
 
-        // Procura o post pelo slug (ou id/titulo amigável) na lista
         const postEncontrado = projetos.find(
-          (p) => p.slug === slug || p.id === slug,
+          (p) => p.slug === slug || String(p.id) === slug,
         );
 
         if (!postEncontrado) {
@@ -80,38 +92,55 @@ export const BlogPost = () => {
 
   return (
     <main className={styles.main}>
-      <article className={styles.card}>
-        <header className={styles.header}>
-          <figure className={styles.figure}>
-            <img
-              src={post.imagem_capa || post.cover}
-              alt={`Capa do post de título: ${post.titulo || post.title}`}
-            />
-          </figure>
-        </header>
-        <section className={styles.body}>
-          <h2>{post.titulo || post.title}</h2>
-          <p>{post.resumo || post.body}</p>
-        </section>
-        <footer className={styles.footer}>
-          <div className={styles.actions}>
-            <div className={styles.action}>
-              <ThumbsUpButton loading={false} />
-              <p>{post.likes ?? 0}</p>
-            </div>
-            <div className={styles.action}>
-              <ModalComment />
-              <p>{post.comentarios?.length ?? post.comments?.length ?? 0}</p>
-            </div>
+      <CommentsProvider
+        projectId={post.id}
+        initialComments={post.comentarios_postagem ?? []}
+      >
+        <article className={styles.card}>
+          <header className={styles.header}>
+            <figure className={styles.figure}>
+              <img
+                src={post.imagem_capa}
+                alt={`Capa do post de título: ${post.titulo}`}
+              />
+            </figure>
+          </header>
+          <div className={styles.wrapperContent}>
+            <section className={styles.body}>
+              <h2>{post.titulo}</h2>
+              <p>{post.resumo}</p>
+            </section>
+            <footer className={styles.footer}>
+              <div className={styles.actions}>
+                <div className={styles.action}>
+                  <ThumbsUpButton loading={false} />
+                  <p>{post.likes ?? 0}</p>
+                </div>
+                {/* Substituído pelo componente reativo que lê do useComments */}
+                <PostCommentAction />
+              </div>
+              <Author author={post.usuario} />
+            </footer>
           </div>
-          <Author author={post.usuario || post.author} />
-        </footer>
-      </article>
-      <Typography variant="h3">Código:</Typography>
-      <div className={styles.code}>
-        <ReactMarkdown>{post.markdown || post.linhas_de_codigo}</ReactMarkdown>
-      </div>
-      <CommentList comments={post.comentarios || post.comments || []} />
+        </article>
+
+        {post.conteudo_codigo && (
+          <>
+            <Typography variant="h3">Código:</Typography>
+            <div className={styles.code}>
+              <pre className={styles.pre}>
+                <code className={styles.codeBlock}>
+                  <ReactMarkdown>
+                    {`\`\`\`js\n${post.conteudo_codigo}\n\`\`\``}
+                  </ReactMarkdown>
+                </code>
+              </pre>
+            </div>
+          </>
+        )}
+
+        <CommentList />
+      </CommentsProvider>
     </main>
   );
 };

@@ -1,0 +1,20 @@
+import type { IProjectComment } from "../entities/IProject";
+
+export interface ICommentRepository {
+  addComment(
+    projectId: string,
+    comment: IProjectComment,
+    collectionName?: string,
+  ): Promise<void>;
+  updateComment(
+    projectId: string,
+    commentId: string,
+    newText: string,
+    collectionName?: string,
+  ): Promise<void>;
+  deleteComment(
+    projectId: string,
+    commentId: string,
+    collectionName?: string,
+  ): Promise<void>;
+}

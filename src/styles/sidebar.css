@@ -4,6 +4,7 @@ aside {
   height: auto;
   padding: 16px 16px;
   text-align: center;
+  margin: 0 3em 0 0;
 }
 .link-destaque {
   border: var(--primary-color) solid 1px;

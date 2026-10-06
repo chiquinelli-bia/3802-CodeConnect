@@ -13,12 +13,16 @@ export class FirebaseUserRepository implements IUserRepository {
       user.email,
       user.password,
     );
+
     await updateProfile(userCredential.user, {
-      displayName: user.name,
+      displayName: user.nome,
+      photoURL: user.imagem || null,
     });
+
     await setDoc(doc(db, "users", userCredential.user.uid), {
-      name: user.name,
+      nome: user.nome,
       email: user.email,
+      imagem: user.imagem ?? "",
       createdAt: new Date(),
     });
   }
