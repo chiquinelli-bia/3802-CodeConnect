@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { setupDescartar } from "../../modules/descartar";
 import { FirebaseProjectRepository } from "../../infra/firebaseProjectRepository";
 import { CreateProject } from "../../domain/useCases/createProject";
-import { LikeProject } from "../../domain/useCases/api/LikeProject";
+import { LikeProject } from "../../domain/useCases/api/likeProject";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { FirebaseCommentRepository } from "../../infra/firebaseCommentRepository";
 
